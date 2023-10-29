@@ -1,0 +1,140 @@
+.title {
+  margin: auto;
+}
+
+h1 {
+  text-align: center !important;
+  font-size: 10vmin;
+  font-weight: 700;
+  font-family: "Noto Sans JP";
+  color: #fff;
+  display: block;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  list-style:none;
+}
+
+p{
+  font-family: "Noto Sans JP";
+  font-size: 3vmin;
+  font-weight: 600;
+  color: #fff;
+  display:block;
+  width:100%;
+}
+
+ul{
+  width:60vmin;
+  margin:0 auto;
+  padding:0;
+}
+
+input{
+  font-family: "Noto Sans JP";
+  width:100%;
+  font-size: 2vmin;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1vmin;
+  margin-bottom:3vmin;
+  border: 0.75vmin solid;
+  border-radius: 1000px;
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+  -moz-appearance:textfield;
+}
+
+.main{
+  width: 100vw;
+  height: 100%;
+  background-color: #e45a22;
+  align-items: center;
+  padding:10vmin 0;
+}
+
+.button {
+  font-family: "Noto Sans JP";
+  font-size: 2vmin;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  width: 60vmin;
+  padding: 1vmin;
+  margin:10vmin auto;
+  border: 0.75vmin solid;
+  border-radius: 1000px;
+  display: block;
+  transition: color, background-color 0.5s;
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+.button:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #e45a22;
+}
+
+.result{
+  text-align: center;
+}
+
+h5{
+  text-align: center;
+  font-family: "Noto Sans JP";
+  font-size: 2vmin;
+  font-weight: 600;
+  color: #fff;
+}
+
+.link{
+  text-align: center;
+  font-family: "Noto Sans JP";
+  font-size: 2vmin;
+  font-weight: 600;
+  color: #fff;
+  margin-top:10vmin;
+}
+
+.link a{
+  text-decoration:none;
+  color: #fff;
+}
+
+.link a:hover{
+  text-decoration:underline;
+  color: #fff;
+}
+
+.icon a {
+  transform: 0 0;
+  position: fixed;
+  top: 5vmin;
+  left: 5vmin;
+  font-family: "Noto Sans JP";
+  font-size: 10vmin;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+}

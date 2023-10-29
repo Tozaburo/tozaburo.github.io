@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="apple-touch-icon" href="/yojidle.png">
+    <link rel="apple-touch-startup-image" href="/yojidle.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="四字dle">
+    <link rel="manifest" href="yojidle.json">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&display=swap" rel="stylesheet">
+    <link rel="icon" href="/yojidle.png">
+    <link rel="stylesheet" href="yojidle.css" />
+    <script src="data.js"></script>
+    <script defer src="yojidle.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四字dle</title>
+</head>
+
+<body>
+    <div class="popup">
+        <h1 id="alert">GAME CLEAR!</h1>
+        <p id="copy" class="flexB"></p>
+    </div>
+    <div class="header flexB flexC">
+        <h1>四字dle</h1>
+        <p>四字熟語を当てるべし</p>
+    </div>
+    <div class="main flexB flexC">
+        <div class="text">
+        </div>
+    </div>
+    <div class="footer flexB flexC">
+        <input type="text" id="input" autocomplete="off">
+        <p>「q」と打つとギブアップ・「w」と打つとランダム予想</p>
+    </div>
+</body>
+
+</html>

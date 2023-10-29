@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="stylesheet" href="kaomoji.css" />
+    <script src="kaomoji.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;800;900&family=Roboto:wght@300;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title"></title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="title">
+            <h1>顔文字ジェネレーター</h1>
+            <p>どんな文章も顔文字にします。</p>
+        </div>
+        <div class="input">
+            <textarea class="input" id="input"></textarea>
+            <a onclick="convert()">↓変換↓</a>
+        </div>
+        <div class="output">
+            <textarea class="input" id="output"></textarea>
+        </div>
+        <div class="detail">
+            <h2>設定<span>⚙️</span></h2>
+            <a onclick="changeSpace()" id="space">◀&emsp;空白なし&emsp;▶</a>
+            <a onclick="changeEar()" id="ear">◀&emsp;耳なし&emsp;▶</a>
+        </div>
+    </div>
+</body>
+
+</html>

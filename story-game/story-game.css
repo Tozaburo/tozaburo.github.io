@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #fffcf4;
+}
+
+/* loading */
+.loading {
+    background-color: #fffcf4;
+    height: 100%;
+    width: 100vw;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    transition: all 0.5s;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+}
+
+.loading h1 {
+    color: #333;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* main */
+section.main {
+    min-height: 100vh;
+    width: 100vmin;
+    margin: 0 auto;
+}
+
+.main h1 {
+    color: #333;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 5vmin;
+    position: fixed;
+    padding: 2vmin;
+    height: 10vmin;
+    width: 100vw;
+    background-color: #fffcf4;
+}
+
+.main p {
+    color: #333;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2vmin;
+    padding-left: 2vmin;
+}
+
+.bol {
+    padding-top: 15vmin;
+}
+
+div.choice,
+div.complete {
+    margin-top: 10vmin;
+    width: 100vmin;
+    height: 20vmin;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    border: 0.2vmin #333 solid;
+    border-radius: 1vmin;
+    flex-flow: column;
+}
+
+div.choices {
+    width: 100vmin;
+    height: 15vmin;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
+
+
+div.choice h2,
+div.complete h2 {
+    white-space: nowrap;
+    display: block;
+    overflow: scroll;
+    color: #333;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 4vmin;
+    padding: 2vmin;
+}
+
+div.choices a {
+    white-space: nowrap;
+    display: block;
+    width: 40vmin;
+    overflow: scroll;
+    color: #333;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2vmin;
+    border: 0.2vmin #333 solid;
+    border-radius: 1vmin;
+    cursor: pointer;
+    padding: 2vmin;
+}
+
+div.complete a {
+    white-space: nowrap;
+    display: block;
+    width: 40vmin;
+    overflow: scroll;
+    color: #333;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2vmin;
+    border: 0.2vmin #333 solid;
+    border-radius: 1vmin;
+    cursor: pointer;
+    padding: 2vmin;
+}
+
+.restart {
+    white-space: nowrap;
+    overflow: scroll;
+    color: #f06767;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2vmin;
+    border: 0.2vmin #f06767 solid;
+    border-radius: 1vmin;
+    cursor: pointer;
+    position: fixed;
+    margin: 3vmin;
+    padding: 2vmin 10vmin;
+}
+
+.animated-text span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(1em);
+    transition: all 0.5s;
+}
+
+.animated-text span.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#construction {
+    margin-top: 15vmin;
+    padding: 10vmin;
+}
+
+.sway {
+    animation: sway 2s infinite normal linear;
+}
+
+.animate {
+    animation: grow 1s 1 alternate ease-in-out;
+}
+
+@keyframes grow {
+    0% {
+        transform: translateY(10vmin);
+    }
+
+    70% {
+        transform: translateY(-1vmin);
+    }
+
+    100% {
+        transform: translateY(0vmin);
+    }
+}
+
+@keyframes sway {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-2.5deg);
+    }
+
+    75% {
+        transform: rotate(2.5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}

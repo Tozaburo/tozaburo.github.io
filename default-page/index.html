@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <link rel="stylesheet" href="default.css" />
+    <script src="default.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">New Tab</title>
+</head>
+
+<body>
+    <div class="popup-wrap">
+        <div class="popup">
+            <input type="text" id="url" placeholder="URL of Website">
+            <input type="text" id="btitle" placeholder="Simple Title for it">
+            <input type="button" onclick="confirm()" value="Confirm">
+        </div>
+    </div>
+    <div class="header">
+        <p>Tips: Try ⌘+L or Alt+D!</p>
+    </div>
+    <div class="main">
+        <div class="search-wrap">
+            <div class="search" id="google">
+                <h2><span class="blue">G</span><span class="red">o</span><span class="yellow">o</span><span
+                        class="blue">g</span><span class="green">l</span><span class="red">e</span></h2>
+                <input type="text" id="googleInput" placeholder="Search with Google..." autofocus autocomplete="off">
+            </div>
+            <div class="search" id="wikipedia">
+                <h2>Wikipedia</h2>
+                <input type="text" id="wikipediaInput" placeholder="Search with Wikipedia..." autofocus
+                    autocomplete="off">
+                <select id="language" onchange="langChange()">
+                </select>
+            </div>
+            <div class="switch">
+                <p>Google</p>
+                <div class="toggle">
+                    <input type="checkbox" name="check" id="gw">
+                </div>
+                <p>Wikipedia</p>
+            </div>
+        </div>
+        <div class="bookmark" oncontextmenu="return false;">
+        </div>
+        <div class="clock">
+            <h2 id="time"></h2>
+        </div>
+        <div class="color-wrap">
+            <div class="color-description">
+                <h2>Random Color</h2>
+                <p id="a">Click to Copy hex</p>
+            </div>
+            <div class="color">
+                <div class="colorBox" id="color1">
+                    <p id="ch1"></p>
+                    <p id="cd1"></p>
+                </div>
+                <div class="colorBox" id="color2">
+                    <p id="ch2"></p>
+                    <p id="cd2"></p>
+                </div>
+                <div class="colorBox" id="color3">
+                    <p id="ch3"></p>
+                    <p id="cd3"></p>
+                </div>
+                <div class="colorBox" id="color4">
+                    <p id="ch4"></p>
+                    <p id="cd4"></p>
+                </div>
+            </div>
+        </div>
+        <div class="random-wrap">
+            <div class="emoji">
+                <h2>Random Emoji</h2>
+                <h1 id="emoji" onclick="viewEmoji()"></h1>
+                <p id="emoji-description" onclick="viewEmoji()"></p>
+                <a href="https://emojihub.yurace.pro/api/random">Released under the MIT license
+                    https://emojihub.yurace.pro/api/random</a>
+            </div>
+            <div class="kanji">
+                <h2>Random Kanji</h2>
+                <h1 id="kanji" onclick="viewKanji()"></h1>
+            </div>
+            <div class="font">
+                <h2>Random Font</h2>
+                <h1 id="font" onclick="viewFont()"></h1>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let lenis = new Lenis();
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+</script>
+
+</html>

@@ -1,0 +1,32 @@
+td {
+  border: solid 2px;
+  text-align: center;
+  width: 100vmin;
+  font-family: "Noto Sans JP";
+}
+
+th {
+  text-align: center;
+  width: 30vmin;
+}
+
+th,
+td {
+  font-family: "Noto Sans JP";
+  font-weight: 400;
+  font-size: 3vmin;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 10vmin auto;
+}
+
+.pointer {
+  position: absolute;
+  height: 4.5vmin;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  z-index:100000;
+}

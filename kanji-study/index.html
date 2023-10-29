@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <script src="https://tozaburo.github.io/kanji-no-hyouhon/data.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">漢検勉強！</title>
+    <!-- <script>
+        let lenis = new Lenis();
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script> -->
+</head>
+
+<body>
+    <section id="level" class="hidden">
+        <div class="wrap flexB flexC">
+            <h1>受験する級を選んでください。</h1>
+            <div class="level-wrap">
+                <p data-level="0" class="flexB level-button">10級</p>
+                <p data-level="1" class="flexB level-button">9級</p>
+                <p data-level="2" class="flexB level-button">8級</p>
+                <p data-level="3" class="flexB level-button">7級</p>
+                <p data-level="4" class="flexB level-button">6級</p>
+                <p data-level="5" class="flexB level-button">5級</p>
+                <p data-level="6" class="flexB level-button">4級</p>
+                <p data-level="7" class="flexB level-button">3級</p>
+                <p data-level="8" class="flexB level-button">準2級</p>
+                <p data-level="9" class="flexB level-button">2級</p>
+                <p data-level="10" class="flexB level-button">準1級</p>
+                <p data-level="11" class="flexB level-button">1級</p>
+            </div>
+        </div>
+    </section>
+    <section id="top">
+        <div class="wrap flexB flexC" id="dashboard">
+            <h1 id="question-n-a"></h1>
+        </div>
+    </section>
+    <section id="question" class="hidden kanji-memo">
+        <div class="wrap flexB">
+            <div class="grid">
+                <p id="done" class="flexB">A</p>
+                <h1 id="random-kanji" class="flexB kanji"></h1>
+                <p id="on" class="flexB on"></p>
+                <p id="kun" class="flexB kun"></p>
+                <a id="kanjipedia" class="flexB kanjipedia" target="_blank" rel="noopener noreferrer">漢字ペディアで調べる</a>
+                <a id="zi" class="flexB zi" target="_blank" rel="noopener noreferrer">zi.toolsで調べる</a>
+                <textarea id="description" cols="30" rows="10" oninput="inputChange()"></textarea>
+                <a onclick="nextKanji();" class="flexB" id="next">次へ</a>
+            </div>
+        </div>
+    </section>
+    <section id="review" class="hidden flexB flexC">
+        <h1 id="memoed"></h1>
+        <div id="kanji-list">
+        </div>
+    </section>
+    <section id="review-kanji" class="hidden kanji-memo">
+        <div class="wrap flexB">
+            <div class="grid">
+                <h1 id="review-kanji-kanji" class="flexB kanji"></h1>
+                <p id="review-kanji-on" class="flexB on"></p>
+                <p id="review-kanji-kun" class="flexB kun"></p>
+                <a id="review-kanji-kanjipedia" class="flexB kanjipedia" target="_blank" rel="noopener noreferrer">漢字ペディアで調べる</a>
+                <a id="review-kanji-zi" class="flexB zi" target="_blank" rel="noopener noreferrer">zi.toolsで調べる</a>
+                <textarea id="review-kanji-description" cols="30" rows="10" oninput="inputChange()"></textarea>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

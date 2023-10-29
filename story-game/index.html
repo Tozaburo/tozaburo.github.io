@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="apple-touch-icon" href="https://tozaburo.github.io/story-game.png">
+    <link rel="apple-touch-startup-image" href="https://tozaburo.github.io/https://tozaburo.github.io/story-game.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="物語ゲーム">
+    <link rel="manifest" href="story-game.json">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://tozaburo.github.io/story-game.png">
+    <link rel="stylesheet" href="story-game.css" />
+    <script src="story-game.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">物語ゲーム</title>
+</head>
+
+<body>
+    <div class="loading">
+        <h1 id="loading-text">ローディング中です</h1>
+    </div>
+    <section class="main">
+        <h1 id="chapter">Chapter</h1>
+        <div class="bol">
+        </div>
+        <div class="choice">
+            <h2>選択肢</h2>
+            <div class="choices">
+                <a onclick="choice(0)" id="choice1"></a>
+                <a onclick="choice(1)" id="choice2"></a>
+            </div>
+        </div>
+        <div class="complete">
+            <h2>章コンプリート！</h2>
+            <div class="choices">
+                <a onclick="next()">進む</a>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

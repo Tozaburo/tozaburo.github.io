@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    width: 100vw;
+    background-color: #ebe6ca;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+section {
+    min-height: 100vh;
+    width: 100vmin;
+    background-color: #ebe6ca;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+section:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+    position: static;
+}
+
+section.hidden {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+.flexB {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.flexC {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.flexG {
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
+.flexA {
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
+
+div.wrap {
+    background-color: white;
+    height: 50vmin;
+    width: 80vmin;
+    border-radius: 1vmin;
+}
+
+div.wrap h1:not(.kanji) {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 3vmin;
+    color: black;
+    margin: 5vmin;
+}
+
+div.level-wrap {
+    height: 20vmin;
+    width: 60vmin;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1vmin;
+}
+
+div.level-wrap p {
+    cursor: pointer;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 3vmin;
+    color: white;
+    background-color: #460bf3;
+    border-radius: 1vmin;
+    transition: transform 0.15s ease-in;
+}
+
+div.level-wrap p:hover {
+    transform: scale(1.1);
+}
+
+div#dashboard a {
+    cursor: pointer;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 3vmin;
+    color: white;
+    background-color: #3d99b4;
+    padding: 2vmin;
+    width: 30vmin;
+    margin: 1vmin;
+    border-radius: 1vmin;
+}
+
+div#dashboard input {
+    cursor: pointer;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 3vmin;
+    color: white;
+    background-color: #3d99b4;
+    padding: 2vmin;
+    width: 30vmin;
+    margin: 1vmin;
+    border-radius: 1vmin;
+    transition: background-color 0.2s ease-in;
+    border: none;
+}
+
+div#dashboard input:focus {
+    background-color: #3eb595;
+}
+
+div.level-wrap p:hover {
+    transform: scale(1.1);
+}
+
+section.kanji-memo .grid {
+    display: grid;
+    margin: 5vmin;
+    aspect-ratio: 8 / 6;
+    height: 35vmin;
+    gap: 1vmin;
+    grid-template-columns: 2fr 2fr 4fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+section.kanji-memo .grid * {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    color: white;
+    background-color: #3d99b4;
+    border-radius: 1vmin;
+}
+
+section.kanji-memo .grid h1 {
+    font-size: 10vmin;
+    grid-column: 1 / 2;
+    grid-row: 2 / 4;
+}
+
+section.kanji-memo .grid p {
+    font-size: 2vmin;
+}
+
+section.kanji-memo .grid #done {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+}
+
+section.kanji-memo .grid .on {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+}
+
+section.kanji-memo .grid .kun {
+    grid-column: 2 / 4;
+    grid-row: 3 / 4;
+}
+
+section.kanji-memo .grid a {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2vmin;
+    transition: background-color 0.1s ease-in;
+}
+
+section.kanji-memo .grid a:hover {
+    background-color: #3eb595;
+}
+
+section.kanji-memo .grid .kanjipedia {
+    grid-column: 1 / 3;
+    grid-row: 4 / 5;
+}
+
+section.kanji-memo .grid .zi {
+    grid-column: 1 / 3;
+    grid-row: 5 / 6;
+}
+
+section.kanji-memo .grid #next {
+    grid-column: 1 / 4;
+    grid-row: 6 / 7;
+}
+
+section.kanji-memo .grid textarea {
+    resize: none;
+    font-size: 2vmin;
+    border: none;
+    grid-column: 3 / 4;
+    grid-row: 4 / 6;
+    padding: 1vmin;
+    transition: background-color 0.1s ease-in;
+}
+
+section.kanji-memo .grid textarea:focus {
+    background-color: #3eb595;
+}
+
+div#kanji-list {
+    background-color: white;
+    border-radius: 1vmin;
+    display: grid;
+    gap: 2vmin;
+    padding: 2vmin;
+    grid-template-columns: repeat(8, 1fr);
+    width: 100vmin;
+}
+
+section#review {
+    padding: 10vmin;
+}
+
+section#review h1 {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 4vmin;
+    color: black;
+    margin: 5vmin;
+}
+
+section#review a {
+    cursor: pointer;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 3vmin;
+    color: white;
+    border-radius: 1vmin;
+    transition: background-color 0.2s ease-in;
+    border: none;
+    aspect-ratio: 1;
+}
+
+section#review a.blue {
+    background-color: #3d99b4;
+}
+
+section#review a.green {
+    background-color: #3eb595;
+}

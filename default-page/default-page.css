@@ -1,0 +1,494 @@
+@font-face {
+    font-family: 'LinLibertine';
+    src: url(/LinLibertine_R.ttf);
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url(/Futura_Heavy.ttf);
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url(/Futura_Medium.ttf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url(/Futura_Light.ttf);
+    font-weight: 300;
+}
+
+html {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    min-height: 100vh;
+    width: 100vw;
+    background-color: white;
+    /* ED9826 */
+    margin: 0;
+    padding: 0;
+    overscroll-behavior-x: none;
+}
+
+.popup-wrap {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #00000040;
+    position: fixed;
+    z-index: 9999;
+}
+
+.popup {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    flex-flow: column;
+    background-color: white;
+    border-radius: 1vmin;
+    padding: 10vmin;
+}
+
+.popup input {
+    display: block;
+    padding: 2vmin;
+    border: 0.1vmin black solid;
+    border-radius: 10000vmin;
+    height: 2vmin;
+    width: 46vmin;
+    font-size: 2vmin;
+    margin: 2vmin;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: content-box;
+}
+
+.popup input[type=button] {
+    cursor: pointer;
+}
+
+.header {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+
+.header p {
+    font-size: 3vmin;
+    font-family: 'Futura', sans-serif;
+    color: black;
+    font-weight: 500;
+    text-align: center;
+    margin: 1vmin;
+}
+
+.main {
+    padding-bottom: 10vmin;
+    min-height: 100vh;
+    width: 100vw;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+div.search input[type=text] {
+    display: block;
+    padding: 2vmin;
+    border: none;
+    border-radius: 10000vmin;
+    height: 2vmin;
+    width: 46vmin;
+    font-size: 2vmin;
+    font-family: 'Roboto', sans-serif;
+}
+
+div.search {
+    height: 30vmin;
+    width: 100vw;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    flex-flow: column;
+    backdrop-filter: blur(1vmin) brightness(1.05);
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+}
+
+div.search-wrap {
+    height: 60vmin;
+    width: 100vw;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    flex-flow: column;
+    background-color: #8542f420;
+}
+
+span.red {
+    color: #DB4437;
+}
+
+span.blue {
+    color: #4285F4;
+}
+
+span.yellow {
+    color: #F4B400;
+}
+
+span.green {
+    color: #0F9D58;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#google h2 {
+    font-size: 7.5vmin;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    margin: 0;
+    height: 8vmin;
+}
+
+#wikipedia h2 {
+    font-size: 7.5vmin;
+    font-family: 'LinLibertine', serif;
+    margin: 0;
+    height: 8vmin;
+}
+
+select#language {
+    padding: 1vmin;
+    width: 50vmin;
+    border-radius: 100vmax;
+    border: none;
+}
+
+div.switch {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 50vmin;
+    height: 10vmin;
+    backdrop-filter: blur(1vmin) brightness(1.25);
+    border-radius: 1vmin;
+}
+
+div.switch p {
+    padding: 1vmin;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    font-size: 2vmin;
+}
+
+.toggle {
+    position: relative;
+    width: 7.8vmin;
+    height: 2.4vmin;
+    margin: 4vmin 6vmin;
+    border-radius: 5vmin;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.toggle input[type=checkbox] {
+    display: none;
+}
+
+.toggle:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #4285F4;
+    -webkit-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+}
+
+.toggle:after {
+    content: "";
+    position: absolute;
+    top: 0.1vmin;
+    left: 0.1vmin;
+    width: 2.2vmin;
+    height: 2.2vmin;
+    display: block;
+    border-radius: 5vmin;
+    background: #fff;
+    box-shadow: 0 0.9vmin 2.8vmin -0.6vmin rgba(0, 0, 0, 0.3);
+    -webkit-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+}
+
+.toggle.checked:before {
+    background: black;
+}
+
+.toggle.checked:after {
+    left: 5.5vmin;
+    box-shadow: 0 0.9vmin 2.8vmin -0.6vmin rgba(0, 0, 0, 0.5);
+}
+
+div.bookmark {
+    width: 100vmin;
+    height: 20vmin;
+    display: -webkit-flex;
+    display: flex;
+    background-color: white;
+    border-radius: 1vmin;
+    margin-top: 2vmin;
+    text-align: center;
+}
+
+div.bookmark p {
+    color: blakc;
+    font-size: 2vmin;
+    font-family: 'Futura', sans-serif;
+    vertical-align: middle;
+    text-align: center;
+    word-break: break-word;
+    margin: 1vmin;
+    position: absolute;
+}
+
+div.bookmark a {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 15vmin;
+    height: 15vmin;
+    background-color: gray;
+    margin: 2.5vmin;
+    border-radius: 1vmin;
+    color: white;
+    font-size: 4vmin;
+    font-family: 'Futura', sans-serif;
+    vertical-align: middle;
+    text-align: center;
+    word-break: break-word;
+    text-decoration: none;
+}
+
+div.bookmark a.add {
+    font-size: 5vmin;
+    text-align: center;
+    color: black;
+    line-height: 15vmin;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+div.clock {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 100vmin;
+    height: 15vmin;
+    margin: 5vmin;
+}
+
+.clock h2 {
+    font-size: 7.5vmin;
+    font-family: 'Futura', sans-serif;
+    color: white;
+    font-weight: 500;
+}
+
+div.color-wrap {
+    height: 46vmin;
+    width: 100vmin;
+    background-color: #fff;
+    border-radius: 1vmin;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    flex-flow: column;
+}
+
+div.color-wrap h2,
+div.emoji h2,
+div.kanji h2, 
+div.font h2 {
+    font-size: 4vmin;
+    font-family: 'Futura', sans-serif;
+    color: black;
+    font-weight: 500;
+    text-align: center;
+    margin: 0vmin;
+}
+
+div.color-description>p {
+    font-size: 2vmin;
+    font-family: 'Futura', sans-serif;
+    color: black;
+    font-weight: 500;
+    text-align: center;
+    margin: 0vmin;
+}
+
+div.color {
+    height: 30vmin;
+    width: 100vmin;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
+
+div.color div {
+    height: 30vmin;
+    width: 20vmin;
+    background-color: #4285F4;
+    border-radius: 1vmin;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+}
+
+div.color div:hover {
+    transform: scale(1.1);
+}
+
+div.color p {
+    font-size: 2vmin;
+    font-family: 'Futura', sans-serif;
+    color: white;
+    font-weight: 300;
+    text-align: center;
+}
+
+div.random-wrap {
+    padding-top: 4vmin;
+    height: 30vmin;
+    width: 100vmin;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
+div.random-wrap div {
+    height: 30vmin;
+    width: calc(calc(100vmin / 3) - 3vmin);
+    background-color: white;
+    border-radius: 1vmin;
+    cursor: pointer;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    flex-flow: column;
+}
+
+div.emoji h1 {
+    font-size: 12vmin;
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+}
+
+div.emoji h1:hover, 
+div.kanji h1:hover, 
+div.font h1:hover {
+    transform: scale(1.1);
+}
+
+div.emoji p {
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 2vmin;
+    font-family: 'Futura', sans-serif;
+}
+
+div.emoji a {
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1vmin;
+    color: gray;
+    font-family: 'Futura', sans-serif;
+}
+
+div.emoji a:hover {
+    text-decoration: none;
+}
+
+div.kanji h1 {
+    font-size: 12vmin;
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    transition: all 0.2s ease-out;
+    font-family: 'Noto Sans JP', 'Noto Sans TC', 'Noto Sans SC', 'Noto Sans KR', sans-serif;
+    color: black;
+    cursor: pointer;
+    height: 24vmin;
+    line-height: 24vmin;
+}
+
+div.font h1 {
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    transition: all 0.2s ease-out;
+    color: black;
+    cursor: pointer;
+    height: 24vmin;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}

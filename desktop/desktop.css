@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Futura';
+    src: url(/Futura_Medium.ttf);
+    font-weight: 500;
+}
+
+html {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    /* ED9826 */
+    margin: 0;
+    padding: 0;
+    overscroll-behavior-x: none;
+    overflow: hidden;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+h2 {
+    font-size: 7.5vmin;
+    font-family: 'Futura', sans-serif;
+    color: white;
+    font-weight: 500;
+}

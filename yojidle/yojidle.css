@@ -1,0 +1,285 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* html {
+    scroll-behavior: smooth;
+} */
+
+body {
+    min-height: 100vh;
+    width: 100vw;
+    background-color: black;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.flexB {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.flexC {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.flexG {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+
+.flexA {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+}
+
+div.header {
+    position: fixed;
+    height: 15vmin;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    border-bottom: white 0.1vmin solid;
+    background-color: black;
+}
+
+div.header h1 {
+    color: white;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 5vmin;
+}
+
+div.header p {
+    color: white;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 1.6vmin;
+}
+
+div.main {
+    margin-top: 20vmin;
+    margin-bottom: 20vmin;
+    min-height: 60vh;
+    width: 100vw;
+    background-color: black;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    z-index: -100;
+}
+
+div.text {
+    display: -ms-grid;
+    display: grid;
+    width: 50vmin;
+    gap: 1vmin;
+    -ms-grid-columns: 1fr 1vmin 1fr 1vmin 1fr 1vmin 1fr;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+div.text h1 {
+    aspect-ratio: 1;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    color: white;
+    font-size: 5vmin;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-animation: showWord 0.2s normal forwards ease-in-out 1;
+            animation: showWord 0.2s normal forwards ease-in-out 1;
+    border-radius: 1vmin;
+}
+
+div.text h1.none {
+    background-color: #3a3a3c;
+}
+
+div.text h1.yellow {
+    background-color: #b59f3b;
+}
+
+div.text h1.green {
+    background-color: #538d4e;
+}
+
+div.text h1.blue {
+    background-color: #4d648c;
+}
+
+div.footer {
+    z-index: 100;
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    height: 20vmin;
+}
+
+div.footer input {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    color: black;
+    display: block;
+    padding: 2vmin;
+    border: none;
+    outline: solid 0.2vmin black;
+    outline-offset: -0.5vmin;
+    border-radius: 10000vmin;
+    height: 2vmin;
+    width: 46vmin;
+    font-size: 2vmin;
+    background-color: white;
+    -webkit-transition: outline 0.5s;
+    -o-transition: outline 0.5s;
+    transition: outline 0.5s;
+}
+
+div.footer p {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    color: white;
+    display: block;
+    margin: 2vmin;
+    font-size: 2vmin;
+}
+
+.error {
+    -webkit-animation: error 0.2s normal forwards ease-in-out 2.5;
+            animation: error 0.2s normal forwards ease-in-out 2.5;
+    outline: solid 0.2vmin red !important;
+}
+
+div.popup {
+    position: fixed;
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    background-color: #ffffff40;
+    z-index: 200;
+    top: 0;
+    left: 0;
+}
+
+div.popup h1 {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 7.5vmin;
+}
+
+div.popup p {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 3vmin;
+    margin: 5vmin;
+    background-color: bisque;
+    padding: 1vmin;
+    /* width: 37vmin; */
+    width: 80vmin;
+    border-radius: 1vmin;
+    cursor: pointer;
+    height: 50vmin;
+    overflow-y: scroll;
+    text-align: center;
+}
+
+
+@-webkit-keyframes error {
+    0% {
+        -webkit-transform: translateX(0vmin);
+                transform: translateX(0vmin);
+    }
+
+    25% {
+        -webkit-transform: translateX(-0.5vmin);
+                transform: translateX(-0.5vmin);
+    }
+
+    75% {
+        -webkit-transform: translateX(0.5vmin);
+                transform: translateX(0.5vmin);
+    }
+
+    100% {
+        -webkit-transform: translateX(0vmin);
+                transform: translateX(0vmin);
+    }
+}
+
+
+@keyframes error {
+    0% {
+        -webkit-transform: translateX(0vmin);
+                transform: translateX(0vmin);
+    }
+
+    25% {
+        -webkit-transform: translateX(-0.5vmin);
+                transform: translateX(-0.5vmin);
+    }
+
+    75% {
+        -webkit-transform: translateX(0.5vmin);
+                transform: translateX(0.5vmin);
+    }
+
+    100% {
+        -webkit-transform: translateX(0vmin);
+                transform: translateX(0vmin);
+    }
+}
+
+@-webkit-keyframes showWord {
+    0% {
+        -webkit-transform: scaleX(0);
+                transform: scaleX(0);
+    }
+
+    100% {
+        -webkit-transform: scaleX(1);
+                transform: scaleX(1);
+    }
+}
+
+@keyframes showWord {
+    0% {
+        -webkit-transform: scaleX(0);
+                transform: scaleX(0);
+    }
+
+    100% {
+        -webkit-transform: scaleX(1);
+                transform: scaleX(1);
+    }
+}
