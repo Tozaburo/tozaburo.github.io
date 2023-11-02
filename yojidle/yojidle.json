@@ -7,7 +7,7 @@
     "description": "",
     "icons": [
         {
-            "src": "/yojidle.png",
+            "src": "yojidle.png",
             "sizes": "1024x1024",
             "type": "image/png"
         }
