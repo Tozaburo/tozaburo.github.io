@@ -4,21 +4,21 @@ var emojiName = "";
 var randomKanji = "";
 var choosedFont = "";
 
-window.addEventListener("DOMContentLoaded", function () {
-    new ClipboardJS('.colorBox');
 
-    // clipboard.jsのインスタンスを作成
-    const clipboard = new ClipboardJS('#button');
+new ClipboardJS('.colorBox');
 
-    // コピーが成功した場合のイベント
-    clipboard.on('success', function (e) {
-        // e.clearSelection();
-    });
+// clipboard.jsのインスタンスを作成
+const clipboard = new ClipboardJS('#button');
 
-    // コピーが失敗した場合のイベント
-    clipboard.on('error', function (e) {
-    });
+// コピーが成功した場合のイベント
+clipboard.on('success', function (e) {
+    // e.clearSelection();
 });
+
+// コピーが失敗した場合のイベント
+clipboard.on('error', function (e) {
+});
+
 
 if (localStorage.getItem("gw") == null) {
     localStorage.setItem("gw", 0);
@@ -54,7 +54,7 @@ function confirm() {
 }
 
 function updateBookmark() {
-    document.querySelector(".bookmark").innerHTML = "<p>Right click to delete</p>";
+    document.querySelector(".bookmark").innerHTML = "";
     for (var n = 0; n < bookmark.length; n++) {
         document.querySelector(".bookmark").innerHTML += `<a href="${bookmark[n][0]}" oncontextmenu="removeBookmark(${n})" style="font-size: ${12 * (1 / Math.ceil(Math.sqrt(bookmark[n][1].length)))}vmin;">${bookmark[n][1]}</a>`;
     }
@@ -314,112 +314,123 @@ async function main() {
     document.querySelector("#font").style.fontSize = String(40 / choosedFont.length) + "vmin";
 }
 
-document.addEventListener("DOMContentLoaded", function () {
 
-    document.querySelector(".popup-wrap").style.display = "none";
 
-    // Google
-    document.getElementById("googleInput").addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-            location.href = "https://www.google.com/search?q=" + document.getElementById("googleInput").value
-            event.preventDefault();
-        }
-    });
+document.querySelector(".popup-wrap").style.display = "none";
 
-    // Wikipedia
-    document.getElementById("wikipediaInput").addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-            location.href = "https://" + document.querySelector("#language").value + ".wikipedia.org/wiki/" + document.getElementById("wikipediaInput").value
-            event.preventDefault();
-        }
-    });
+// Google
+document.getElementById("googleInput").addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        location.href = "https://www.google.com/search?q=" + document.getElementById("googleInput").value
+        event.preventDefault();
+    }
+});
 
-    // Wikipedia Language
-    var userLanguages = navigator.languages;
-    for (var n = 0; n < userLanguages.length; n++) {
-        if (userLanguages[n].length < 3) {
-            if (userLanguages[n] == lang) {
-                document.querySelector("#language").innerHTML = `<option value="${userLanguages[n]}">${userLanguages[n]}</option>` + document.querySelector("#language").innerHTML;
-            } else {
-                document.querySelector("#language").innerHTML += `<option value="${userLanguages[n]}">${userLanguages[n]}</option>`
-            }
+// Wikipedia
+document.getElementById("wikipediaInput").addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        location.href = "https://" + document.querySelector("#language").value + ".wikipedia.org/wiki/" + document.getElementById("wikipediaInput").value
+        event.preventDefault();
+    }
+});
+
+// Wikipedia Language
+var userLanguages = navigator.languages;
+for (var n = 0; n < userLanguages.length; n++) {
+    if (userLanguages[n].length < 3) {
+        if (userLanguages[n] == lang) {
+            document.querySelector("#language").innerHTML = `<option value="${userLanguages[n]}">${userLanguages[n]}</option>` + document.querySelector("#language").innerHTML;
+        } else {
+            document.querySelector("#language").innerHTML += `<option value="${userLanguages[n]}">${userLanguages[n]}</option>`
         }
     }
+}
 
-    // Google / Wikipedia Switch
-    if (gw == 0) {
-        document.querySelector('#gw').checked = false;
-        document.querySelector('.toggle').classList.remove('checked');
-        document.querySelector("#google").style.display = "flex";
-        document.querySelector("#wikipedia").style.display = "none";
-    } else {
+// Google / Wikipedia Switch
+if (gw == 0) {
+    document.querySelector('#gw').checked = false;
+    document.querySelector('.toggle').classList.remove('checked');
+    document.querySelector("#google").style.display = "flex";
+    document.querySelector("#wikipedia").style.display = "none";
+} else {
+    document.querySelector('#gw').checked = true;
+    document.querySelector('.toggle').classList.add('checked');
+    document.querySelector("#google").style.display = "none";
+    document.querySelector("#wikipedia").style.display = "flex";
+}
+
+document.querySelector('.toggle').addEventListener('click', function () {
+    this.classList.toggle('checked');
+    if (!document.querySelector('#gw').checked) {
         document.querySelector('#gw').checked = true;
-        document.querySelector('.toggle').classList.add('checked');
         document.querySelector("#google").style.display = "none";
         document.querySelector("#wikipedia").style.display = "flex";
+        gw = 1;
+        localStorage.setItem("gw", 1);
+    } else {
+        document.querySelector('#gw').checked = false;
+        document.querySelector("#google").style.display = "flex";
+        document.querySelector("#wikipedia").style.display = "none";
+        gw = 0;
+        localStorage.setItem("gw", 0);
     }
-
-    document.querySelector('.toggle').addEventListener('click', function () {
-        this.classList.toggle('checked');
-        if (!document.querySelector('#gw').checked) {
-            document.querySelector('#gw').checked = true;
-            document.querySelector("#google").style.display = "none";
-            document.querySelector("#wikipedia").style.display = "flex";
-            gw = 1;
-            localStorage.setItem("gw", 1);
-        } else {
-            document.querySelector('#gw').checked = false;
-            document.querySelector("#google").style.display = "flex";
-            document.querySelector("#wikipedia").style.display = "none";
-            gw = 0;
-            localStorage.setItem("gw", 0);
-        }
-    });
-
-    // Bookmark
-    updateBookmark();
-
-    // Random Color
-    var hex1 = "#" + padNumber(getRandomInt(0, 255).toString(16), 2) + padNumber(getRandomInt(0, 255).toString(16), 2) + padNumber(getRandomInt(0, 255).toString(16), 2);
-    var hex2 = "#" + padNumber(getRandomInt(0, 255).toString(16), 2) + padNumber(getRandomInt(0, 255).toString(16), 2) + padNumber(getRandomInt(0, 255).toString(16), 2);
-    var hex3 = "#" + padNumber(getRandomInt(0, 255).toString(16), 2) + padNumber(getRandomInt(0, 255).toString(16), 2) + padNumber(getRandomInt(0, 255).toString(16), 2);
-    var hex4 = "#" + padNumber(getRandomInt(0, 255).toString(16), 2) + padNumber(getRandomInt(0, 255).toString(16), 2) + padNumber(getRandomInt(0, 255).toString(16), 2);
-    document.querySelector("#color1").style.backgroundColor = hex1;
-    document.querySelector("#color2").style.backgroundColor = hex2;
-    document.querySelector("#color3").style.backgroundColor = hex3;
-    document.querySelector("#color4").style.backgroundColor = hex4;
-
-    document.querySelector("#color1").setAttribute("data-clipboard-text", hex1);
-    document.querySelector("#color2").setAttribute("data-clipboard-text", hex2);
-    document.querySelector("#color3").setAttribute("data-clipboard-text", hex3);
-    document.querySelector("#color4").setAttribute("data-clipboard-text", hex4);
-
-    document.querySelector("#ch1").innerHTML = hex1;
-    document.querySelector("#ch2").innerHTML = hex2;
-    document.querySelector("#ch3").innerHTML = hex3;
-    document.querySelector("#ch4").innerHTML = hex4;
-
-    document.querySelector("#ch1").value = hex1;
-    document.querySelector("#ch2").value = hex2;
-    document.querySelector("#ch3").value = hex3;
-    document.querySelector("#ch4").value = hex4;
-
-    document.querySelector("#cd1").innerHTML = hex2txt(hex1);
-    document.querySelector("#cd2").innerHTML = hex2txt(hex2);
-    document.querySelector("#cd3").innerHTML = hex2txt(hex3);
-    document.querySelector("#cd4").innerHTML = hex2txt(hex4);
-
-    // Kanji
-    // U+4E00 - U+9FCC, U+2E80 - U+2EFF, U+F900 - U+FAD9, U+20000 - U+2FFFF
-    // 19968 - 40908, 11904 - 12031, 63744 - 64217, 131072 - 196607
-    // .toString(16)
-    var randomKanjiUnicode = getRandomNumberFromRanges([[19968, 40908], [11904, 12031], [63744, 64217], [131072, 196607]]).toString(16)
-    randomKanji = unicode2Text(randomKanjiUnicode);
-    document.querySelector("#kanji").innerHTML = randomKanji;
-
-    // Font
-    main();
 });
+
+// Tips
+var tips = ["Try ⌘+L or Alt+D!", "Try changing a language of Wikipedia!", "Try adding a bookmark!", "The background is changing by time!", "Try clicking random color!", "Try clicking random emoji!", "Try clicking random kanji!", "Try clicking random font!", "Right click to delete bookmarks!"];
+document.querySelector("#tips").innerHTML = "Tips: " + tips[getRandomInt(0, tips.length - 1)];
+
+// Bookmark
+updateBookmark();
+
+// Random Color
+var hex1 = "#" + padNumber(getRandomInt(0, 256).toString(16), 2) + padNumber(getRandomInt(0, 256).toString(16), 2) + padNumber(getRandomInt(0, 256).toString(16), 2);
+var hex2 = "#" + padNumber(getRandomInt(0, 256).toString(16), 2) + padNumber(getRandomInt(0, 256).toString(16), 2) + padNumber(getRandomInt(0, 256).toString(16), 2);
+var hex3 = "#" + padNumber(getRandomInt(0, 256).toString(16), 2) + padNumber(getRandomInt(0, 256).toString(16), 2) + padNumber(getRandomInt(0, 256).toString(16), 2);
+var hex4 = "#" + padNumber(getRandomInt(0, 256).toString(16), 2) + padNumber(getRandomInt(0, 256).toString(16), 2) + padNumber(getRandomInt(0, 256).toString(16), 2);
+document.querySelector("#color1").style.backgroundColor = hex1;
+document.querySelector("#color2").style.backgroundColor = hex2;
+document.querySelector("#color3").style.backgroundColor = hex3;
+document.querySelector("#color4").style.backgroundColor = hex4;
+
+document.querySelector("#color1").setAttribute("data-clipboard-text", hex1);
+document.querySelector("#color2").setAttribute("data-clipboard-text", hex2);
+document.querySelector("#color3").setAttribute("data-clipboard-text", hex3);
+document.querySelector("#color4").setAttribute("data-clipboard-text", hex4);
+
+document.querySelector("#ch1").innerHTML = hex1;
+document.querySelector("#ch2").innerHTML = hex2;
+document.querySelector("#ch3").innerHTML = hex3;
+document.querySelector("#ch4").innerHTML = hex4;
+
+document.querySelector("#ch1").value = hex1;
+document.querySelector("#ch2").value = hex2;
+document.querySelector("#ch3").value = hex3;
+document.querySelector("#ch4").value = hex4;
+
+document.querySelector("#cd1").innerHTML = hex2txt(hex1);
+document.querySelector("#cd2").innerHTML = hex2txt(hex2);
+document.querySelector("#cd3").innerHTML = hex2txt(hex3);
+document.querySelector("#cd4").innerHTML = hex2txt(hex4);
+
+function color(num) {
+    document.querySelector("#ct" + num).style = "opacity: 1;"
+    setTimeout(() => {
+        document.querySelector("#ct" + num).style = "opacity: 0;"
+    }, 1000);
+}
+
+// Kanji
+// U+4E00 - U+9FCC, U+2E80 - U+2EFF, U+F900 - U+FAD9, U+20000 - U+2FFFF
+// 19968 - 40908, 11904 - 12031, 63744 - 64217, 131072 - 196607
+// .toString(16)
+var randomKanjiUnicode = getRandomNumberFromRanges([[19968, 40908], [11904, 12031], [63744, 64217], [131072, 196607]]).toString(16)
+randomKanji = unicode2Text(randomKanjiUnicode);
+document.querySelector("#kanji").innerHTML = randomKanji;
+
+// Font
+main();
+
 
 // clock
 var tsec = 61;
