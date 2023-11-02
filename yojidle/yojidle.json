@@ -1,7 +1,7 @@
 {
     "name": "四字dle",
     "short_name": "四字dle",
-    "start_url": "/aboutme/yojidle",
+    "start_url": "/yojidle",
     "display": "standalone",
     "background_color": "#000000",
     "description": "",
