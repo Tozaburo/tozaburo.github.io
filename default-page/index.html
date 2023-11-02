@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <link rel="stylesheet" href="default-page.css" />
-    <script src="default-page.js"></script>
+    <script defer src="default-page.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="header">
-        <p>Tips: Try ⌘+L or Alt+D!</p>
+        <p id="tips">Tips: Try ⌘+L or Alt+D!</p>
     </div>
     <div class="main">
         <div class="search-wrap">
@@ -66,21 +66,25 @@
                 <p id="a">Click to Copy hex</p>
             </div>
             <div class="color">
-                <div class="colorBox" id="color1">
+                <div class="colorBox" id="color1" onclick="color('1');">
                     <p id="ch1"></p>
                     <p id="cd1"></p>
+                    <p class="ct" id="ct1">Copied!</p>
                 </div>
-                <div class="colorBox" id="color2">
+                <div class="colorBox" id="color2" onclick="color('2');">
                     <p id="ch2"></p>
                     <p id="cd2"></p>
+                    <p class="ct" id="ct2">Copied!</p>
                 </div>
-                <div class="colorBox" id="color3">
+                <div class="colorBox" id="color3" onclick="color('3');">
                     <p id="ch3"></p>
                     <p id="cd3"></p>
+                    <p class="ct" id="ct3">Copied!</p>
                 </div>
-                <div class="colorBox" id="color4">
+                <div class="colorBox" id="color4" onclick="color('4');">
                     <p id="ch4"></p>
                     <p id="cd4"></p>
+                    <p class="ct" id="ct4">Copied!</p>
                 </div>
             </div>
         </div>
