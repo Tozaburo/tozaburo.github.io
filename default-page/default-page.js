@@ -321,7 +321,7 @@ document.querySelector(".popup-wrap").style.display = "none";
 // Google
 document.getElementById("googleInput").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
-        location.href = "https://www.google.com/search?q=" + document.getElementById("googleInput").value
+        location.href = "https://www.google.com/search?q=" + encodeURIComponent(document.getElementById("googleInput").value);
         event.preventDefault();
     }
 });
