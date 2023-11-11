@@ -1,11 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #e45a22;
+  background-color: white;
 }
 
 h1 {
-  color: #fff;
+  color: #e45a22;
   font-family: "Noto Sans JP";
   font-size: 10vmin;
   font-weight: 700;
@@ -14,10 +14,10 @@ h1 {
 
 .button, .comingsoon {
   background-color: transparent;
-  border-color: #fff;
+  border-color: #e45a22;
   border-radius: 1000px;
   border: 0.75vmin solid;
-  color: #fff;
+  color: #e45a22;
   display: block;
   font-family: "Noto Sans JP";
   font-size: 2vmin;
@@ -36,9 +36,9 @@ h1 {
 }
 
 .button:hover {
-  background-color: #fff;
-  border-color: #fff;
-  color: #e45a22;
+  background-color: #e45a22;
+  border-color: #e45a22;
+  color: white;
 }
 
 .button{
