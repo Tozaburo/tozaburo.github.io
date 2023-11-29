@@ -4,6 +4,8 @@
 <head>
     <link rel="stylesheet" href="table.css" />
     <script src="table.js"></script>
+    <link rel="stylesheet" href="/basic.css" />
+    <script src="/language.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap" rel="stylesheet">
@@ -25,6 +27,16 @@
         <div class="inoutput">
             <textarea class="input" id="input"></textarea>
             <a onclick="change()">変換！</a>
+        </div>
+    </div>
+    <div class="icon flexB flexG">
+        <a href="/">🏠</a>
+        <div>
+            <label class="switch" style="display: inline-block;">
+                <input type="checkbox" id="slider-checkbox">
+                <span class="slider round"></span>
+            </label>
+            <p style="display: inline-block;">🌐</p>
         </div>
     </div>
 </body>
