@@ -4,6 +4,8 @@
 <head>
     <link rel="stylesheet" href="kaomoji.css" />
     <script src="kaomoji.js"></script>
+    <link rel="stylesheet" href="/basic.css" />
+    <script src="/language.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -13,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="title"></title>
+    <title id="title">Emoticon</title>
 </head>
 
 <body>
@@ -33,6 +35,16 @@
             <h2>設定<span>⚙️</span></h2>
             <a onclick="changeSpace()" id="space">◀&emsp;空白なし&emsp;▶</a>
             <a onclick="changeEar()" id="ear">◀&emsp;耳なし&emsp;▶</a>
+        </div>
+    </div>
+    <div class="icon flexB flexG">
+        <a href="/">🏠</a>
+        <div>
+            <label class="switch" style="display: inline-block;">
+                <input type="checkbox" id="slider-checkbox">
+                <span class="slider round"></span>
+            </label>
+            <p style="display: inline-block;">🌐</p>
         </div>
     </div>
 </body>
