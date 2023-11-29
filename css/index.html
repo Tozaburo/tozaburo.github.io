@@ -2,17 +2,21 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="css.css"/>
-  <script src="css.js"></script>
+  <link rel="stylesheet" href="css.css" />
+  <script src="css.js" defer></script>
+  <link rel="stylesheet" href="/basic.css" />
+  <script src="/language.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;800;900&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;800;900&family=Roboto:wght@300;700&display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="title">CSS整頓</title>
+  <title id="title">CSS</title>
 </head>
 
 <body>
@@ -29,6 +33,16 @@
     <div class="detail">
       <h2>設定<span>⚙️</span></h2>
       <a onclick="changeFirst()" id="detailbutton">◀&emsp;.~~が先&emsp;▶</a>
+    </div>
+  </div>
+  <div class="icon flexB flexG">
+    <a href="/">🏠</a>
+    <div>
+      <label class="switch" style="display: inline-block;">
+        <input type="checkbox" id="slider-checkbox">
+        <span class="slider round"></span>
+      </label>
+      <p style="display: inline-block;">🌐</p>
     </div>
   </div>
 </body>
