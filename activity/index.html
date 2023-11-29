@@ -2,14 +2,20 @@
 <html lang="ja">
 
 <head>
-  <link rel="stylesheet" href="activity.css"/>
-  <script src="activity.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;800;900&family=Roboto:wght@300;700&display=swap"  rel="stylesheet">
+  <link rel="stylesheet" href="activity.css" />
+  <script src="activity.js" defer></script>
+  <link rel="stylesheet" href="/basic.css" />
+  <script src="/language.js" defer></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;800;900&family=Roboto:wght@300;700&display=swap"
+    rel="stylesheet">
   <link rel="icon" href="tozaburo-box.png">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="title">活動</title>
+  <title id="title">Activity</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,200" />
 </head>
 
 <body>
@@ -19,13 +25,20 @@
         <h1>活動</h1>
       </div>
       <div class="button-list">
-        <a href="https://www.youtube.com/@Tozaburo3D" target="_blank" rel="noopener noreferrer" class="button" onmouseover='replaceDes("3D/2Dの作品を主にアップ。"); replaceWeek("0.5 / week");'>Youtube</a>
-        <a href="https://note.com/tozaburo" target="_blank" rel="noopener noreferrer" class="button" onmouseover='replaceDes("日々の疑問、行ったことなどを投稿。"); replaceWeek("0.5 / week");'>note</a>
-        <a href="https://scratch.mit.edu/users/tozaburo/" target="_blank" rel="noopener noreferrer" class="button" onmouseover='replaceDes("Simulatorや数学に関する作品を公開。"); replaceWeek("0.5 / week");'>Scratch</a>
-        <a href="https://github.com/Tozaburo" target="_blank" rel="noopener noreferrer" class="button" onmouseover='replaceDes("ウェブサイトやBlenderのAdd-onを公開。（このウェブサイトも）"); replaceWeek("0.5 / week");'>GitHub</a>
-        <a href="https://store.line.me/search/en?q=tozaburo" target="_blank" rel="noopener noreferrer" class="button" onmouseover='replaceDes("スタンプや着せ替えが公開。"); replaceWeek("0.05 / week");'>LINE</a>
-        <a href="https://suzuri.jp/Tozaburo" target="_blank" rel="noopener noreferrer" class="button" onmouseover='replaceDes("T-シャツやエコバッグなどのグッズが公開。"); replaceWeek("0.005 / week");'>SUZURI</a>
-        <a href="https://www.curseforge.com/members/tozaburo512/projects" target="_blank" rel="noopener noreferrer" class="button" onmouseover='replaceDes("MinecraftなどのModが公開。"); replaceWeek("0.001 / week");'>CurseForge</a>
+        <a href="https://www.youtube.com/@Tozaburo3D" target="_blank" rel="noopener noreferrer" class="button"
+          onmouseover='replaceDes("3D/2Dの作品を主にアップ。"); replaceWeek("0.5 / week");'>Youtube</a>
+        <a href="https://note.com/tozaburo" target="_blank" rel="noopener noreferrer" class="button"
+          onmouseover='replaceDes("日々の疑問、行ったことなどを投稿。"); replaceWeek("0.5 / week");'>note</a>
+        <a href="https://scratch.mit.edu/users/tozaburo/" target="_blank" rel="noopener noreferrer" class="button"
+          onmouseover='replaceDes("Simulatorや数学に関する作品を公開。"); replaceWeek("0.5 / week");'>Scratch</a>
+        <a href="https://github.com/Tozaburo" target="_blank" rel="noopener noreferrer" class="button"
+          onmouseover='replaceDes("ウェブサイトやBlenderのAdd-onを公開。（このウェブサイトも）"); replaceWeek("0.5 / week");'>GitHub</a>
+        <a href="https://store.line.me/search/en?q=tozaburo" target="_blank" rel="noopener noreferrer" class="button"
+          onmouseover='replaceDes("スタンプや着せ替えが公開。"); replaceWeek("0.05 / week");'>LINE</a>
+        <a href="https://suzuri.jp/Tozaburo" target="_blank" rel="noopener noreferrer" class="button"
+          onmouseover='replaceDes("T-シャツやエコバッグなどのグッズが公開。"); replaceWeek("0.005 / week");'>SUZURI</a>
+        <a href="https://www.curseforge.com/members/tozaburo512/projects" target="_blank" rel="noopener noreferrer"
+          class="button" onmouseover='replaceDes("MinecraftなどのModが公開。"); replaceWeek("0.001 / week");'>CurseForge</a>
       </div>
       <div class="detail">
         <div class="about">
@@ -35,10 +48,18 @@
           <h2 class="description">ボタンにマウスをかざしてください。</h2>
         </div>
       </div>
-      <div class="icon">
-        <a href="/">🏠</a>
-      </div>
+    </div>
+  </div>
+  <div class="icon flexB flexG">
+    <a href="/">🏠</a>
+    <div>
+      <label class="switch" style="display: inline-block;">
+        <input type="checkbox" id="slider-checkbox">
+        <span class="slider round"></span>
+      </label>
+      <p style="display: inline-block;">🌐</p>
     </div>
   </div>
 </body>
+
 </html>
