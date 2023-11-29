@@ -43,7 +43,7 @@ li {
   list-style: none;
 }
 
-p {
+div.main p {
   font-family: "Noto Sans JP";
   font-size: 3vmin;
   font-weight: 600;
@@ -137,20 +137,6 @@ input[type="number"] {
 
 .result {
   text-align: center;
-}
-
-.icon a {
-  transform: 0 0;
-  position: fixed;
-  top: 5vmin;
-  left: 5vmin;
-  font-family: "Noto Sans JP";
-  font-size: 10vmin;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
 }
 
 h5 {
