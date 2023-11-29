@@ -1,71 +1,87 @@
-var code = "";
-var result = "";
-
-function change() {
-    code = document.querySelector("#input").value;
-    code = code.replaceAll(/(<.*?table.*?>)/g, '');
-    code = code.replaceAll(/(<.*?tbody.*?>)/g, '');
-    code = code.replaceAll(/(<colgroup.*?>)/g, '');
-    code = code.replaceAll(/(<.colgroup.*?>)/g, '');
-    code = code.replaceAll(/(<.*?col.*?>)/g, '');
-    code = code.replaceAll(/\n/g, '');
-    // code = code.replaceAll(/  /g, '');
-    // code = code.replaceAll(/    /g, '');
-    // code = code.replaceAll(/  /g, '');
-    code = code.split("</tr><tr>");
-    code[0] = code[0].replaceAll(/(<tr.*?>)/g, '');
-    code[code.length - 1] = code[code.length - 1].replaceAll(/(<.tr.*?>)/g, '');
-
-    for (var i = 0; i < code.length; i++) {
-        if (i == 0) {
-            code[i] = code[i].split("</th><th>");
-            code[i][0] = code[i][0].replaceAll(/(<th.*?>)/g, '');
-            code[i][code[i].length - 1] = code[i][code[i].length - 1].replaceAll(/(<.th.*?>)/g, '');
-        } else {
-            code[i] = code[i].split("</td><td>");
-            code[i][0] = code[i][0].replaceAll(/(<td.*?>)/g, '');
-            code[i][code[i].length - 1] = code[i][code[i].length - 1].replaceAll(/(<.td.*?>)/g, '');
-        }
-        for (var j = 0; j < code[i].length; j++) {
-            code[i][j] = code[i][j].replaceAll(/(<.*?>)/g, '');
-        }
-    }
-    result = code.join("\n")
-    download_txt("table.csv", result);
+div.main a {
+    border-radius: 1vmin;
+    border: 0.4vmin solid #a0a0a0;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 3vmin;
+    font-weight: 500;
+    height: 9vmin;
+    margin: 2vmin auto;
+    outline: none;
+    padding: 2vmin;
+    resize: none;
+    text-align: center;
+    transition: border 0.1s;
+    vertical-align: middle;
+    width: 100vmin;
 }
 
-function download_txt(file_name, data) {
-
-    const blob = new Blob([data], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    document.body.appendChild(a);
-    a.download = file_name;
-    a.href = url;
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-
+div.main a:active {
+    border: 0.5vmin solid #3484d5;
 }
 
-var englishMainHtml = `
-<div class="title">
-    <h1>html table > csv file</h1>
-    <p>table element to a csv file.</p>
-    <p class="small">CSS is not sent to the server, handled by JS.</p>
-</div>
-<div class="inoutput">
-    <textarea class="input" id="input"></textarea>
-    <a onclick="change()">Convert!</a>
-</div>
-`;
+div.main a:hover {
+    border: 0.5vmin solid #a0a0a0;
+}
 
-var japaneseMainHtml = `<div class="title">
-<h1>html表 > csv</h1>
-<p>table要素をcsvファイルにします。</p>
-<p class="small">サーバーに送らずJSで処理しています。</p>
-</div>
-<div class="inoutput">
-<textarea class="input" id="input"></textarea>
-<a onclick="change()">変換！</a>
-</div>`
+h1 {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 10vmin;
+    font-weight: 600;
+    text-align: center;
+}
+
+h2 span {
+    font-family: "Noto Color Emoji", sans-serif;
+}
+
+h2 {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 6vmin;
+    font-weight: 600;
+    text-align: center;
+}
+
+p {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 3vmin;
+    font-weight: 200;
+    text-align: center;
+}
+
+.inoutput {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    border-radius: 1vmin;
+    border: 0.4vmin solid #a0a0a0;
+    box-sizing: border-box;
+    font-family: "Inconsolata", monospace;
+    font-size: 2.5vmin;
+    height: 50vmin;
+    margin: 2vmin auto;
+    outline: none;
+    padding: 2vmin;
+    resize: none;
+    transition: border 0.1s;
+    width: 100vmin;
+}
+
+.input:focus {
+    border: 0.5vmin solid #3484d5;
+}
+
+.input:hover {
+    border: 0.5vmin solid #a0a0a0;
+}
+
+.small {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 2vmin;
+    font-weight: 200;
+    text-align: center;
+}
