@@ -83,34 +83,39 @@ function copyResult() {
   navigator.clipboard.writeText(copy);
 }
 
-var lang = window.navigator.language;
+var englishMainHtml = `
+<div class="title">
+  <h1>Files to Python/JS Lists</h1>
+</div>
+<div class="quiz">
+  <h2 id="question">Making txt file to python/js's list</h2>
+  <div class="input">
+    <h3 for="name">Name of list：</h3>
+    <input type="text" id="name" class="name">
+  </div>
+  <div class="button-list">
+    <label class="button"><input type="file" accept=".txt" id='file' style="display: none;">Upload the File</label>
+    <a onclick="changeType()" class="button switch">python</a>
+    <a onclick="copyResult()" class="button">Copy!</a>
+  </div>
+</div>
+<div class="icon">
+    <a href="/">🏠</a>
+  </div>
+`;
 
-window.addEventListener("DOMContentLoaded", function () {
-  clang();
-});
-
-function clang() {
-  if (lang != "ja") {
-    document.querySelector("#title").innerHTML = "Files to Python/JS List";
-    document.querySelector(".main").innerHTML = `
-		<div class="title">
-      <h1>Files to Python/JS Lists</h1>
-    </div>
-    <div class="quiz">
-      <h2 id="question">Making txt file to python/js's list</h2>
-      <div class="input">
-        <h3 for="name">Name of list：</h3>
-        <input type="text" id="name" class="name">
-      </div>
-      <div class="button-list">
-        <label class="button"><input type="file" accept=".txt" id='file' style="display: none;">Upload the File</label>
-        <a onclick="changeType()" class="button switch">python</a>
-        <a onclick="copyResult()" class="button">Copy!</a>
-      </div>
-    </div>
-    <div class="icon">
-        <a href="/">🏠</a>
-      </div>
-    `;
-  }
-}
+var japaneseMainHtml = `<div class="title">
+<h1>ファイルをリスト化</h1>
+</div>
+<div class="quiz">
+<h2 id="question">txtファイルをpython/jsのリストにします</h2>
+<div class="input">
+  <h3 for="name">リストの名前：</h3>
+  <input type="text" id="name" class="name">
+</div>
+<div class="button-list">
+  <label class="button"><input type="file" accept=".txt" id='file' style="display: none;">ファイルをアップロード</label>
+  <a onclick="changeType()" class="button switch">python</a>
+  <a onclick="copyResult()" class="button">コピー！</a>
+</div>
+</div>`;
