@@ -1,4 +1,4 @@
-a {
+div.main a {
     border-radius: 1vmin;
     border: 0.4vmin solid #a0a0a0;
     box-sizing: border-box;
@@ -18,11 +18,11 @@ a {
     width: 100vmin;
 }
 
-a:active {
+div.main a:active {
     border: 0.5vmin solid #3484d5;
 }
 
-a:hover {
+div.main a:hover {
     border: 0.5vmin solid #a0a0a0;
 }
 
