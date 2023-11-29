@@ -2,37 +2,37 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="css.css" />
-  <script src="css.js" defer></script>
+  <link rel="stylesheet" href="file.css" />
+  <script src="file.js"></script>
   <link rel="stylesheet" href="/basic.css" />
   <script src="/language.js" defer></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap" rel="stylesheet">
+  <link rel="icon" href="tozaburo-box.png">
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;800;900&family=Roboto:wght@300;700&display=swap"
     rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+  <link rel="icon" href="tozaburo-box.png">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="title">CSS</title>
+  <title id="title">File</title>
 </head>
 
 <body>
   <div class="main">
     <div class="title">
-      <h1>CSS整頓</h1>
-      <p>ごちゃごちゃなCSSを整頓します。※決して正しい表記にするわけでは有りません。</p>
-      <p class="small">サーバーに送らずJSで処理しています。</p>
+      <h1>ファイルをリスト化</h1>
     </div>
-    <div class="inoutput">
-      <textarea class="input" id="input"></textarea>
-      <a onclick="clean()">整頓！</a>
-    </div>
-    <div class="detail">
-      <h2>設定<span>⚙️</span></h2>
-      <a onclick="changeFirst()" id="detailbutton">◀&emsp;.~~が先&emsp;▶</a>
+    <div class="quiz">
+      <h2 id="question">txtファイルをpython/jsのリストにします</h2>
+      <div class="input">
+        <h3 for="name">リストの名前：</h3>
+        <input type="text" id="name" class="name">
+      </div>
+      <div class="button-list">
+        <label class="button"><input type="file" accept=".txt" id='file' style="display: none;">ファイルをアップロード</label>
+        <a onclick="changeType()" class="button switch">python</a>
+        <a onclick="copyResult()" class="button">コピー！</a>
+      </div>
     </div>
   </div>
   <div class="icon flexB flexG">
