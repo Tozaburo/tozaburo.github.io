@@ -61,3 +61,102 @@ a {
 li {
     list-style: none;
 }
+
+/* icon */
+
+div.icon {
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 90vw;
+    padding: 5vmin;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+div.icon a {
+    font-family: "Noto Sans JP";
+    font-size: 10vmin;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+div.icon p {
+    font-family: "Noto Sans JP";
+    font-size: 5vmin;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    margin-left: 2vmin;
+}
+
+/* slider */
+div.icon .switch {
+    position: relative;
+    display: inline-block;
+    width: 6vmin;
+    height: 3.4vmin;
+}
+
+div.icon .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+div.icon .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+
+div.icon .slider:before {
+    position: absolute;
+    content: "";
+    height: 2.6vmin;
+    width: 2.6vmin;
+    left: 0.4vmin;
+    bottom: 0.4vmin;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+
+div.icon input:checked+.slider {
+    background-color: #e45a22;
+}
+
+div.icon input:focus+.slider {
+    -webkit-box-shadow: 0 0 0.1vmin #e45a22;
+            box-shadow: 0 0 0.1vmin #e45a22;
+}
+
+div.icon input:checked+.slider:before {
+    -webkit-transform: translateX(2.6vmin);
+    -ms-transform: translateX(2.6vmin);
+    transform: translateX(2.6vmin);
+}
+
+/* Rounded sliders */
+div.icon .slider.round {
+    border-radius: 3.4vmin;
+}
+
+div.icon .slider.round:before {
+    border-radius: 50%;
+}
