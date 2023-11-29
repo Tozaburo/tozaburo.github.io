@@ -4,6 +4,8 @@
 <head>
     <link rel="stylesheet" href="sequence.css" />
     <script src="sequence.js"></script>
+    <link rel="stylesheet" href="/basic.css" />
+    <script src="/language.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400&display=swap" rel="stylesheet">
@@ -28,6 +30,16 @@
         <p id="array">ここに数列が表示されます。</p>
         <div class="input">
             <a onclick="predict()" class="button" id="predict">次項予測</a>
+        </div>
+    </div>
+    <div class="icon flexB flexG">
+        <a href="/">🏠</a>
+        <div>
+            <label class="switch" style="display: inline-block;">
+                <input type="checkbox" id="slider-checkbox">
+                <span class="slider round"></span>
+            </label>
+            <p style="display: inline-block;">🌐</p>
         </div>
     </div>
 </body>
