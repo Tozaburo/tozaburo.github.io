@@ -135,30 +135,34 @@ function multiplication() {
     });
 }
 
-var lang = window.navigator.language;
+var englishMainHtml = `
+<h1 class="title">Next Term Prediction</h1>
+    <p class="description">Logically predict the next term in a sequence of numbers.</p>
+    <div class="input">
+        <input type="number" id="numberInput">
+        <a onclick="add()" class="button" id="add">Add</a>
+        <div class="horizontal">
+            <a onclick="addition()" class="buttonshort" id="addition">Additions</a>
+            <a onclick="multiplication()" class="buttonshort" id="multiplication">Multiplication</a>
+        </div>
+    </div>
+    <p id="array">A number line is displayed here.</p>
+    <div class="input">
+        <a onclick="predict()" class="button" id="predict">Predict</a>
+    </div>
+`;
 
-window.addEventListener("DOMContentLoaded", function () {
-    clang();
-});
-
-function clang() {
-    if (lang != "ja") {
-        document.querySelector("#title").innerHTML = "Newt Term Prediction";
-        document.querySelector(".main").innerHTML = `
-    <h1 class="title">Newt Term Prediction</h1>
-        <p class="description">Logically predict the next term in a sequence of numbers.</p>
+var japaneseMainHtml = `<h1 class="title">次項予測</h1>
+        <p class="description">数列の次の項を論理的に予測します。</p>
         <div class="input">
             <input type="number" id="numberInput">
             <a onclick="add()" class="button" id="add">Add</a>
             <div class="horizontal">
-                <a onclick="addition()" class="buttonshort" id="addition">Additions・Subtractions</a>
-                <a onclick="multiplication()" class="buttonshort" id="multiplication">Multiplication・Division</a>
+                <a onclick="addition()" class="buttonshort" id="addition">加算・減算</a>
+                <a onclick="multiplication()" class="buttonshort" id="multiplication">乗算・除算</a>
             </div>
         </div>
-        <p id="array">A number line is displayed here.</p>
+        <p id="array">ここに数列が表示されます。</p>
         <div class="input">
-            <a onclick="predict()" class="button" id="predict">Predict</a>
-        </div>
-    `;
-    }
-}
+            <a onclick="predict()" class="button" id="predict">次項予測</a>
+        </div>`;
