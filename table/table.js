@@ -48,25 +48,24 @@ function download_txt(file_name, data) {
 
 }
 
-var lang = window.navigator.language;
+var englishMainHtml = `
+<div class="title">
+    <h1>html table > csv file</h1>
+    <p>table element to a csv file.</p>
+    <p class="small">CSS is not sent to the server, handled by JS.</p>
+</div>
+<div class="inoutput">
+    <textarea class="input" id="input"></textarea>
+    <a onclick="change()">Convert!</a>
+</div>
+`;
 
-window.addEventListener("DOMContentLoaded", function () {
-    //   clang();
-});
-
-function clang() {
-    if (lang != "ja") {
-        document.querySelector("#title").innerHTML = "html table > csv file";
-        document.querySelector(".main").innerHTML = `
-        <div class="title">
-            <h1>html table > csv file</h1>
-            <p>table element to a csv file.</p>
-            <p class="small">CSS is not sent to the server, handled by JS.            </p>
-        </div>
-        <div class="inoutput">
-            <textarea class="input" id="input"></textarea>
-            <a onclick="change()">Convert!</a>
-        </div>
-    `;
-    }
-}
+var japaneseMainHtml = `<div class="title">
+<h1>html表 > csv</h1>
+<p>table要素をcsvファイルにします。</p>
+<p class="small">サーバーに送らずJSで処理しています。</p>
+</div>
+<div class="inoutput">
+<textarea class="input" id="input"></textarea>
+<a onclick="change()">変換！</a>
+</div>`
