@@ -49,20 +49,6 @@ h1 {
   cursor: default;
 }
 
-.icon a {
-  cursor: pointer;
-  font-family: "Noto Sans JP";
-  font-size: 10vmin;
-  font-weight: 600;
-  left: 5vmin;
-  position: fixed;
-  text-align: center;
-  text-decoration: none;
-  top: 5vmin;
-  transform: 0 0;
-  vertical-align: middle;
-}
-
 .main {
   align-items: center;
   display: flex;
