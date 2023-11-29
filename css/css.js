@@ -101,29 +101,35 @@ function changeFirst() {
   }
 }
 
-var lang = window.navigator.language;
+var japaneseMainHtml = `
+<div class="title">
+<h1>CSS整頓</h1>
+<p>ごちゃごちゃなCSSを整頓します。※決して正しい表記にするわけでは有りません。</p>
+<p class="small">サーバーに送らずJSで処理しています。</p>
+</div>
+<div class="inoutput">
+<textarea class="input" id="input"></textarea>
+<a onclick="clean()">整頓！</a>
+</div>
+<div class="detail">
+<h2>設定<span>⚙️</span></h2>
+<a onclick="changeFirst()" id="detailbutton">◀&emsp;.~~が先&emsp;▶</a>
+</div>
+`
 
-window.addEventListener("DOMContentLoaded", function () {
-  clang();
-});
+var englishMainHtml = `
+<div class="title">
+  <h1>Organize CSS</h1>
+  <p>Organizing messy CSS. It does not mean format it.</p>
+  <p class="small">CSS is not sent to the server, handled by JS.</p>
+</div>
+<div class="inoutput">
+  <textarea class="input" id="input"></textarea>
+  <a onclick="clean()">Organize!</a>
+</div>
+<div class="detail">
+  <h2>Setting<span>⚙️</span></h2>
+  <a onclick="changeFirst()" id="detailbutton">◀&emsp;.~~ First&emsp;▶</a>
+</div>
+`;
 
-function clang() {
-  if (lang != "ja") {
-    document.querySelector("#title").innerHTML = "Organize CSS";
-    document.querySelector(".main").innerHTML = `
-    <div class="title">
-      <h1>Organize CSS</h1>
-      <p>Organizing messy CSS. It does not mean format it.</p>
-      <p class="small">CSS is not sent to the server, handled by JS.</p>
-    </div>
-    <div class="inoutput">
-      <textarea class="input" id="input"></textarea>
-      <a onclick="clean()">Organize!</a>
-    </div>
-    <div class="detail">
-      <h2>Setting<span>⚙️</span></h2>
-      <a onclick="changeFirst()" id="detailbutton">◀&emsp;.~~ First&emsp;▶</a>
-    </div>
-    `;
-  }
-}
