@@ -1,7 +1,6 @@
 var space = "";
 var earLeft = "";
 var earRight = "";
-var lang = window.navigator.language;
 
 function convert() {
     var input = document.querySelector("#input").value;
@@ -56,30 +55,38 @@ function changeEar() {
     }
 }
 
-window.addEventListener("DOMContentLoaded", function () {
-    clang();
-});
+var englishMainHtml = `
+<div class="title">
+    <h1>Emoticon Generator</h1>
+    <p>Converting any sentence to Emotion</p>
+</div>
+<div class="input">
+    <textarea class="input" id="input"></textarea>
+    <a onclick="convert()">↓Convert↓</a>
+</div>
+<div class="output">
+    <textarea class="input" id="output"></textarea>
+</div>
+<div class="detail">
+    <h2>Setting<span>⚙️</span></h2>
+    <a onclick="changeSpace()" id="space">◀&emsp;with space&emsp;▶</a>
+    <a onclick="changeEar()" id="ear">◀&emsp;with ear&emsp;▶</a>
+</div>
+  `;
 
-function clang() {
-    if (lang != "ja") {
-        document.querySelector("#title").innerHTML = "Emoticon Generator";
-        document.querySelector(".main").innerHTML = `
-    <div class="title">
-        <h1>Emoticon Generator</h1>
-        <p>Converting any sentence to Emotion</p>
-    </div>
-    <div class="input">
-        <textarea class="input" id="input"></textarea>
-        <a onclick="convert()">↓Convert↓</a>
-    </div>
-    <div class="output">
-        <textarea class="input" id="output"></textarea>
-    </div>
-    <div class="detail">
-        <h2>Setting<span>⚙️</span></h2>
-        <a onclick="changeSpace()" id="space">◀&emsp;with space&emsp;▶</a>
-        <a onclick="changeEar()" id="ear">◀&emsp;with ear&emsp;▶</a>
-    </div>
-      `;
-    }
-}
+var japaneseMainHtml = `<div class="title">
+<h1>顔文字ジェネレーター</h1>
+<p>どんな文章も顔文字にします。</p>
+</div>
+<div class="input">
+<textarea class="input" id="input"></textarea>
+<a onclick="convert()">↓変換↓</a>
+</div>
+<div class="output">
+<textarea class="input" id="output"></textarea>
+</div>
+<div class="detail">
+<h2>設定<span>⚙️</span></h2>
+<a onclick="changeSpace()" id="space">◀&emsp;空白なし&emsp;▶</a>
+<a onclick="changeEar()" id="ear">◀&emsp;耳なし&emsp;▶</a>
+</div>`
