@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG Text Display</title>
+</head>
+<body>
+    <svg width="200" height="200">
+        <text id="svg-text" x="100" y="100" text-anchor="middle" dominant-baseline="middle">Default Text</text>
+    </svg>
+    <script>
+        function getQueryParameter(param) {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        var textElement = document.getElementById("svg-text");
+        var queryText = getQueryParameter("query");
+        if (queryText) {
+            textElement.textContent = queryText;
+        }
+    </script>
+</body>
+</html>
