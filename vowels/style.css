@@ -1,0 +1,11 @@
+body {
+    font-family: 'Charis SIL', serif;
+}
+
+span {
+    color: gray;
+}
+
+a {
+    color: black !important;
+}
