@@ -1,0 +1,50 @@
+* {
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+h1.title {
+    background-color: #00a0c7;
+    width: 100vw;
+    color: white;
+    font-size: 10vmin;
+    height: 12.5vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+div.bawls {
+    margin-top: 12.5vh;
+    min-height: 87.5vh;
+    width: 100vmin;
+    border-radius: 1vmin;
+}
+
+div.bawl{
+    min-height: 20vmin;
+    border: solid #00a0c7 0.2vmin;
+    border-radius: 1vmin;
+    width: 75vmin;
+    margin: 10vmin;
+    padding: 10vmin;
+}
+
+div.bawl p.time {
+    color: gray;
+    font-size: 1.5vmin;
+    width: 75vmin;
+    margin-bottom: 1vmin;
+}
+
+div.bawl p.content {
+    color: black;
+    font-size: 2vmin;
+    width: 75vmin;
+}
+
+div.bawl img {
+    margin-top: 2.5vmin;
+    margin-bottom: 2.5vmin;
+    width: 75vmin;
+    border-radius: 1vmin;
+}

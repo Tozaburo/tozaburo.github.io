@@ -1,0 +1,15 @@
+{
+    "name": "Barker",
+    "short_name": "Barker",
+    "start_url": "https://tozaburo.github.io/barker",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "description": "",
+    "icons": [
+        {
+            "src": "barker.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        }
+    ]
+}
