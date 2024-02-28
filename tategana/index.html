@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="apple-touch-startup-image" href="icon.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="">
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="/basic.css" />
+    <script defer src="/language.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>干仮名</title>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script>
+        let lenis = new Lenis();
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script>
+</head>
+
+<body class="flexB flexC">
+    <section id="title" class="flexB flexC">
+        <h1 class="tategana">たてがな</h1>
+        <p class="normal">漢字では「干仮名」と書く「<ruby>
+                <span class="tategana">たてがな</span>
+                <rt>たてがな</rt>
+            </ruby>」は、ひらがなとカタカナを組み合わせた新しい仮名文字です。</p>
+    </section>
+    <section id="type" class="flexB flexC">
+        <h1 class="tategana"><ruby>
+                うってみよう
+                <rt class="normal">うってみよう</rt>
+            </ruby></h1>
+        <input type="text" placeholder="にゅうりょく" class="tategana">
+    </section>
+    <section id="font" class="flexB flexC">
+        <h1 class="tategana"><ruby>
+                つかってみよう
+                <rt class="normal">つかってみよう</rt>
+            </ruby></h1>
+        <a href="TateGana.ttf" class="tategana button"><ruby>
+                フオントのダウンロード
+                <rt class="normal">フォントのダウンロード</rt>
+            </ruby></a>
+    </section>
+    <section id="table" class="flexB flexC">
+        <h1 class="tategana"><ruby>
+                ごじゅうおんひょう
+                <rt class="normal">ごじゅうおんひょう</rt>
+            </ruby></h1>
+        <img src="table.png" alt="">
+    </section>
+    <section id="note" class="flexB flexC">
+        <h1 class="tategana"><ruby>
+                もっとしろう
+                <rt class="normal">もっとしろう</rt>
+            </ruby></h1>
+        <a href="https://note.com/tozaburo/n/n1b0f59f79ba2" class="tategana">note<ruby>
+            でよむ
+            <rt class="normal">でよむ</rt>
+        </ruby></a>
+    </section>
+</body>
+
+</html>
