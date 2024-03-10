@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="apple-touch-startup-image" href="icon.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="">
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="/basic.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color</title>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script>
+        let lenis = new Lenis();
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script>
+</head>
+
+<body oncontextmenu="return false;">
+    <div class="title flexB">
+        <h1>Color</h1>
+    </div>
+    <div class="main flexB flexC">
+        <div class="input">
+            <h2>Hex</h2>
+            <div class="flexB">
+                <input type="text" maxlength="7" class="flexB" id="hex">
+                <span class="material-icons" onclick="randomColor()">
+                    shuffle
+                </span>
+            </div>
+        </div>
+        <input type="range" min="2" max="10" id="num" step="1" value="2">
+        <div class="input">
+            <h2>HSV</h2>
+            <h3 id="h" onclick="color(0);">H:</h3>
+            <input type="range" min="0" max="360" id="hRange" step="1">
+            <div class="list flexB" id="hList"></div>
+
+            <h3 id="s" onclick="color(1);" id="sRange">S:</h3>
+            <input type="range" min="0" max="100" id="sRange" step="0.1">
+            <div class="list flexB" id="sList"></div>
+
+            <h3 id="v" onclick="color(2);" id="vRange">V:</h3>
+            <input type="range" min="0" max="100" id="vRange" step="0.1">
+            <div class="list flexB" id="vList"></div>
+        </div>
+    </div>
+</body>
+
+</html>

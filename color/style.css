@@ -1,0 +1,185 @@
+@font-face {
+    font-family: 'Futura';
+    src: url(/Futura_Heavy.ttf);
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url(/Futura_Medium.ttf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url(/Futura_Light.ttf);
+    font-weight: 300;
+}
+
+* {
+    font-family: "Futura", sans-serif;
+    outline: none;
+}
+
+:root {
+    --hex: #000000;
+}
+
+body {
+    display: block !important;
+    background-color: #fffaf4;
+    user-select: none
+}
+
+div.title {
+    background-color: var(--hex);
+    width: 100vw;
+    left: 0;
+    top: 0;
+}
+
+div.title h1 {
+    color: white;
+    font-size: 10vmin;
+    padding: 2vmin;
+}
+
+div.main {
+    width: 100vw;
+    min-width: 86vmin;
+}
+
+input {
+    width: 100vmin;
+    padding: 1vmin;
+    outline: none;
+    box-sizing: border-box;
+}
+
+input[type=text] {
+    width: 90vmin !important;
+    border: 0.5vmin solid var(--hex);
+    border-radius: 1vmin;
+    transition: box-shadow 0.3s;
+    font-size: 5vmin;
+    line-height: 1;
+    background-color: transparent;
+}
+
+input[type=text]:focus {
+    box-shadow: 0 0 0.5vmin 0 var(--hex);
+}
+
+.material-icons {
+    font-size: 8vmin !important;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.material-icons:active {
+    transform: scale(0.8);
+}
+
+div.input {
+    margin: 10vmin;
+    width: 100vmin;
+}
+
+div h2 {
+    color: black;
+    font-size: 5vmin;
+    margin-bottom: 1vmin;
+}
+
+div h3 {
+    color: black;
+    font-size: 3vmin;
+    margin-bottom: 1vmin;
+    cursor: pointer;
+}
+
+div.list {
+    height: 0vmin;
+    width: 100vmin;
+    transition: 0.5s;
+}
+
+div.list div.item {
+    height: 100%;
+    width: 100%;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+div.list div.item.start {
+    border-radius: 1vmin 0 0 1vmin;
+}
+
+div.list div.item.end {
+    border-radius: 0 1vmin 1vmin 0;
+}
+
+div.list div.item a {
+    font-size: 2vmin;
+    color: black;
+    padding: 1vmin;
+    background-color: rgb(255, 255, 255, 1);
+    border-radius: 1vmin;
+}
+
+/* range */
+
+html input[type="range"] {
+    outline: 0;
+    border: 0;
+    border-radius: 50vmin;
+    width: 100vmin;
+    max-width: 100%;
+    margin: 2.4vmin 0 1.6vmin;
+    /* transition: box-shadow 0.2s ease-in-out; */
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    html input[type="range"] {
+        overflow: hidden;
+        height: 4vmin;
+        -webkit-appearance: none;
+        background-color: transparent;
+    }
+
+    html input[type="range"]::-webkit-slider-runnable-track {
+        height: 4vmin;
+        -webkit-appearance: none;
+        color: transparent;
+        /* transition: box-shadow 0.2s ease-in-out; */
+    }
+
+    html input[type="range"]::-webkit-slider-thumb {
+        width: 4vmin;
+        height: 4vmin;
+        -webkit-appearance: none;
+        cursor: pointer;
+        box-shadow: -66vmin 0 0 64vmin var(--hex), inset 0 0 0 4vmin var(--hex);
+        border-radius: 50%;
+        transition: box-shadow-inset 0.2s ease-in-out;
+        position: relative;
+    }
+
+}
+
+html input[type="range"]::-moz-range-progress {
+    background-color: #43e5f7;
+}
+
+html input[type="range"]::-moz-range-track {
+    background-color: #9a905d;
+}
+
+html input[type="range"]::-ms-fill-lower {
+    background-color: #43e5f7;
+}
+
+html input[type="range"]::-ms-fill-upper {
+    background-color: #9a905d;
+}
