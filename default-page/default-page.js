@@ -398,6 +398,11 @@ document.querySelector("#color2").setAttribute("data-clipboard-text", hex2);
 document.querySelector("#color3").setAttribute("data-clipboard-text", hex3);
 document.querySelector("#color4").setAttribute("data-clipboard-text", hex4);
 
+document.querySelector("#color1").setAttribute("onContextmenu", 'location.href = "https://tozaburo.github.io/color/?" + hex1.replace("#", "");');
+document.querySelector("#color2").setAttribute("onContextmenu", 'location.href = "https://tozaburo.github.io/color/?" + hex2.replace("#", "");');
+document.querySelector("#color3").setAttribute("onContextmenu", 'location.href = "https://tozaburo.github.io/color/?" + hex3.replace("#", "");');
+document.querySelector("#color4").setAttribute("onContextmenu", 'location.href = "https://tozaburo.github.io/color/?" + hex4.replace("#", "");');
+
 document.querySelector("#ch1").innerHTML = hex1;
 document.querySelector("#ch2").innerHTML = hex2;
 document.querySelector("#ch3").innerHTML = hex3;
