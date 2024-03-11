@@ -464,6 +464,20 @@ function replacetime() {
     var min = now.getMinutes();
     var sec = now.getSeconds();
 
+    var shour = String(hour);
+    var smin = String(min);
+    var ssec = String(sec);
+
+    if (shour.length == 1) {
+        shour = "0" + shour;
+    }
+    if (smin.length == 1) {
+        smin = "0" + smin;
+    }
+    if (ssec.length == 1) {
+        ssec = "0" + ssec;
+    }
+
     cmin = min + sec / 60;
 
     chour = hour + cmin / 60;
@@ -488,6 +502,8 @@ function replacetime() {
     var backgroundhm = `radial-gradient(circle at top right, ${g[0]} 0% 10%, ${g[1]} 10% 20%, ${g[2]} 20% 30%, ${g[3]} 30% 40%, ${g[4]} 40% 50%, ${g[5]} 50% 60%, ${g[6]} 60% 70%, ${g[7]} 70% 80%, ${g[8]} 80% 90%, ${g[9]} 90% 100%`;
 
     document.body.style.background = backgroundhm;
+    
+    document.querySelector("#time").innerHTML = `${shour} : ${smin} : ${ssec}`;
 }
 
 document.addEventListener("keydown", keydownEvent, false);
