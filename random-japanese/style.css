@@ -1,0 +1,43 @@
+* {
+    font-family: "Be Vietnam Pro", "Noto Sans JP", sans-serif;
+}
+
+button {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 100vmin;
+    font-size: 3.75vmin;
+    padding: 5vmin;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+button:hover {
+    background-color: white;
+    color: green;
+}
+
+button.loading {
+    animation: 1s ease-in-out infinite alternate loading;
+}
+
+@keyframes loading {
+    0% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0.25;
+    }
+}
+
+.texts {
+    position: absolute;
+    color: gray;
+    width: 90vw;
+    min-height: 90vh;
+    bottom: 5vh;
+    z-index: -100;
+}
