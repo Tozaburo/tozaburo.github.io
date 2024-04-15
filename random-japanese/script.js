@@ -68,14 +68,14 @@ document.getElementById("button").addEventListener('click', function () {
 
 function make() {
     var kanjis = "";
-    var random = getRandomIntInclusive(100, 200);
+    var random = getRandomIntInclusive(10, 15);
     for (var n = 0; n < random; n++) {
-        if (getRandomIntInclusive(1, 1000) == 1 && n != random - 1) {
-            kanjis += randomKanji() + "、";
+        if (getRandomIntInclusive(1, 5) == 1 && n != random - 1) {
+            kanjis += randomKanji() + "";
         } else {
             kanjis += randomKanji();
         }
-        kanjis += randomKanji();
+        // kanjis += randomKanji();
     }
     kanjis += "。";
     console.log(kanjis);
@@ -83,7 +83,7 @@ function make() {
 
     async function translate(text, source, target, stage) {
         const url = `https://script.google.com/macros/s/AKfycbzSCTYoMHPb_aO9vgl5z8v4MIX9DEc9T5gdYkbE-OeD9ocRKlJvre4lESjbcJbjNPTKzg/exec?text=${text}&source=${source}&target=${target}`;
-        var language = ['zh-TW', 'ko', 'en', 'ru', 'ar', 'en', 'zh-TW', 'ko', 'ja'];
+        var language = ['zh-TW', 'ko', 'zh-CN', 'ja'];
         fetch(url)
             .then(response => {
                 return response.json();
