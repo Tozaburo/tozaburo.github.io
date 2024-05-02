@@ -42,10 +42,10 @@ function note(updown) {
     }, 1);
 }
 
-document.addEventListener("keydown", keydown_ivent);
-document.addEventListener("keyup", keyup_ivent);
+document.addEventListener("keydown", keydown_event);
+document.addEventListener("keyup", keyup_event);
 
-function keydown_ivent(e) {
+function keydown_event(e) {
     var key = e.code.replace("Key", "");
     switch (e.code) {
         case "Key" + activekeylist[0][0]:
@@ -106,7 +106,7 @@ function keydown_ivent(e) {
     }
 }
 
-function keyup_ivent(e) {
+function keyup_event(e) {
     switch (e.code) {
         case "Key" + activekeylist[0][0]:
             document.querySelector("#" + activekeylist[0][0]).classList.remove("active");
@@ -114,7 +114,7 @@ function keyup_ivent(e) {
             break;
         case "Key" + activekeylist[0][1]:
             document.querySelector("#" + activekeylist[0][1]).classList.remove("active");
-            activelist.splice(activelist.indexOf(keyactivekeylistlist[0][1]), 1);
+            activelist.splice(activelist.indexOf(activekeylist[0][1]), 1);
             break;
         case "Key" + activekeylist[0][2]:
             document.querySelector("#" + activekeylist[0][2]).classList.remove("active");
