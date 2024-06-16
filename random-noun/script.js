@@ -1,4 +1,7 @@
+var mode = "normal";
 var result = "";
+var min = 3;
+var max = 10;
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
@@ -27,11 +30,6 @@ function kanaToHiragana(str) {
 }
 
 function make() {
-    var data = nouns.join(";");
-    var lastWord = nouns[getRandomIntInclusive(0, nouns.length - 1)][0];
-    result = "";
-
-
     // intervalId = setInterval(function () {
     //     result += kanaToHiragana(lastWord);
     //     var candidate = [];
@@ -51,23 +49,28 @@ function make() {
     //     }
     //     document.getElementById("result").innerText = result;
     // }, 1);
-
     do {
-        result += kanaToHiragana(lastWord);
-        var candidate = [];
-        var last = 0;
-        var loop = numberOf(lastWord, data);
+        result = "";
+        var data = nouns.join(";");
+        var lastWord = nouns[getRandomIntInclusive(0, nouns.length - 1)][0];
 
-        for (let i = 0; i < loop; i++) {
-            if (data[data.indexOf(lastWord, last) + 1] != undefined) {
-                candidate.push(data[data.indexOf(lastWord, last) + 1]);
+        do {
+            result += kanaToHiragana(lastWord);
+            var candidate = [];
+            var last = 0;
+            var loop = numberOf(lastWord, data);
+
+            for (let i = 0; i < loop; i++) {
+                if (data[data.indexOf(lastWord, last) + 1] != undefined) {
+                    candidate.push(data[data.indexOf(lastWord, last) + 1]);
+                }
+                last = data.indexOf(lastWord, last) + 1;
             }
-            last = data.indexOf(lastWord, last) + 1;
-        }
 
-        lastWord = candidate[getRandomIntInclusive(0, candidate.length - 1)];
-        document.getElementById("result").innerText = result;
-    } while (lastWord != ";");
+            lastWord = candidate[getRandomIntInclusive(0, candidate.length - 1)];
+            document.getElementById("result").innerText = result;
+        } while (lastWord != ";");
+    } while (!(min <= result.length && result.length <= max));
 
     if ('speechSynthesis' in window) {
         const uttr = new SpeechSynthesisUtterance();
@@ -90,9 +93,14 @@ setInterval(function () {
 }, 1000 / 30);
 
 document.body.addEventListener("click", function (event) {
-    if (event.target.tagName != 'H1') {
+    if (event.target.tagName != 'H1' && event.target.tagName != 'SPAN' && mode == "normal") {
         document.getElementById("description").style.color = "#ffffff00";
         make();
+    } else if (event.target.className.includes("main") && mode == "setting") {
+        mode = "normal";
+        document.getElementById("settings").style.display = "none";
+        min = document.getElementById("min").value;
+        max = document.getElementById("max").value;
     }
 }, false);
 
@@ -102,3 +110,15 @@ document.addEventListener('keydown', function (event) {
         make();
     }
 });
+
+document.getElementById("setting").addEventListener("click", function (event) {
+    if (mode == "normal") {
+        mode = "setting";
+        document.getElementById("settings").style.display = "flex";
+    } else {
+        mode = "normal";
+        document.getElementById("settings").style.display = "none";
+        min = document.getElementById("min").value;
+        max = document.getElementById("max").value;
+    }
+}, false);

@@ -19,7 +19,7 @@ p#description {
     font-size: 3vmin;
     font-weight: 800;
     color: #ffffff40;
-    transition: font-size 1s, color 1s;
+    transition: color 1s;
     height: 0;
 }
 
@@ -53,4 +53,49 @@ body {
     min-height: 90vh;
     bottom: 5vh;
     z-index: -100;
+}
+
+#setting {
+    position: absolute;
+    top: 5vmin;
+    right: 5vmin;
+    color: white;
+    font-size: 5vmin;
+    cursor: pointer;
+    transform: rotate(0deg);
+    transition: transform ease-in-out 0.5s;
+}
+
+#setting:hover {
+    transform: rotate(60deg);
+}
+
+#settings {
+    display: none;
+    /* opacity: 0; */
+    height: 50vmin;
+    width: 70vmin;
+    background-color: white;
+    z-index: 100;
+    border-radius: 10vmin;
+}
+
+#settings h3 {
+    font-size: 4vmin;
+    font-weight: 800;
+    margin-bottom: 5vmin;
+}
+
+#settings p,
+#settings input {
+    font-size: 3vmin;
+    font-weight: 700;
+}
+
+#settings input {
+    width: 5vmin;
+    text-align: center;
+    border: none;
+    outline: none;
+    border-bottom: solid black 0.2vmin;
 }

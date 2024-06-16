@@ -5,6 +5,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link rel="stylesheet" href="style.css">
     <script defer src="data.js"></script>
     <script defer src="script.js"></script>
@@ -48,6 +54,17 @@
     <h2 id="texts"></h2>
     <p id="information">
         マルコフ連鎖を使ってMeCabのIPA辞書の名詞を元に名詞を生成しています。<br>自動生成ですので不適切な言葉が生成される可能性があります。このサービスを使ったことに対する一切の責任を負いません。</p>
+    <span class="material-symbols-outlined" id="setting">
+        settings
+    </span>
+    <div id="settings" class="flexB flexC">
+        <h3>単語の長さ</h3>
+        <div class="flexB">
+            <input type="number" id="min" value="3" step="1" min="1" max="20">
+            <p>&nbsp;&le;&nbsp;L&nbsp;&le;&nbsp;</p>
+            <input type="number" id="max" value="10" step="1" min="1" max="20">
+        </div>
+    </div>
 </body>
 
 </html>
