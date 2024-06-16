@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="data.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="/basic.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="ランダムな名詞を生成します。">
+    <meta property="og:description" content="ランダムな名詞を生成します。">
+    <meta name="keywords" content="名詞,ランダム,生成,自動生成">
+    <meta property="og:url" content="https://tozaburo.github.io/random-noun">
+    <meta name="subject" content="ランダムな名詞を生成します。">
+    <meta name="abstract" content="ランダムな名詞を生成します。">
+    <meta property="og:image" content="image.png">
+    <meta name="thumbnail" content="image.png">
+    <meta name="author" content="Tozaburo">
+    <meta name="owner" content="Tozaburo">
+    <meta name="designer" content="Tozaburo">
+    <meta name="publisher" content="Tozaburo">
+    <meta name="distribution" content="Global">
+
+    <title>ランダム名詞</title>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script>
+        let lenis = new Lenis();
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script> -->
+</head>
+
+<body>
+    <div class="main flexB flexC">
+        <p id="description">背景・スペースキーをクリックして生成</p>
+        <h1 id="result">名詞を作ります</h1>
+    </div>
+    <h2 id="texts"></h2>
+    <p id="information">
+        マルコフ連鎖を使ってMeCabのIPA辞書の名詞を元に名詞を生成しています。<br>自動生成ですので不適切な言葉が生成される可能性があります。このサービスを使ったことに対する一切の責任を負いません。</p>
+</body>
+
+</html>
