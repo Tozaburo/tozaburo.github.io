@@ -66,7 +66,9 @@ function make() {
                 }
                 last = data.indexOf(lastWord, last) + 1;
             }
-
+            if (min > result.length && ((candidate.length != 1) || (candidate.length == 1 && !candidate.includes(";")))) {
+                candidate = candidate.filter(item => item !== ";");
+            }
             lastWord = candidate[getRandomIntInclusive(0, candidate.length - 1)];
             document.getElementById("result").innerText = result;
         } while (lastWord != ";");
