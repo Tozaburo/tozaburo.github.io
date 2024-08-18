@@ -139,13 +139,13 @@ document.querySelectorAll(".add").forEach(function (element) {
         document.getElementById("list").style.display = "flex";
         document.getElementById("convert-button").classList.remove("active");
         document.getElementById("list-button").classList.add("active");
-
-        localStorage.setItem("expenses", expenses.map(subArray => subArray.join(',')).join(';'));
         showList();
     });
 });
 
 function showList() {
+    localStorage.setItem("expenses", expenses.map(subArray => subArray.join(',')).join(';'));
+
     var html = "";
     var sum = 0;
     for (var n = 0; n < expenses.length; n++) {
@@ -156,7 +156,7 @@ function showList() {
         <p class="flexB" id="amount">¥${expenses[n][0]}</p>
         <p class="flexB" id="date">${expenses[n][1]}</p>
     </div>
-    <span class="material-symbols-outlined">
+    <span class="material-symbols-outlined delete">
         delete
     </span>
 </div>`;
@@ -176,6 +176,17 @@ function showList() {
         if (window.confirm("本当にすべてのデータを削除しますか？")) {
             localStorage.removeItem("expenses");
         }
+    });
+
+    document.querySelectorAll(".delete").forEach(function (element) {
+        element.addEventListener('click', function () {
+            const parentDiv = this.parentElement;
+            const allDivs = parentDiv.parentElement.querySelectorAll('div');
+            const index = Array.from(allDivs).indexOf(parentDiv);
+
+            expenses.splice(index, 1);
+            showList();
+        });
     });
 }
 
