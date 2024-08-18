@@ -1,0 +1,134 @@
+* {
+    font-family: "Be Vietnam Pro", "Noto Sans JP", sans-serif;
+}
+
+.main {
+    height: 90vh;
+    width: 100vw;
+}
+
+.menu {
+    height: 10vh;
+    width: 100vw;
+
+    background-color: #e1e6e3;
+
+    & a {
+        height: 10vh;
+        width: 50vw;
+
+        background-color: white;
+        color: #6ee6a9;
+
+        font-weight: 100;
+        font-size: 7.5vmin;
+    }
+
+    & a.active {
+        background-color: #6ee6a9;
+        color: white;
+    }
+}
+
+#list {
+    display: none;
+}
+
+.input {
+    height: 30vh;
+    width: 100vw;
+}
+
+.currency {
+    display: block;
+    height: 10vh;
+    width: 90vw;
+    font-size: 7.5vmin;
+    font-weight: 100;
+    justify-content: flex-start !important;
+    /* 左寄せ */
+}
+
+.money {
+    height: 20vh;
+    width: 90vw;
+    font-weight: 100;
+    font-size: 20vmin;
+    justify-content: flex-start !important;
+    /* 左寄せ */
+
+    font-family: "Noto Sans Mono", monospace;
+}
+
+.keyboard {
+    height: 20vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    & .number {
+        font-weight: 100;
+        font-size: 10vmin;
+        font-family: "Noto Sans Mono", monospace;
+    }
+}
+
+#add {
+    height: 10vh;
+    width: 100vw;
+    font-size: 10vmin;
+
+    background-color: white;
+    color: #6ee6a9;
+
+    font-weight: 900;
+    font-size: 7.5vmin;
+    pointer-events: auto;
+}
+
+#add.disabled {
+    color: #e1e6e3;
+    pointer-events: none;
+}
+
+#items {
+    height: 90vh;
+    width: 100vw;
+    overflow-y: scroll;
+}
+
+#items .item {
+    background-color: white;
+    color: #6ee6a9;
+    height: 10vh;
+    width: 100vw;
+
+    & p {
+        height: 10vh;
+        width: 90vw;
+        justify-content: flex-start !important;
+        font-size: 7.5vh;
+        font-family: "Noto Sans Mono", monospace;
+    }
+}
+
+#sum {
+    height: 10vh;
+    width: 100vw;
+}
+
+#sum .item {
+    background-color: #6ee6a9;
+    color: white;
+    height: 10vh;
+    width: 100vw;
+
+    & p {
+        height: 10vh;
+        width: 90vw;
+        justify-content: flex-start !important;
+        font-size: 7.5vh;
+        font-family: "Noto Sans Mono", monospace;
+    }
+}
