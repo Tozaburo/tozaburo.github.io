@@ -1,11 +1,12 @@
 var input = "";
 var result = 0;
+var expenses = [];
 
 if (localStorage.getItem("expenses") === null) {
     localStorage.setItem("expenses", "");
     expenses = [];
 } else {
-    var expenses = localStorage.getItem("expenses").split(",");
+    expenses = localStorage.getItem("expenses").split(';').map(subStr => subStr.split(','))
 }
 
 document.getElementById("convert-button").addEventListener('click', () => {
@@ -131,15 +132,17 @@ function update() {
     }
 }
 
-document.getElementById("add").addEventListener('click', () => {
-    expenses.push(result);
-    document.getElementById("convert").style.display = "none";
-    document.getElementById("list").style.display = "flex";
-    document.getElementById("convert-button").classList.remove("active");
-    document.getElementById("list-button").classList.add("active");
+document.querySelectorAll(".add").forEach(function (element) {
+    element.addEventListener('click', function () {
+        expenses.push([result, getFormattedDate(), this.innerText]);
+        document.getElementById("convert").style.display = "none";
+        document.getElementById("list").style.display = "flex";
+        document.getElementById("convert-button").classList.remove("active");
+        document.getElementById("list-button").classList.add("active");
 
-    localStorage.setItem("expenses", expenses.join(","));
-    showList();
+        localStorage.setItem("expenses", expenses.map(subArray => subArray.join(',')).join(';'));
+        showList();
+    });
 });
 
 function showList() {
@@ -148,13 +151,39 @@ function showList() {
     for (var n = 0; n < expenses.length; n++) {
         html += `
 <div class="item flexB">
-    <p class="flexB">¥${expenses[n]}</p>
-</div>`
-        sum += Number(expenses[n]);
+    <p class="flexB" id="emoji">${expenses[n][2]}</p>
+    <div class="flexB flexC">
+        <p class="flexB" id="amount">¥${expenses[n][0]}</p>
+        <p class="flexB" id="date">${expenses[n][1]}</p>
+    </div>
+    <span class="material-symbols-outlined">
+        delete
+    </span>
+</div>`;
+        sum += Number(expenses[n][0]);
     }
+    html += `
+<div class="item flexB">
+    <a class="flexB" id="complete-delete">データを完全に削除</a>
+</div>`;
     document.getElementById("items").innerHTML = html;
     document.getElementById("sum").innerHTML = `
 <div class="item flexB">
     <p class="flexB">¥${sum}</p>
-</div>`
+</div>`;
+
+    document.getElementById("complete-delete").addEventListener('click', () => {
+        if (window.confirm("本当にすべてのデータを削除しますか？")) {
+            localStorage.removeItem("expenses");
+        }
+    });
+}
+
+function getFormattedDate() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+
+    return `${year}/${month}/${day}`;
 }
