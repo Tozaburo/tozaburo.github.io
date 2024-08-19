@@ -17,6 +17,7 @@ document.getElementById("convert-button").addEventListener('click', () => {
 
     input = "";
     document.getElementById("input-value").innerText = "0.00";
+    update()
 });
 
 document.getElementById("list-button").addEventListener('click', () => {
@@ -180,11 +181,11 @@ function showList() {
 
     document.querySelectorAll(".delete").forEach(function (element) {
         element.addEventListener('click', function () {
-            const parentDiv = this.parentElement;
-            const allDivs = parentDiv.parentElement.querySelectorAll('div');
-            const index = Array.from(allDivs).indexOf(parentDiv);
+            const itemDiv = this.closest('.item');
+            const index = Array.from(itemDiv.parentNode.children).indexOf(itemDiv);
 
             expenses.splice(index, 1);
+            console.log(index);
             showList();
         });
     });
