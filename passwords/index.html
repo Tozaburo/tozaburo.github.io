@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="icon" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="apple-touch-startup-image" href="icon.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="">
+    <link rel="manifest" href="manifest.json">
+
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="/basic.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="紹介文">
+    <meta property="og:description" content="紹介文">
+    <meta name="keywords" content=",">
+    <meta property="og:url" content="https://tozaburo.github.io/">
+    <meta property="og:image" content="image.png">
+    <meta name="thumbnail" content="image.png">
+    <meta name="subject" content="説明文">
+    <meta name="abstract" content="要約">
+    <meta name="author" content="Tozaburo">
+    <meta name="owner" content="Tozaburo">
+    <meta name="designer" content="Tozaburo">
+    <meta name="publisher" content="Tozaburo">
+    <meta name="distribution" content="Global">
+
+    <meta property="og:title" content="My password is *****">
+    <meta property="og:site_name" content="My password is *****" />
+    <title>My password is *****</title>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script>
+        let lenis = new Lenis();
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script> -->
+</head>
+
+<body class="flexB flexC">
+
+    <!-- 1. What is a password?
+2. What are the most common passwords?
+3. Do not set an easy password, w/ examples
+4. Resources to set/save passwords
+5 ... -->
+    <section id="top" class="flexB flexC">
+        <h1>Let's learn about passwords!</h1>
+        <p>Passwords are secret term to protect our information.</p>
+        <a href="#common">Next</a>
+    </section>
+
+    <section id="common" class="flexB flexC">
+        <h1>Is you password one of these?</h1>
+        <p>Then, that's a huge problem</p>
+        <ul>
+            <li class="golden">1. 123456</li>
+            <li class="silver">2. PASSWORD</li>
+            <li class="bronze">3. 12345678</li>
+        </ul>
+        <a href="#easy">Next</a>
+    </section>
+
+    <section id="easy" class="flexB flexC">
+        <h1>Do not set an easy password!!!</h1>
+        <p>Please enter yor information...</p>
+        <input id="month" type="number" placeholder="Your birth month in number">
+        <input id="date" type="number" placeholder="Your birth date in number">
+        <input id="color" type="text" placeholder="Your favorite color">
+        <p>This password is not recommended:</p>
+        <h1 id="bad-password">Please enter the value above!</h1>
+        <a href="#maker">Next</a>
+    </section>
+
+    <section id="maker" class="flexB flexC">
+        <h1>You can use this password:</h1>
+        <h1 id="good-password"></h1>
+    </section>
+</body>
+
+</html>
