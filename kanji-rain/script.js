@@ -1,14 +1,43 @@
+defineArg();
+
+if (arg.d === undefined) {
+    changeQueryWithoutRefresh("d", 6);
+    defineArg();
+}
+
+if (arg.f === undefined) {
+    changeQueryWithoutRefresh("f", 1.5);
+    defineArg();
+}
+
 const canvas = document.getElementById('canvas');
 var frame = 0;
 var isPaused = 0;
-var focalLength = 6;
-var prevFocalLenth = 6;
-var f = 1.5;
-var prevF = 1.5;
+var distance = Number(arg.d);
+var prevDistance = Number(arg.d);
+var fStop = Number(arg.f);
+var prevFStop = Number(arg.f);
 var x = 0;
 var y = 0;
 var xDelta = 0;
 var yDelta = 0;
+var timeoutId = null;
+
+function defineArg() {
+    arg = new Object;
+    var pair = location.search.substring(1).split('&');
+    for (var i = 0; pair[i]; i++) {
+        var kv = pair[i].split('=');
+        arg[kv[0]] = kv[1];
+    }
+}
+
+function changeQueryWithoutRefresh(parameter, value) {
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set(parameter, value.toFixed(1));
+    const newUrl = `${location.pathname}?${urlParams.toString()}`;
+    history.pushState(null, '', newUrl);
+}
 
 // よりシンプルな範囲内のランダムな数値を取得する関数
 function getRandomNumberFromRanges(ranges) {
@@ -29,25 +58,6 @@ function randomKanji() {
     // const ranges = [[19968, 40908], [11904, 12031], [63744, 64217], [131072, 196607]];
     const ranges = [[19968, 40908], [11904, 12031], [63744, 64217]];
     return String.fromCodePoint(getRandomNumberFromRanges(ranges));
-}
-
-function returnPositiveOrZero(num) {
-    return num < 0 ? 0 : num;
-}
-
-function whiteWithBrightness(n) {
-    // nが0%〜100%の範囲かどうか確認
-    if (n < 0) n = 0;
-    if (n > 100) n = 100;
-
-    // 255（白色のRGB値）に対する割合を計算
-    var brightnessValue = Math.round(255 * (n / 100));
-
-    // 十六進数に変換し、2桁の形式に合わせる
-    var hex = brightnessValue.toString(16).padStart(2, '0');
-
-    // 同じ値をRGBの全てのチャンネルに適用しHEXを作成
-    return `#${hex}${hex}${hex}`;
 }
 
 // ランダムな範囲の数値を取得する関数
@@ -77,8 +87,8 @@ function draw() {
             kanji.remove();
         } else {
             kanji.style.top = `${top + parseFloat(kanji.style.fontSize) / 20}vh`;
-            kanji.style.filter = `blur(${Math.abs(Number(kanji.style.fontSize.replace("vh", "")) - focalLength) / f + returnPositiveOrZero(5 - top) / 2}vh)`;
-            kanji.style.color = whiteWithBrightness(returnPositiveOrZero(5 - top) * 20);
+            kanji.style.filter = `blur(${Math.abs(Number(kanji.style.fontSize.replace("vh", "")) - distance) / fStop + Math.max(5 - top, 0) / 2}vh)`;
+            kanji.style.opacity = Math.max(top, 1) / 5;
         }
     });
 }
@@ -89,7 +99,6 @@ let animation = setInterval(draw, 1000 / 30);
 document.body.addEventListener('keydown',
     event => {
         if (event.key === ' ') {
-            console.log("foo")
             switch (isPaused) {
                 case 0:
                     clearInterval(animation);
@@ -118,23 +127,139 @@ document.body.onmousemove = e => {
     var maxDelta = 200;
 
     var percentageX = (xDelta / maxDelta) * 100 / 100;
-    focalLength = prevFocalLenth + percentageX;
+    distance = prevDistance + percentageX;
 
     var percentageY = (yDelta / maxDelta) * 100 / 50;
-    f = prevF + percentageY;
+    fStop = Math.max(prevFStop + percentageY, 0.1);
 
     document.querySelectorAll(".kanji").forEach(kanji => {
-        kanji.style.filter = `blur(${Math.abs(Number(kanji.style.fontSize.replace("vh", "")) - focalLength) / f + returnPositiveOrZero(5 - top) / 2}vh)`;
+        kanji.style.filter = `blur(${Math.abs(Number(kanji.style.fontSize.replace("vh", "")) - distance) / fStop + Math.max(5 - top, 0) / 2}vh)`;
     });
-    console.log(f);
+
+    // 既存の遅延があればクリア
+    if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+    }
+
+    // 新しい遅延を設定
+    timeoutId = setTimeout(() => {
+        changeQueryWithoutRefresh("f", fStop);
+        changeQueryWithoutRefresh("d", distance);
+    }, 1000);
 };
 
 document.body.onmouseup = e => {
     x = 0;
     y = 0;
-    prevFocalLenth = focalLength
-    prevF = f;
+    prevDistance = distance
+    prevFStop = fStop;
 };
 
 
 // http://127.0.0.1:5501/kanji-rain/index.html
+
+var desc = document.getElementById("description");
+
+desc.animate(
+    [
+        {
+            transform: "translate(0, 12vmin)"
+        },
+        {
+            transform: "translate(0, 0vmin)"
+        }
+    ], {
+    duration: 500,
+    fill: "forwards",
+    easing: "ease-in-out"
+});
+setTimeout(() => {
+    desc.animate(
+        [
+            {
+                transform: "translate(0, 0vmin)"
+            },
+            {
+                transform: "translate(0, -12vmin)"
+            }
+        ], {
+        duration: 500,
+        fill: "forwards",
+        easing: "ease-in-out"
+    });
+    setTimeout(() => {
+        desc.innerText = "Drag your mouse up and down to change the focal stop"
+        desc.animate(
+            [
+                {
+                    transform: "translate(0, 12vmin)"
+                },
+                {
+                    transform: "translate(0, 0vmin)"
+                }
+            ], {
+            duration: 500,
+            fill: "forwards",
+            easing: "ease-in-out"
+        });
+        setTimeout(() => {
+            desc.animate(
+                [
+                    {
+                        transform: "translate(0, 0vmin)"
+                    },
+                    {
+                        transform: "translate(0, -12vmin)"
+                    }
+                ], {
+                duration: 500,
+                fill: "forwards",
+                easing: "ease-in-out"
+            });
+            setTimeout(() => {
+                desc.innerText = "Press space key to pause"
+                desc.animate(
+                    [
+                        {
+                            transform: "translate(0, 12vmin)"
+                        },
+                        {
+                            transform: "translate(0, 0vmin)"
+                        }
+                    ], {
+                    duration: 500,
+                    fill: "forwards",
+                    easing: "ease-in-out"
+                });
+                setTimeout(() => {
+                    desc.animate(
+                        [
+                            {
+                                transform: "translate(0, 0vmin)"
+                            },
+                            {
+                                transform: "translate(0, -12vmin)"
+                            }
+                        ], {
+                        duration: 500,
+                        fill: "forwards",
+                        easing: "ease-in-out"
+                    });
+                    document.querySelector(".description-wrapper").animate(
+                        [
+                            {
+                                opacity: "1"
+                            },
+                            {
+                                opacity: "0"
+                            }
+                        ], {
+                        duration: 500,
+                        fill: "forwards",
+                        easing: "ease-in-out"
+                    });
+                }, 4000);
+            }, 500);
+        }, 4000);
+    }, 500);
+}, 4000);

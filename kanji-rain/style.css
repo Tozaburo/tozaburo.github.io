@@ -1,15 +1,41 @@
 * {
-    font-family: "noto-sans-cjk-jp", sans-serif;
+    font-family: "Be Vietnam Pro", "noto-sans-cjk-jp", sans-serif;
     font-weight: 700;
     font-style: normal;
     user-select: none;
 }
 
+
 #canvas {
     height: 100vh;
     width: 100vw;
+    overflow: clip;
 }
 
 .kanji {
+    color: black;
     position: absolute;
+}
+
+.description-wrapper {
+    z-index: 1000;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: #00000080;
+    backdrop-filter: blur(1vmin);
+    pointer-events: none;
+    /* 追加 */
+}
+
+.description{
+    height: 10vmin;
+    overflow: hidden;
+}
+
+.description-wrapper h1 {
+    font-size: 6vmin;
+    opacity: 1;
+    color: white;
+    transform: translate(0, 12vmin);
 }
