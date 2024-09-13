@@ -1,12 +1,17 @@
 defineArg();
 
 if (arg.d === undefined) {
-    changeQueryWithoutRefresh("d", 6);
+    changeQueryWithoutRefresh("d", 6.0);
     defineArg();
 }
 
 if (arg.f === undefined) {
     changeQueryWithoutRefresh("f", 1.5);
+    defineArg();
+}
+
+if (arg.b === undefined) {
+    changeQueryWithoutRefresh("b", 1);
     defineArg();
 }
 
@@ -22,6 +27,11 @@ var y = 0;
 var xDelta = 0;
 var yDelta = 0;
 var timeoutId = null;
+var isBlur = Number(arg.b);
+
+if (isBlur === 0) {
+    document.getElementById("blur").checked = false;
+}
 
 function defineArg() {
     arg = new Object;
@@ -34,8 +44,8 @@ function defineArg() {
 
 function changeQueryWithoutRefresh(parameter, value) {
     const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set(parameter, value.toFixed(1));
-    const newUrl = `${location.pathname}?${urlParams.toString()}`;
+    urlParams.set(parameter, value);
+    const newUrl = `${location.pathname}?${urlParams}`;
     history.pushState(null, '', newUrl);
 }
 
@@ -87,7 +97,9 @@ function draw() {
             kanji.remove();
         } else {
             kanji.style.top = `${top + parseFloat(kanji.style.fontSize) / 20}vh`;
-            kanji.style.filter = `blur(${Math.abs(Number(kanji.style.fontSize.replace("vh", "")) - distance) / fStop + Math.max(5 - top, 0) / 2}vh)`;
+            if (isBlur == 1) {
+                kanji.style.filter = `blur(${Math.abs(Number(kanji.style.fontSize.replace("vh", "")) - distance) / fStop + Math.max(5 - top, 0) / 2}vh)`;
+            }
             kanji.style.opacity = Math.max(top, 1) / 5;
         }
     });
@@ -132,9 +144,11 @@ document.body.onmousemove = e => {
     var percentageY = (yDelta / maxDelta) * 100 / 50;
     fStop = Math.max(prevFStop + percentageY, 0.1);
 
-    document.querySelectorAll(".kanji").forEach(kanji => {
-        kanji.style.filter = `blur(${Math.abs(Number(kanji.style.fontSize.replace("vh", "")) - distance) / fStop + Math.max(5 - top, 0) / 2}vh)`;
-    });
+    if (isBlur == 1) {
+        document.querySelectorAll(".kanji").forEach(kanji => {
+            kanji.style.filter = `blur(${Math.abs(Number(kanji.style.fontSize.replace("vh", "")) - distance) / fStop + Math.max(5 - top, 0) / 2}vh)`;
+        });
+    }
 
     // 既存の遅延があればクリア
     if (timeoutId !== null) {
@@ -143,8 +157,8 @@ document.body.onmousemove = e => {
 
     // 新しい遅延を設定
     timeoutId = setTimeout(() => {
-        changeQueryWithoutRefresh("f", fStop);
-        changeQueryWithoutRefresh("d", distance);
+        changeQueryWithoutRefresh("f", fStop.toFixed(1));
+        changeQueryWithoutRefresh("d", distance.toFixed(1));
     }, 1000);
 };
 
@@ -263,3 +277,8 @@ setTimeout(() => {
         }, 4000);
     }, 500);
 }, 4000);
+
+document.getElementById("blur").onchange = e => {
+    changeQueryWithoutRefresh("b", e.target.checked ? 1 : 0);
+    isBlur = e.target.checked ? 1 : 0;
+}

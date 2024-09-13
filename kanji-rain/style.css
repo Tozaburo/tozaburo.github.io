@@ -28,7 +28,7 @@
     /* 追加 */
 }
 
-.description{
+.description {
     height: 10vmin;
     overflow: hidden;
 }
@@ -38,4 +38,27 @@
     opacity: 1;
     color: white;
     transform: translate(0, 12vmin);
+}
+
+.input {
+    position: absolute;
+    right: 1vmin;
+    bottom: 1vmin;
+    height: 3vmin;
+    width: 10vmin;
+    z-index: 999;
+}
+
+.input input {
+    display: inline-block;
+    height: 3vmin;
+    width: 3vmin;
+    font-size: 3vmin;
+}
+
+.input label {
+    display: inline-block;
+    height: 3.75vmin;
+    font-size: 3vmin;
+    margin-left: 1vmin;
 }
