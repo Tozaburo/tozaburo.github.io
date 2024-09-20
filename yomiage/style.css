@@ -1,0 +1,21 @@
+* {
+    font-family: "Be Vietnam Pro", "Noto Sans JP", sans-serif;
+}
+
+.main {
+    display: grid;
+    grid-auto-flow: column dense;
+    direction: rtl;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    height: 45vmax;
+    width: 90vmax;
+    gap: 1vmin;
+}
+
+.hiragana {
+    font-size: 5vmax;
+    border: solid black 0.1vmin;
+    border-radius: 1vmin;
+    font-weight: 900;
+}
