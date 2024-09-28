@@ -202,7 +202,7 @@ setTimeout(() => {
         easing: "ease-in-out"
     });
     setTimeout(() => {
-        desc.innerText = "Drag your mouse up and down to change the focal stop"
+        desc.innerText = "Drag your mouse up and down to change the depth of field"
         desc.animate(
             [
                 {
