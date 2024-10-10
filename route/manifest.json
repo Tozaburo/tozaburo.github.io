@@ -1,0 +1,15 @@
+{
+    "name": "最短ルート",
+    "short_name": "最短ルート",
+    "start_url": "https://tozaburo.github.io/route",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "description": "",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        }
+    ]
+}
