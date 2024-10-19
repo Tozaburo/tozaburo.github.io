@@ -5,6 +5,7 @@
     <script src="https://unpkg.com/tone@14.7.77/build/Tone.js"></script>
     <link rel="stylesheet" href="biano.css" />
     <script src="biano.js"></script>
+    <link rel="stylesheet" href="/basic.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -112,12 +113,12 @@
             </div>
             <div class="contents">
                 <div class="content opened" id="content1">
+                    <p class="menu flexB" id="thresholddisplay">keyboard push-threshold : 20ms</p>
                     <div class="slidercontainer">
-                        <p class="menu" id="thresholddisplay">keyboard push-threshold : 20ms</p>
                         <input type="range" min="0" max="100" value="20" class="slider" step="1" id="threshold">
                     </div>
+                    <p class="menu flexB" id="keyboardsizedisplay">number-of-keyboard : 10</p>
                     <div class="slidercontainer">
-                        <p class="menu" id="keyboardsizedisplay">number-of-keyboard : 10</p>
                         <input type="range" min="2" max="18" value="10" class="slider" step="2" id="number">
                     </div>
                 </div>
@@ -140,7 +141,8 @@
                         <li>2023/6/23 - Turning ideas into reality.</li>
                         <li>2023/6/24 - Sound-playing system completed; 'About This' section written.</li>
                         <li>2023/6/25 - Fixing a little bug.</li>
-                        <li>2023/6/29 - Added a "number-of-keyboard" slider and a context menu.</li>
+                        <li>2023/6/29 - Adding a "number-of-keyboard" slider and a context menu.</li>
+                        <li>2024/10/19 - Changing UI.</li>
                     </ul>
                 </div>
             </div>

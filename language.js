@@ -1,31 +1,53 @@
-var lang = window.navigator.language;
+const select = document.getElementById("lang-select");
 
-function updateCheckboxListener() {
-  document.getElementById("slider-checkbox").addEventListener("change", checkboxChanged);
-}
-
-function checkboxChanged() {
-  if (lang == "ja") {
-    lang = "en";
+if (arg.lang === undefined && localStorage.getItem("lang") === null) {
+  const lang = window.navigator.language;
+  if (lang === "ja") {
+    query("lang", "ja");
+    localStorage.setItem("lang", "ja");
   } else {
-    lang = "ja";
+    query("lang", "en");
+    localStorage.setItem("lang", "en");
   }
-  clang();
+} else if (arg.lang === undefined) {
+  if (localStorage.getItem("lang") === "ja") {
+    query("lang", "ja");
+  } else {
+    query("lang", "en");
+  }
+} else if (localStorage.getItem("lang") === null) {
+  if (arg.lang == "ja") {
+    localStorage.setItem("lang", "ja");
+  } else {
+    localStorage.setItem("lang", "en");
+  }
+} else if (arg.lang !== localStorage.getItem("lang")) {
+  if (arg.lang === "ja") {
+    localStorage.setItem("lang", "ja");
+  } else {
+    localStorage.setItem("lang", "en");
+  }
 }
 
-function clang() {
-  var checkbox = document.getElementById('slider-checkbox');
-  if (lang != "ja") {
-    document.querySelector(".main").innerHTML = englishMainHtml;
-    document.getElementById('slider-checkbox').checked = true;
-  } else if (lang == "ja") {
-    document.querySelector(".main").innerHTML = japaneseMainHtml;
-    document.getElementById('slider-checkbox').checked = false;
-  }
-
-  updateCheckboxListener(); // DOM変更後にリスナーを再設定
+switch (arg.lang) {
+  case "ja":
+    document.getElementById("ja").selected = true;
+    break;
+  case "en":
+    document.getElementById("en").selected = true;
+    break;
 }
 
-// 初期設定
-updateCheckboxListener();
-clang();
+document.querySelectorAll(`[${arg.lang}]`).forEach(element => {
+  element.innerText = element.getAttribute(`${arg.lang}`);
+});
+
+select.onchange = (e) => {
+  query("lang", e.target.value);
+
+  localStorage.setItem("lang", e.target.value);
+
+  document.querySelectorAll(`[${e.target.value}]`).forEach(element => {
+    element.innerText = element.getAttribute(`${e.target.value}`);
+  });
+}

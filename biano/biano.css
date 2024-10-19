@@ -1,5 +1,13 @@
+* {
+    --background-color: color-mix(in srgb, #84a8b4 50%, white);
+    --main: #84b497;
+    --sub: #27352c;
+    --accent: #b59686;
+    box-sizing: content-box !important;
+}
+
 .updown {
-    background-color: #895D4F;
+    background-color: var(--main);
     padding: 1vmin;
     font-family: 'Poppins', sans-serif;
     font-size: 2.85vmin;
@@ -15,11 +23,11 @@
 }
 
 .updown:hover {
-    box-shadow: 0 1vmin 2vmin 0 #895D4F;
+    box-shadow: 0 2vmin 5vmin -2vmin var(--main);
 }
 
 .active {
-    color: #94b0ff;
+    color: var(--sub);
 }
 
 .display {
@@ -30,17 +38,16 @@
     color: white;
     height: 7.5vmin;
     width: 90vmin;
-    background-color: #3f4536;
+    background-color: var(--sub);
 }
 
 .menu {
     font-family: 'Poppins', sans-serif;
-    font-size: 2vmin;
-    margin: 1vmin 5vmin;
+    font-size: 1.75vmin;
     color: white;
-    display: inline-block;
     text-align: left;
-    width: 40vmin;
+    width: 100%;
+    height: 100%;
 }
 
 .updown span {
@@ -86,7 +93,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #7e8a6d;
+    background-color: var(--background-color);
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center;
@@ -106,9 +113,10 @@ body {
     cursor: pointer;
     background-color: transparent;
     height: 0vmin;
-    width: 30vmin;
+    width: 30vmin !important;
+    /* width: 40%; */
     border-radius: 10000px;
-    border: solid 0.2vmin #ffffff;
+    border: solid 0.2vmin white;
     outline: 0;
     box-sizing: border-box;
     margin: 0 auto;
@@ -126,7 +134,7 @@ body {
     width: 2vmin;
     height: 2vmin;
     margin-top: 0;
-    background-color: #ffd68f;
+    background-color: var(--accent);
     border-radius: 50%;
     cursor: pointer;
 }
@@ -135,7 +143,7 @@ body {
     width: 2vmin;
     height: 2vmin;
     margin-top: 0;
-    background-color: #ffd68f;
+    background-color: var(--accent);
     border-radius: 50%;
     cursor: pointer;
 }
@@ -144,7 +152,7 @@ body {
     width: 2vmin;
     height: 2vmin;
     margin-top: 0;
-    background-color: #ffd68f;
+    background-color: var(--accent);
     border-radius: 50%;
     cursor: pointer;
 }
@@ -152,15 +160,15 @@ body {
 /* thumb-hover */
 .slider::-webkit-slider-thumb:hover {
     -webkit-appearance: none;
-    background-color: #ff8f8f;
+    background-color: var(--accent);
 }
 
 .slider::-moz-range-thumb:hover {
-    background-color: #ff8f8f;
+    background-color: var(--accent);
 }
 
 .slider::-ms-thumb:hover {
-    background-color: #ff8f8f;
+    background-color: var(--accent);
 }
 
 ul {
@@ -184,7 +192,7 @@ ul {
 .tab-menu .tabs .tab {
     cursor: pointer;
     padding: 1.5vmin;
-    background-color: #453636;
+    background-color: var(--sub);
     text-align: center;
     flex-grow: 1;
     color: white;
@@ -196,7 +204,7 @@ ul {
 }
 
 .tab-menu .tabs .opened {
-    color: #ffc7c7;
+    color: var(--accent);
 }
 
 .tab-menu .tabs .tabslider {
@@ -205,7 +213,7 @@ ul {
     left: 0;
     width: calc(100% / 3);
     height: 0.2vmin;
-    background: #ffc7c7;
+    background: var(--accent);
     transition: all 0.3s ease;
 }
 
@@ -213,8 +221,16 @@ ul {
     display: block;
 }
 
+.tab-menu .contents .content#content1 {
+    height: 20vmin;
+    width: 90vmin;
+    display: grid !important;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr;
+}
+
 .contents {
-    background-color: #8a6d6d;
+    background-color: var(--main);
 }
 
 .content {
@@ -232,9 +248,7 @@ ul {
     justify-content: center;
     -webkit-align-items: center;
     align-items: center;
-    height: 10vmin;
-    line-height: 10vmin;
-    width: 85vmin;
+    width: 100%;
 }
 
 #left {
@@ -251,7 +265,7 @@ ul {
     position: absolute;
     z-index: 1000;
     padding: 1.5vmin;
-    background-color: #895D4F;
+    background-color: var(--sub);
     border: 0.2vmin solid white;
     border-radius: 0.5vmin;
     color: white;
@@ -305,7 +319,7 @@ ul {
     width: 5vmin;
     height: 5vmin;
     margin: calc(5vmin / 12);
-    background-color: #50758a;
+    background-color: var(--sub);
     font-size: 2vmin;
     color: white;
     border: 0.2vmin solid black;
