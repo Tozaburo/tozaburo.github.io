@@ -1,5 +1,6 @@
 * {
-    --background-color: color-mix(in srgb, #84a8b4 50%, white);
+    /* --background-color: color-mix(in srgb, #84a8b4 50%, white); */
+    --background-color: #c2d4da;
     --main: #84b497;
     --sub: #27352c;
     --accent: #b59686;
