@@ -221,10 +221,10 @@ ul {
     display: block;
 }
 
-.tab-menu .contents .content#content1 {
+.tab-menu .contents .content#content1.opened {
     height: 20vmin;
     width: 90vmin;
-    display: grid !important;
+    display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr;
 }
