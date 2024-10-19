@@ -1,97 +1,97 @@
 [
     {
         "url": "https://tozaburo.github.io/business/",
-        "jp": "ビジネス用語辞書",
+        "ja": "ビジネス用語辞書",
         "en": "Business Dictionary"
     },
     {
         "url": "https://tozaburo.github.io/clock/",
-        "jp": "新感覚の時計",
+        "ja": "新感覚の時計",
         "en": "New Kind of Clock"
     },
     {
         "url": "https://tozaburo.github.io/wine/",
-        "jp": "ワインの品質",
+        "ja": "ワインの品質",
         "en": "Quality of Wine"
     },
     {
         "url": "https://tozaburo.github.io/file/",
-        "jp": "ファイルをリスト化",
+        "ja": "ファイルをリスト化",
         "en": "Files to Python/JS Lists"
     },
     {
         "url": "https://tozaburo.github.io/four/",
-        "jp": "Four",
+        "ja": "Four",
         "en": "Four"
     },
     {
         "url": "https://tozaburo.github.io/css/",
-        "jp": "CSS整頓",
+        "ja": "CSS整頓",
         "en": "Organize CSS"
     },
     {
         "url": "https://tozaburo.github.io/marcov/",
-        "jp": "無限文章",
+        "ja": "無限文章",
         "en": "Infinity Sentence"
     },
     {
         "url": "https://tozaburo.github.io/biano/",
-        "jp": "Biano",
+        "ja": "Biano",
         "en": "Biano"
     },
     {
         "url": "https://tozaburo.github.io/sequence/",
-        "jp": "次項予測",
+        "ja": "次項予測",
         "en": "Next Term Prediction"
     },
     {
         "url": "https://tozaburo.github.io/table/",
-        "jp": "表HTMLをcsv化",
+        "ja": "表HTMLをcsv化",
         "en": "HTML Table to CSV Files"
     },
     {
         "url": "https://tozaburo.github.io/kaomoji/",
-        "jp": "顔文字ジェネレーター",
+        "ja": "顔文字ジェネレーター",
         "en": "Emoticon Generator"
     },
     {
         "url": "https://tozaburo.github.io/default-page/",
-        "jp": "新しいタブのカスタマイズ",
+        "ja": "新しいタブのカスタマイズ",
         "en": "New Tab Customize"
     },
     {
         "url": "https://tozaburo.github.io/kanji-no-hyouhon/",
-        "jp": "漢字の標本",
+        "ja": "漢字の標本",
         "en": "Specimen of Kanji"
     },
     {
         "url": "https://tozaburo.github.io/yojidle/",
-        "jp": "四字dle",
+        "ja": "四字dle",
         "en": "Yojidle"
     },
     {
         "url": "https://tozaburo.github.io/barker/",
-        "jp": "Barker",
+        "ja": "Barker",
         "en": "Barker"
     },
     {
         "url": "https://tozaburo.github.io/tategana/",
-        "jp": "たてがな",
+        "ja": "たてがな",
         "en": "Tategana"
     },
     {
         "url": "https://tozaburo.github.io/color/",
-        "jp": "Color",
+        "ja": "Color",
         "en": "Color"
     },
     {
         "url": "https://tozaburo.github.io/random-noun/",
-        "jp": "ランダム名詞",
+        "ja": "ランダム名詞",
         "en": "Random Noun"
     },
     {
         "url": "https://tozaburo.github.io/kanji-rain/",
-        "jp": "漢字の雨",
+        "ja": "漢字の雨",
         "en": "Kanji Rain"
     }
 ]
