@@ -8,6 +8,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -72,9 +73,9 @@ div.icon {
     width: 90vw;
     padding: 5vmin;
     -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 div.icon a {
@@ -144,7 +145,7 @@ div.icon input:checked+.slider {
 
 div.icon input:focus+.slider {
     -webkit-box-shadow: 0 0 0.1vmin #e45a22;
-            box-shadow: 0 0 0.1vmin #e45a22;
+    box-shadow: 0 0 0.1vmin #e45a22;
 }
 
 div.icon input:checked+.slider:before {
@@ -165,3 +166,43 @@ div.icon .slider.round:before {
 textarea {
     resize: none;
 }
+
+.fade-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 9999;
+}
+
+.fade-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#lang-select {
+    position: fixed;
+    right: 5vmin;
+    top: 5vmin;
+    background-color: transparent;
+    backdrop-filter: blur(1vmin) brightness(150%);
+    color: var(--accent);
+    border: solid 0.2vmin var(--secondary);
+    border-radius: 100vmin;
+    font-size: 2vmin;
+    height: 4vmin;
+    width: 16vmin;
+    padding-left: 2vmin;
+
+    transition: all 0.2s ease-in-out;
+}
+
+#lang-select:hover {
+    box-shadow: 0 1vmin 1vmin -1vmin var(--pre-secondary);
+}
+
