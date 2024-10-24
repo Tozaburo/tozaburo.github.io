@@ -28,7 +28,7 @@ const links = [
   },
   {
     name: "SUZURI",
-    url: "https://note.com/tozaburo"
+    url: "https://suzuri.jp/Tozaburo"
   },
   {
     name: "Scratch",
