@@ -129,6 +129,13 @@ body {
     height: 15vmin;
 }
 
+.description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.75vmin;
+    color: white;
+    width: 100%;
+}
+
 /* thumb */
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -200,7 +207,7 @@ ul {
 }
 
 .tab-menu .contents .content {
-    padding: 1.5vmin;
+    padding: 1.5vmin 0;
     display: none;
 }
 
@@ -212,23 +219,31 @@ ul {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: calc(100% / 3);
+    width: calc(100% / 4);
     height: 0.2vmin;
     background: var(--accent);
     transition: all 0.3s ease;
 }
 
-.tab-menu .contents .opened {
+.tab-menu .contents .opened#content2,
+.tab-menu .contents .opened#content3 {
     display: block;
 }
 
 .tab-menu .contents .content#content1.opened {
     height: 20vmin;
-    width: 90vmin;
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr;
 }
+
+.tab-menu .contents .content#content4.opened {
+    display: inline-flex;
+    height: 100%;
+    width: 90vmin;
+    height: 20vmin;
+}
+
 
 .contents {
     background-color: var(--main);
@@ -237,7 +252,6 @@ ul {
 .content {
     height: 20vmin;
     justify-content: center;
-    width: 90vmin;
     align-items: center;
     text-align: center;
 }
@@ -362,4 +376,50 @@ ul {
     font-size: 4vmin;
     margin-top: 0;
     margin-bottom: 2vmin;
+}
+
+#drop {
+    position: relative;
+    width: 70vmin;
+    height: 10vmin;
+    border: 0.2vmin dashed white;
+    color: white;
+}
+
+#drop.hover {
+    border: 0.2vmin dashed var(--sub);
+}
+
+#drop input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    left: 0px;
+    top: 0px;
+}
+
+#drop p {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    left: 0px;
+    top: 50%;
+    transform: translate(0, -50%);
+    text-align: center;
+}
+
+#result {
+    margin-top: 2vmin;
+    width: 70vmin;
+    height: 10vmin;
+    border: 0.2vmin solid white;
+    color: white;
+    font-size: 2vmin;
+    padding: 1vmin;
+    background-color: transparent;
+    box-sizing: border-box !important;
+    white-space: pre-wrap;
+    word-break: keep-all;
 }

@@ -202,7 +202,7 @@ window.addEventListener("DOMContentLoaded", function () {
     const tabslider = document.querySelector('.tab-menu .tabs .tabslider');
 
     // Set the slider to the initial position
-    tabslider.style.left = `calc(0 * calc(100% / 3))`;
+    tabslider.style.left = `calc(0 * calc(100% / 4))`;
 
     tabs.forEach((tab, index) => {
         tab.addEventListener('click', () => {
@@ -217,7 +217,7 @@ window.addEventListener("DOMContentLoaded", function () {
             tab.classList.add('opened');
             contents[index].classList.add('opened');
 
-            tabslider.style.left = `calc(${index} * calc(100% / 3))`;
+            tabslider.style.left = `calc(${index} * calc(100% / 4))`;
         });
     });
 
@@ -299,4 +299,85 @@ function typed(e) {
         nslider = -1;
         document.querySelector("#keyboardLayoutInput").style.display = "none";
     }, 500)
+}
+
+// Converter
+const drop = document.getElementById("drop");
+const result = document.getElementById("result");
+let notes = [];
+
+drop.ondragenter = () => {
+    drop.classList.add("hover");
+};
+
+drop.ondragleave = () => {
+    drop.classList.remove("hover");
+};
+
+drop.ondrop = () => {
+    drop.classList.remove("hover");
+};
+
+document.getElementById("fileDrop").onchange = (e) => {
+    const files = e.target.files;
+    if (files.length > 0) {
+        const file = files[0];
+        console.log(file.name);
+        parseFile(file);
+    }
+};
+
+
+function toBinary(n) {
+    return parseInt(n.toString(2));
+};
+
+function parseFile(file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const midi = new Midi(e.target.result);
+        notes = midi.tracks[0].notes;
+        console.log(notes)
+
+        let timeMap = {};
+        let duplicateFound = false;
+
+        notes.forEach(note => {
+            if (timeMap[note.time]) {
+                duplicateFound = true;
+            } else {
+                timeMap[note.time] = true;
+            }
+        });
+
+        if (duplicateFound) {
+            result.innerHTML = "The MIDI file contains overlapping notes.";
+        } else {
+            const midiArray = notes.map(item => item.midi);
+            console.log(midiArray);
+
+            let prevMidi = 60;
+            let score = [];
+            midiArray.forEach((midi) => {
+                let binary = String(toBinary(midi - prevMidi));
+                let keys = "";
+                if (binary[0] === "-") {
+                    binary = binary.replace("-", "");
+                    binary.split("").forEach((digit, i) => {
+                        keys = (digit === "1" ? keylist[1][binary.length - i - 1] : "") + keys;
+                    })
+                } else {
+                    binary.split("").forEach((digit, i) => {
+                        keys = (digit === "1" ? keylist[0][binary.length - i - 1] : "") + keys;
+                    })
+                }
+
+                score.push(keys);
+                prevMidi = midi;
+            })
+            console.log(score);
+            result.innerHTML = score.join("→<wbr>")
+        }
+    };
+    reader.readAsArrayBuffer(file);
 }
