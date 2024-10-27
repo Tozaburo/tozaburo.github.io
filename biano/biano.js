@@ -336,13 +336,22 @@ function parseFile(file) {
     const reader = new FileReader();
     reader.onload = function (e) {
         const midi = new Midi(e.target.result);
+        console.log(JSON.stringify(midi, undefined, 2));
         notes = midi.tracks[0].notes;
         console.log(notes)
+
+        let allNotes = [];
+        midi.tracks.forEach(track => {
+            allNotes = allNotes.concat(track.notes);
+        });
+        allNotes.sort((a, b) => a.time - b.time);
+        console.log(allNotes);
+        console.log(midi);
 
         let timeMap = {};
         let duplicateFound = false;
 
-        notes.forEach(note => {
+        allNotes.forEach(note => {
             if (timeMap[note.time]) {
                 duplicateFound = true;
             } else {
@@ -353,7 +362,7 @@ function parseFile(file) {
         if (duplicateFound) {
             result.innerHTML = "The MIDI file contains overlapping notes.";
         } else {
-            const midiArray = notes.map(item => item.midi);
+            const midiArray = allNotes.map(item => item.midi);
             console.log(midiArray);
 
             let prevMidi = 60;
@@ -361,22 +370,27 @@ function parseFile(file) {
             midiArray.forEach((midi) => {
                 let binary = String(toBinary(midi - prevMidi));
                 let keys = "";
+                console.log(binary);
                 if (binary[0] === "-") {
                     binary = binary.replace("-", "");
                     binary.split("").forEach((digit, i) => {
                         keys = (digit === "1" ? keylist[1][binary.length - i - 1] : "") + keys;
                     })
                 } else {
-                    binary.split("").forEach((digit, i) => {
-                        keys = (digit === "1" ? keylist[0][binary.length - i - 1] : "") + keys;
-                    })
+                    if (binary === "0") {
+                        keys = "QA";
+                    } else {
+                        binary.split("").forEach((digit, i) => {
+                            keys = (digit === "1" ? keylist[0][binary.length - i - 1] : "") + keys;
+                        })
+                    }
                 }
 
                 score.push(keys);
                 prevMidi = midi;
             })
             console.log(score);
-            result.innerHTML = score.join("→<wbr>")
+            result.innerHTML = score.join("→<wbr>");
         }
     };
     reader.readAsArrayBuffer(file);
