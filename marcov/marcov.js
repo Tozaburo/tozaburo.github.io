@@ -7,6 +7,8 @@ var lastWord = start;
 var started = 0;
 var level = 2;
 
+const segmenter = new TinySegmenter();
+
 window.addEventListener("DOMContentLoaded", function () {
     setLevel(2);
 });
@@ -16,8 +18,7 @@ function startgen() {
     if (started == 1) {
         stringsentence = document.querySelector("#data").value;
         stringsentence = stringsentence.replace(/\n/g, '');
-        splitstr = document.querySelector("#split").value;
-        sentence = stringsentence.split(splitstr);
+        sentence = segmenter.segment(stringsentence);
         start = sentence[0];
         result = [start];
         lastWord = start;
