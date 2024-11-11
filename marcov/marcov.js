@@ -17,7 +17,7 @@ function startgen() {
     changeS();
     if (started == 1) {
         stringsentence = document.querySelector("#data").value;
-        stringsentence = stringsentence.replace(/\n/g, '');
+        stringsentence = stringsentence.replace(/\n/g, '§');
         sentence = segmenter.segment(stringsentence);
         start = sentence[0];
         result = [start];
@@ -46,7 +46,7 @@ function changeS() {
 function makeSentence() {
     next(lastWord);
     lastWord = result[result.length - 1];
-    document.querySelector("#sentence").innerHTML = result.join('');
+    document.querySelector("#sentence").innerHTML = result.join('').replace(/§/g, "<br>");
 }
 
 function next(text) {
