@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="/basic.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Generates Random English Words.">
+    <meta property="og:description" content="Generates Random English Words.">
+    <meta name="keywords" content="Random,English,Word">
+    <meta property="og:url" content="https://tozaburo.github.io/random-english">
+    <meta name="subject" content="Generates Random English Words.">
+    <meta name="abstract" content="Generates Random English Words.">
+    <meta property="og:image" content="image.png">
+    <meta name="thumbnail" content="image.png">
+    <meta name="author" content="Tozaburo">
+    <meta name="owner" content="Tozaburo">
+    <meta name="designer" content="Tozaburo">
+    <meta name="publisher" content="Tozaburo">
+    <meta name="distribution" content="Global">
+
+    <title>Random English</title>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script>
+        let lenis = new Lenis();
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script> -->
+</head>
+
+<body>
+    <div class="main flexB flexC">
+        <p id="description">Press the background or the space key to generate</p>
+        <h1 id="result">Random Word</h1>
+    </div>
+    <h2 id="texts"></h2>
+    <p id="information">
+        Generated based on SCOWL using a Markov chain.<br>Some inappropriate words may appear due to the algorithm. I take no responsibility for any issues that may arise.</p>
+    <span class="material-symbols-outlined" id="setting">
+        settings
+    </span>
+    <div id="settings" class="flexB flexC">
+        <h3>Word Length</h3>
+        <div class="flexB">
+            <input type="number" id="min" value="3" step="1" min="1" max="20">
+            <p>&nbsp;&le;&nbsp;L&nbsp;&le;&nbsp;</p>
+            <input type="number" id="max" value="10" step="1" min="1" max="20">
+        </div>
+    </div>
+</body>
+
+</html>
