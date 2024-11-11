@@ -82,7 +82,12 @@
     {
         "url": "https://tozaburo.github.io/random-noun/",
         "ja": "ランダム名詞",
-        "en": "Random Noun"
+        "en": "Random Japanese Word"
+    },
+    {
+        "url": "https://tozaburo.github.io/random-english/",
+        "ja": "ランダム英単語",
+        "en": "Random English Word"
     },
     {
         "url": "https://tozaburo.github.io/kanji-rain/",
