@@ -2,6 +2,15 @@
 <html lang="ja">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ3HGBH4GQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-XZ3HGBH4GQ');
+  </script>
   <!-- <script>
     window.scrollTo(0, 0);
   </script> -->
@@ -12,8 +21,8 @@
   <script src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/dist/tiny-segmenter-0.2.0.min.js"></script>
   <script defer src="/query.js"></script>
   <script defer src="/language.js"></script>
-  <link rel="stylesheet" href="index.css" />
-  <script defer src="index.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
   <link rel="stylesheet" href="/basic.css" />
   <!-- <script src="/language.js" defer></script> -->
   <link rel="icon" href="/logo.png">
@@ -31,15 +40,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Tozaburo's Website.">
-  <meta property="og:description" content="Tozaburo's Website.">
-  <meta name="subject" content="Tozaburo's Website.">
-  <meta name="abstract" content="Tozaburo's Website.">
-  <meta name="keywords" content="Tozaburo,Toe,Kobayashi,小林,都央">
+  <meta name="description" content="Tozaburo">
+  <meta property="og:description" content="Tozaburo">
+  <meta name="subject" content="Tozaburo">
+  <meta name="abstract" content="Tozaburo">
+  <meta name="keywords" content="Tozaburo,Toe,Kobayashi">
 
   <meta property="og:url" content="https://tozaburo.github.io/">
-  <meta property="og:image" content="image.png">
-  <meta name="thumbnail" content="image.png">
+  <meta property="og:image" content="https://tozaburo.github.io/image.png">
+  <meta name="thumbnail" content="https://tozaburo.github.io/image.png">
 
   <meta name="author" content="Tozaburo">
   <meta name="owner" content="Tozaburo">
@@ -54,34 +63,11 @@
 
 <body data-barba="wrapper">
   <div data-barba="container">
-    <div id="top">_</div>
     <div id="background"></div>
-    <div class="title flexB" id="title">
-      <h1 id="tozaburo">Tozaburo</h1>
-      <div id="overlay"></div>
-    </div>
-    <div id="index">
-      <a href="#top" class="index" en="Top" ja="トップ"></a>
-      <a href="#works" class="index" en="Works" ja="作品"></a>
-      <a href="#links" class="index" en="Links" ja="リンク"></a>
-    </div>
     <div class="main">
       <section id="works" class="flexB flexC">
-        <h1 en="Works" ja="作品"></h1>
-        <div class="menu">
-          <a class="button flexB active" id="websites" en="Websites" ja="ウェブサイト"></a>
-          <a class="button flexB" id="youtube" en="YouTube" ja="YouTube"></a>
-          <a class="button flexB" id="note" en="note" ja="note"></a>
-        </div>
+        <h1 en="Websites" ja="ウェブサイト"></h1>
         <div id="contents"></div>
-        <a href="" id="see-more" class="flexB" target="_blank" rel="noopener noreferrer">See More</a>
-      </section>
-      <section id="links" class="flexB flexC">
-        <h1 en="Links" ja="リンク"></h1>
-        <div class="links flexB flexC" id="links-container">
-          <a href="https://www.youtube.com/c/Tozaburo3D?sub_confirmation=1" class="link" target="_blank" rel="noopener noreferrer">YouTube</a>
-          <a href="https://note.com/tozaburo" class="link" target="_blank" rel="noopener noreferrer">note</a>
-        </div>
       </section>
     </div>
   </div>

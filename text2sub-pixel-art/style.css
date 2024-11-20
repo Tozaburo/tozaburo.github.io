@@ -1,0 +1,95 @@
+* {
+    font-family: "Be Vietnam Pro", "Noto Sans JP", sans-serif;
+    scroll-behavior: smooth;
+}
+
+section {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* #container {
+    display: grid;
+    height: 7px;
+    width: 6px;
+    grid-template-rows: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    margin: 10vmin;
+    background-color: black;
+    box-shadow: 0 0 0 1vmin;
+} */
+
+canvas {
+    margin-top: 1vmin;
+    box-shadow: 0 0 0 1vmin;
+}
+
+h1 {
+    font-size: 10vmin;
+    margin-bottom: 1vmin;
+}
+
+h2 {
+    margin-top: 10vmin;
+    font-size: 3vmin;
+}
+
+p {
+    font-size: 2.5vmin;
+    margin-bottom: 1vmin;
+    text-align: center;
+}
+
+a.link {
+    margin-bottom: 10vmin;
+    color: black;
+    font-size: 2vmin;
+    text-decoration: underline;
+}
+
+label {
+    font-size: 2.5vmin;
+    margin-top: 1vmin;
+}
+
+input,
+a#convert {
+    height: 5vmin;
+    border-radius: 1vmin;
+    padding: 1vmin;
+    font-size: 2vmin;
+    border: solid black;
+    display: block;
+}
+
+input {
+    width: 50vmin;
+}
+
+a {
+    width: 10vmin;
+    margin-left: 2vmin;
+}
+
+.dot {
+    height: 1px;
+    width: 1px;
+}
+
+a.scroll {
+    text-decoration: underline dashed 0.05em;
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+img {
+    object-fit: cover;
+    height: 40vmin;
+    width: 40vmin;
+    border-radius: 1vmin;
+}
+
+div#container div {
+    margin: 5vmin;
+}

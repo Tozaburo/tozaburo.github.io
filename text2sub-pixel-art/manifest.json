@@ -1,0 +1,15 @@
+{
+    "name": "Text to Sub-Pixel Art",
+    "short_name": "Text to Sub-Pixel Art",
+    "start_url": "https://tozaburo.github.io/text2sub-pixel-art",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "description": "This allows you to convert any text into sub-pixel art.",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        }
+    ]
+}
