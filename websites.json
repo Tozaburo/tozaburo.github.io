@@ -93,5 +93,10 @@
         "url": "https://tozaburo.github.io/kanji-rain/",
         "ja": "漢字の雨",
         "en": "Kanji Rain"
+    },
+    {
+        "url": "https://tozaburo.github.io/text2sub-pixel-art/",
+        "ja": "サブクセルアート変換",
+        "en": "Text to Sub-pixel Art"
     }
 ]
