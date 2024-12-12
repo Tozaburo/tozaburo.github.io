@@ -1,0 +1,457 @@
+@font-face {
+    font-family: 'Chillax';
+    src: url('../Chillax-Variable.ttf') format('truetype');
+    font-weight: 100 800;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+* {
+    font-family: "Chillax", "Be Vietnam Pro", "Noto Sans JP", sans-serif;
+}
+
+:root {
+    --main: #5bcc77;
+    --sub: #c1ccc4;
+    --accent: #775bcc;
+
+    --tonic: #5bcc77;
+    --sub-dominant: #ccbd5b;
+    --dominant: #cc5b5b;
+
+    --tonic-sub: #39cc5e;
+    --sub-dominant-sub: #ccb839;
+    --dominant-sub: #cc3939;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: 800;
+}
+
+.medium {
+    font-weight: 600;
+}
+
+.normal {
+    font-weight: 400;
+}
+
+.thin {
+    font-weight: 200;
+}
+
+
+h1#title {
+    font-size: 10vmin;
+    color: var(--main);
+    margin-top: 10vmin;
+    margin-bottom: 1vmin;
+}
+
+p#sub-title {
+    font-size: 2.5vmin;
+    color: var(--main);
+    margin-bottom: 5vmin;
+}
+
+div#d-conainter {
+    margin-top: 10vmin;
+}
+
+div.d-wrapper {
+    height: 50vmin;
+    width: 30vmin;
+    color: white;
+    border-radius: 1vmin;
+    margin: 0 5vmin;
+    padding: 0 0 10vmin 0;
+}
+
+div#tonic {
+    /* background-color: var(--tonic); */
+    background: linear-gradient(var(--tonic), var(--tonic-sub));
+    /* box-shadow: 0 1vmin 3vmin -1vmin var(--tonic); */
+}
+
+div#sub-dominant {
+    /* background-color: var(--sub-dominant); */
+    background: linear-gradient(var(--sub-dominant), var(--sub-dominant-sub));
+    /* box-shadow: 0 1vmin 3vmin -1vmin var(--sub-dominant); */
+}
+
+div#dominant {
+    /* background-color: var(--dominant); */
+    background: linear-gradient(var(--dominant), var(--dominant-sub));
+    /* box-shadow: 0 1vmin 3vmin -1vmin var(--dominant); */
+}
+
+
+div.d-wrapper p {
+    font-size: 2.5vmin;
+    /* margin: 1vmin 0; */
+}
+
+div.d-wrapper h2 {
+    font-size: 3vmin;
+    margin: 7.5vmin 0 2vmin 0;
+}
+
+select#key {
+    background-color: var(--main);
+    color: white;
+    border: none;
+    border-radius: 100vmin;
+    font-size: 2vmin;
+    height: 4vmin;
+    width: 50vmin;
+    padding-left: 2vmin;
+    transition: all 0.2s ease-in-out;
+}
+
+select#duration {
+    background-color: white;
+    color: var(--main);
+    border: solid var(--sub) 0.1vmin;
+    border-radius: 100vmin;
+    font-size: 2vmin;
+    height: 4vmin;
+    width: 10vmin;
+    padding-left: 2vmin;
+    transition: all 0.2s ease-in-out;
+}
+
+select.chord-select {
+    background-color: white;
+    color: var(--main);
+    border: solid var(--sub) 0.1vmin;
+    border-radius: 100vmin;
+    font-size: 2vmin;
+    height: 4vmin;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
+
+div#chords-container {
+    height: 70vmin;
+    width: 110vmin;
+    gap: 10vmin;
+    margin-top: 10vmin;
+    margin-bottom: 10vmin;
+}
+
+div#chords-container>div {
+    height: 100%;
+    width: 100%;
+}
+
+div#chords {
+    border: solid 0.2vmin var(--sub);
+    border-radius: 1vmin;
+    padding: 5vmin;
+    overflow: scroll;
+}
+
+a.chord {
+    font-size: 3vmin;
+    border: solid white 1vmin;
+
+    color: white;
+    border-radius: 2vmin;
+    height: 7vmin;
+    position: relative;
+}
+
+a.roman {
+    transition: all 0.2s ease-in-out;
+}
+
+a.roman:hover {
+    font-weight: 600;
+}
+
+h2#chord-name {
+    font-size: 3vmin;
+    /* margin: 1vmin; */
+
+    color: white;
+    border-radius: 1vmin;
+    height: 5vmin;
+    width: 40vmin;
+}
+
+div#chord-control-wrapper {
+    width: 100%;
+}
+
+.t {
+    background-color: var(--tonic) !important;
+}
+
+.s {
+    background-color: var(--sub-dominant) !important;
+}
+
+.d {
+    background-color: var(--dominant) !important;
+}
+
+div#chord-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 4fr;
+    gap: 2.5vmin;
+}
+
+div#chord-wrapper>div {
+    box-shadow: 0 0 2vmin -0.5vmin var(--sub);
+    border-radius: 1vmin;
+}
+
+label {
+    font-size: 2vmin;
+    margin-right: 1vmin;
+}
+
+div#functions {
+    margin: 0;
+    height: 1vmin;
+    width: 40vmin;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1vmin;
+}
+
+a.function {
+    height: 100%;
+    width: 100%;
+    border-radius: 100vmin;
+}
+
+a.button {
+    background-color: var(--main);
+    color: white;
+    height: 6vmin;
+    width: 6vmin;
+    font-size: 3vmin;
+    border-radius: 100vmin;
+    transition: all 0.2s ease-in-out;
+}
+
+a.button:hover {
+    box-shadow: 0 0 1vmin 0 var(--main);
+    transform: scale(1.1);
+}
+
+.fa-play {
+    padding-left: 0.3vmin;
+}
+
+label#bpm-label {
+    margin-left: 10vmin;
+}
+
+input#bpm {
+    background-color: white;
+    border: var(--main) solid 0.1vmin;
+    border-radius: 100vmin;
+    font-size: 2vmin;
+    height: 4vmin;
+    width: 10vmin;
+    padding-left: 1.5vmin;
+    transition: all 0.2s ease-in-out;
+}
+
+a#delete {
+    border: var(--dominant) solid 0.1vmin;
+    color: var(--dominant);
+    background-color: white;
+    margin-left: 10vmin;
+    border-radius: 100vmin;
+    font-size: 2vmin;
+    height: 4vmin;
+    width: 10vmin;
+    transition: all 0.2s;
+}
+
+a#delete:hover {
+    box-shadow: 0 0 1vmin 0 color-mix(in srgb, var(--dominant) 50%, transparent);
+}
+
+a.chord span.handle {
+    position: absolute !important;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 2vmin;
+    background-color: white;
+    opacity: 0.5;
+    border-radius: 0 1vmin 1vmin 0;
+    cursor: ew-resize;
+}
+
+div#chord-data {
+    height: 17vmin;
+    width: 50vmin;
+    padding: 5vmin;
+    gap: 1vmin;
+}
+
+section {
+    height: 35vmin;
+    width: 50vmin;
+    padding: 0 5vmin 5vmin 5vmin;
+    gap: 3vmin;
+    scroll-snap-align: start;
+}
+
+div#chord-notes {
+    display: grid;
+    height: 10vmin;
+    width: 40vmin;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1vmin;
+}
+
+div#tension-container {
+    /* height: 15vmin; */
+    width: 40vmin;
+    display: flex;
+    flex-direction: column;
+}
+
+div#tensions-wrapper {
+    margin-top: 1vmin;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
+    height: 100%;
+    gap: 1vmin;
+    grid-auto-flow: column;
+}
+
+a.tension:not(.spacer) {
+    border: solid var(--main) 0.1vmin;
+}
+
+a.tension {
+    height: 100%;
+    width: 100%;
+    font-size: 2.5vmin;
+    border-radius: 1vmin;
+    box-sizing: border-box;
+    transition: all 0.25s ease-in-out;
+}
+
+a.tension:not(.selected) {
+    background-color: white;
+    color: var(--main);
+}
+
+a.tension.selected {
+    background-color: var(--main);
+    color: white;
+}
+
+a.tension.spacer {
+    background-color: transparent;
+    pointer-events: none;
+}
+
+.none {
+    background-color: var(--sub);
+}
+
+div#buttons {
+    margin-bottom: 10vmin;
+}
+
+.file-button {
+    height: 5vmin;
+    width: 15vmin;
+    font-size: 2.5vmin;
+    border-radius: 100vmin;
+    box-sizing: border-box;
+    transition: all 0.25s ease-in-out;
+    background-color: var(--main);
+    color: white;
+    margin: 0 2.5vmin;
+}
+
+.file-button:hover {
+    background-color: var(--accent);
+}
+
+div#section-container {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    height: 35vmin;
+    width: 50vmin;
+}
+
+section#tools a {
+    border: var(--primary) solid 0.1vmin;
+    color: var(--primary);
+    background-color: white;
+    border-radius: 100vmin;
+    font-size: 1.75vmin;
+    height: 4vmin;
+    width: 40vmin;
+    transition: all 0.2s;
+}
+
+section#tools a:hover {
+    color: white;
+    background: var(--primary);
+    margin: 0 5vmin;
+}
+
+section#tools a.tonic {
+    --primary: var(--main);
+}
+
+section#tools a.sub-dominant {
+    --primary: var(--sub-dominant);
+}
+
+section#tools a.dominant {
+    --primary: var(--dominant);
+}
+
+section#tools a.disabled {
+    --primary: var(--sub);
+}
+
+div#section-indicator {
+    height: 4vmin;
+    width: 50vmin;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    padding: 0 5vmin;
+    margin-top: 1vmin;
+}
+
+a.indicator {
+    height: 100%;
+    width: 100%;
+    font-size: 2vmin;
+}
+
+a.indicator.active {
+    color: var(--main)
+}
+
+a.indicator:not(.active) {
+    color: var(--sub);
+}
