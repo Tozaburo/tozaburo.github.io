@@ -1,10 +1,10 @@
 {
-    "name": "",
-    "short_name": "",
-    "start_url": "https://tozaburo.github.io/",
+    "name": "Chordance",
+    "short_name": "Chordance",
+    "start_url": "https://tozaburo.github.io/chordance",
     "display": "standalone",
     "background_color": "#ffffff",
-    "description": "",
+    "description": "A tool to help you to create a chord progression.",
     "icons": [
         {
             "src": "icon.png",
