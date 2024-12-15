@@ -27,8 +27,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/abcjs@6.4.4/dist/abcjs-basic-min.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.2/lib/p5.min.js"></script>
-
     <!-- Icon -->
     <link rel="icon" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png">
@@ -47,7 +45,6 @@
     <link rel="stylesheet" href="style.css" />
     <script defer src="chord-translator.js"></script>
     <script defer src="script.js"></script>
-    <script defer src="sketch.js"></script>
     <link rel="stylesheet" href="/basic.css" />
 
     <!-- Description -->
@@ -94,7 +91,7 @@
             <option value="Eb major">Eb major</option>
             <option value="E major">E major</option>
             <option value="F major">F major</option>
-            <option value="F# major">F# major</option>
+            <!-- <option value="F# major">F# major</option> -->
             <option value="Gb major">Gb major</option>
             <option value="G major">G major</option>
             <option value="Ab major">Ab major</option>
@@ -109,7 +106,7 @@
             <option value="Eb minor">Eb minor</option>
             <option value="E minor">E minor</option>
             <option value="F minor">F minor</option>
-            <option value="F# minor">F# minor</option>
+            <!-- <option value="F# minor">F# minor</option> -->
             <option value="Gb minor">Gb minor</option>
             <option value="G minor">G minor</option>
             <option value="Ab minor">Ab minor</option>
@@ -179,7 +176,7 @@
                 <div id="section-indicator">
                     <a class="indicator flexB active">Chord Name</a>
                     <a class="indicator flexB">Tools</a>
-                    <a class="indicator flexB">Piano</a>
+                    <a class="indicator flexB">Notes</a>
                 </div>
                 <div id="section-container">
                     <section id="chord-name" class="flexB flexC">
@@ -192,7 +189,7 @@
                                 <option value="Eb">Eb</option>
                                 <option value="E">E</option>
                                 <option value="F">F</option>
-                                <option value="F#">F#</option>
+                                <!-- <option value="F#">F#</option> -->
                                 <option value="Gb">Gb</option>
                                 <option value="G">G</option>
                                 <option value="Ab">Ab</option>
@@ -250,7 +247,7 @@
                                 <option value="Eb">/Eb</option>
                                 <option value="E">/E</option>
                                 <option value="F">/F</option>
-                                <option value="F#">/F#</option>
+                                <!-- <option value="F#">/F#</option> -->
                                 <option value="Gb">/Gb</option>
                                 <option value="G">/G</option>
                                 <option value="Ab">/Ab</option>
@@ -281,6 +278,9 @@
                         <a id="add-sus4" class="flexB dominant">Insert sus4 chord before</a>
                         <a id="add-related" class="flexB sub-dominant">Insert related II chord before</a>
                     </section>
+                    <section id="notes" class="flexB flexC">
+                        <div id="piano-roll"></div>
+                    </section>
                 </div>
             </div>
         </div>
@@ -291,9 +291,6 @@
         <a id="export" class="flexB file-button">MIDI</a>
         <input type="file" id="fileInput" style="display: none;" accept=".cdg">
     </div>
-
-    <div id="paper"></div>
-
 </body>
 
 </html>

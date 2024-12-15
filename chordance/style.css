@@ -455,3 +455,57 @@ a.indicator.active {
 a.indicator:not(.active) {
     color: var(--sub);
 }
+
+div#piano-roll {
+    display: grid;
+    height: 70vmin;
+    width: 40vmin;
+    margin-top: 5vmin;
+
+    grid-template-columns: 1fr 10fr 10fr 10fr;
+    grid-template-rows: repeat(36, 1fr);
+    grid-auto-flow: column;
+    align-content: end;
+
+    border-radius: 0.2vmin;
+    border: solid var(--sub) 0.5vmin;
+}
+
+div#piano-roll>div {
+    --thickness: 0.2vmin;
+    height: 100%;
+    width: 100%;
+    outline: solid 0.05vmin var(--sub);
+    outline-offset: -0.05vmin;
+}
+
+div#piano-roll>div.diatonic {
+    background-color: var(--main);
+}
+
+div#piano-roll>div.chromatic {
+    background-color: var(--accent);
+}
+
+div#piano-roll>div.natural {
+    background-color: #eee;
+}
+
+div#piano-roll>div.accidental {
+    background-color: #bbb;
+}
+
+div#piano-roll>div.tritone {
+    border: solid var(--thickness) #5b93cc;
+}
+
+div#piano-roll>div.augment {
+    border: solid var(--thickness) #cc7f5b;
+}
+
+div#piano-roll>div.tritone.augment {
+    border-left: solid var(--thickness) #5b93cc;
+    border-top: solid var(--thickness) #5b93cc;
+    border-right: solid var(--thickness) #cc7f5b;
+    border-bottom: solid var(--thickness) #cc7f5b;
+}

@@ -47,6 +47,12 @@ const degreeNames = {
     }
 }
 const noteLengths = [1, 0.75, 0.5, 0.375, 0.25, 0.1875, 0.125, 0.0625];
+const noteNames = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+const pianoNoteNames = [
+    "C3", "Db3", "D3", "Eb3", "E3", "F3", "Gb3", "G3", "Ab3", "A3", "Bb3", "B3",
+    "C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4",
+    "C5", "Db5", "D5", "Eb5", "E5", "F5", "Gb5", "G5", "Ab5", "A5", "Bb5", "B5"
+];
 
 const keyInput = document.getElementById("key");
 const tonic = document.getElementById("tonic");
@@ -70,6 +76,7 @@ const importBtn = document.getElementById('import');
 const fileInput = document.getElementById('fileInput');
 const exportMidi = document.getElementById('export');
 const sectionContainer = document.getElementById('section-container');
+const pianoRoll = document.getElementById('piano-roll');
 
 const functionColor = document.querySelectorAll(".function");
 const tensions = document.querySelectorAll(".tension");
@@ -87,7 +94,9 @@ let bpm = 120;
 let isPaused = 1;
 let isResizing = false;
 let resizingIndex = 0;
-const baseOctave = 4;
+let scaleNotes = Tonal.Scale.get(key).notes;
+
+const baseOctave = 3;
 
 let diatonic = [];
 
@@ -116,16 +125,20 @@ function updateKey(key) {
             if (chord[0].includes("dim")) {
                 triad = Tonal.Progression.fromRomanNumerals(keyTonic, [chord[0].replace("dim", "")]) + "dim";
             } else {
-                triad = Tonal.Progression.fromRomanNumerals(keyTonic, [chord[0]]);
+                triad = Tonal.Progression.fromRomanNumerals(keyTonic, [chord[0]])[0];
             }
 
             let seventh;
             if (chord[1].includes("dim7")) {
                 seventh = Tonal.Progression.fromRomanNumerals(keyTonic, [chord[1].replace("dim7", "")]) + "dim7";
             } else {
-                seventh = Tonal.Progression.fromRomanNumerals(keyTonic, [chord[1]]);
+                seventh = Tonal.Progression.fromRomanNumerals(keyTonic, [chord[1]])[0];
             }
-            t.push([triad[0], seventh[0]]);
+
+            triad = enharmonicChord(triad);
+            seventh = enharmonicChord(seventh);
+
+            t.push([triad, seventh]);
             html += `<p class="normal"><a class="roman" data-function="${chordFunction[0]}">${triad}</a> / <a class="roman" data-function="${chordFunction[0]}">${seventh}</a></p>`;
         })
         document.getElementById(chordFunction).innerHTML = html;
@@ -149,8 +162,18 @@ function updateKey(key) {
             }
         }
     });
+
+    scaleNotes = Tonal.Scale.get(key).notes;
 }
 
+function enharmonicChord(chord) {
+    const splitted = splitChord(chord);
+    let root = splitted.root;
+    let bass = splitted.bass;
+    root = noteNames.includes(root) ? root : Tonal.Note.enharmonic(root);
+    bass = noteNames.includes(bass) ? bass : Tonal.Note.enharmonic(bass);
+    return splitted2chord({ ...splitted, root: root, bass: bass });
+}
 
 function sortArrayByOrder(inputArray, order) {
     return order.map(index => inputArray[index]);
@@ -171,7 +194,7 @@ function toTitleCase(input) {
 }
 
 function loadChord(e) {
-    const index = e.dataset.index;
+    const index = Number(e.dataset.index);
     duration.value = chordProgression[index].duration;
     const chord = chordProgression[index].symbol;
     chordName.innerText = chord;
@@ -280,7 +303,98 @@ function loadChord(e) {
         });
         updateHTML();
     }
+
+    // Piano roll
+    let html = "";
+
+    const prevNotes = chordProgression[index - 1] ? chord2notes(chordProgression[index - 1].symbol).map(note => Tonal.Note.enharmonic(note)) : [];
+    const currNotes = chordProgression[index] ? chord2notes(chordProgression[index].symbol).map(note => Tonal.Note.enharmonic(note)) : [];
+    const nextNotes = chordProgression[index + 1] ? chord2notes(chordProgression[index + 1].symbol).map(note => Tonal.Note.enharmonic(note)) : [];
+    prevNotes.shift();
+    currNotes.shift();
+    nextNotes.shift();
+
+    for (let i = 35; i >= 0; i--) {
+        html += div([scaleNotes.includes(noteNames[i % 12]) ? "diatonic" : "chromatic"]);
+    }
+
+    html += chordHTML(prevNotes);
+
+    html += chordHTML(currNotes);
+
+    html += chordHTML(nextNotes);
+
+    pianoRoll.innerHTML = html;
 }
+
+const div = (className) => `<div class="${className.join(" ")}"></div>`;
+
+function chordHTML(notes) {
+    let result = "";
+    const tritone = isTritone(notes);
+    const augment = isAugment(notes);
+    let noteIndex = notes.length - 1;
+    for (let i = 35; i >= 0; i--) {
+        if (notes.includes(pianoNoteNames[i])) {
+            let classes = [];
+            if (scaleNotes.includes(Tonal.Note.pitchClass(pianoNoteNames[i]))) {
+                classes.push("diatonic");
+            } else {
+                classes.push("chromatic");
+            }
+
+            if (tritone[noteIndex]) {
+                classes.push("tritone");
+            }
+
+            if (augment[noteIndex]) {
+                classes.push("augment");
+            }
+
+            noteIndex--;
+
+            result += div(classes);
+        } else {
+            if (Tonal.Note.accidentals(pianoNoteNames[i])) {
+                result += div(["accidental"]);
+            } else {
+                result += div(["natural"]);
+            }
+        }
+    }
+
+    return result;
+}
+
+function isTritone(notes) {
+    let result = new Array(notes.length).fill(false);
+    for (let i = 0; i < notes.length; i++) {
+        if (!result[i]) {
+            const index = notes.findIndex(note => notesSemitones(notes[i], note, 6));
+            if (index !== -1) {
+                result[i] = true;
+                result[index] = true;
+            }
+        }
+    }
+    return result;
+}
+
+function isAugment(notes) {
+    let result = new Array(notes.length).fill(false);
+    for (let i = 0; i < notes.length; i++) {
+        if (!result[i]) {
+            if (notesSemitones(notes[i], notes[i + 1], 4) && notesSemitones(notes[i + 1], notes[i + 2], 4)) {
+                result[i] = true;
+                result[i + 1] = true;
+                result[i + 2] = true;
+            }
+        }
+    }
+    return result;
+}
+
+const notesSemitones = (note1, note2, semitones) => Math.abs(Tonal.Interval.semitones(Tonal.Interval.distance(note1, note2)) % 12) == semitones;
 
 function updateChord(index) {
     const chordData = selects.filter(item => item !== tensions).reduce((acc, select) => {
@@ -289,13 +403,13 @@ function updateChord(index) {
         acc[key] = value;
         return acc;
     }, {});
-    console.log(chordData)
     chordData.tension = Array.from(document.querySelectorAll('.tension.selected')).map(tension => tension.innerText);
     const newChord = splitted2chord(chordData);
     chordProgression[index].symbol = newChord;
     chordProgression[index].style = chord2class(newChord);
     updateHTML();
     chordName.innerText = newChord;
+    loadChord(document.querySelector(`[data-index="${index}"]`))
 }
 
 function splitted2chord(splitted) {
@@ -312,9 +426,9 @@ function splitted2chord(splitted) {
         "bass": "C"
     } */
     if (splitted.modifier.includes("sus")) {
-        return `${splitted.root}${splitted.seventh}${splitted.alt}${splitted.omit ? splitted.omit : ""}${splitted.modifier}${splitted.tension[0] ? "(" + splitted.tension.join(",") + ")" : ""}${splitted.bass ? "/" + splitted.bass : ""}`;
+        return `${splitted.root}${splitted.seventh}${splitted.alt}${splitted.omit ? (splitted.omit.includes("omit") ? splitted.omit : `omit${splitted.omit}`) : ""}${splitted.modifier}${splitted.tension[0] ? "(" + splitted.tension.join(",") + ")" : ""}${splitted.bass ? "/" + splitted.bass : ""}`;
     } else {
-        return `${splitted.root}${splitted.modifier}${splitted.seventh}${splitted.alt}${splitted.omit ? splitted.omit : ""}${splitted.tension[0] ? "(" + splitted.tension.join(",") + ")" : ""}${splitted.bass ? "/" + splitted.bass : ""}`;
+        return `${splitted.root}${splitted.modifier}${splitted.seventh}${splitted.alt}${splitted.omit ? (splitted.omit.includes("omit") ? splitted.omit : `omit${splitted.omit}`) : ""}${splitted.tension[0] ? "(" + splitted.tension.join(",") + ")" : ""}${splitted.bass ? "/" + splitted.bass : ""}`;
     }
 }
 
@@ -446,7 +560,7 @@ const sampler = new Tone.Sampler({
         C4: "C4.wav",
         C5: "C5.wav",
     },
-    baseUrl: "./",
+    baseUrl: "./audio/",
     release: 1,
     volume: -12,
 }).toDestination();
@@ -513,7 +627,6 @@ function chord2notes(chord) {
         let enharmonicResult = result.map(note => Tonal.Note.enharmonic(note));
         if (result.includes(slash) || enharmonicResult.includes(slash)) {
             // result = result.map(note => Tonal.Note.pitchClass(note));
-            console.log("foo")
             const regex = new RegExp(`^${slash}\\d+$`); // 動的に正規表現を作成
             // let index = result.findIndex(item => regex.test(item));
             let updatedArr;
@@ -725,5 +838,3 @@ function noteAccidental(note, key) {
     const scale = Tonal.Scale.get(key).notes;
     const enharmonic = Tonal.Note.enharmonic(note);
 }
-
-ABCJS.renderAbc("paper", "X:1\nK:D\n[C G]4\n");
