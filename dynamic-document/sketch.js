@@ -35,17 +35,19 @@ function draw() {
     const time = millis();
     const inputValue = input.value;
     const splittedInput = inputValue.split("\n");
+    // const cursorStart = input.selectionStart;
     const cursor = input.selectionStart;
+    
     const inputCursorPerRow = splittedInput.map((str, index, arr) => str.length + (index === 0 ? 0 : 1));
-    const inputLengthPerRow = splittedInput.map(str => str.length);
+    // const inputLengthPerRow = splittedInput.map(str => str.length);
     
     const cursorRow = findIndexRange(inputCursorPerRow, cursor);
-    const cursorInRow = cursor - inputCursorPerRow.slice(0, cursorRow).reduce((acc, val) => acc + val, 0);
+    const cursorInRow = cursor - inputCursorPerRow.slice(0, cursorRow).reduce((acc, val) => acc + val + 1, 0);
 
     let originalSize = textSize();
 
     const beforeCursor = splittedInput[cursorRow].slice(0, cursorInRow);
-    const afterCursor = splittedInput[cursorRow].slice(cursorInRow);
+    // const afterCursor = splittedInput[cursorRow].slice(cursorInRow);
 
 
 
@@ -61,7 +63,7 @@ function draw() {
     textSize(fontSize);
     const cursorX = textWidth(beforeCursor);
 
-    text(inputValue, x, fontSize);
+    text(inputValue, x, fontSize + textLeading() * (splittedInput.length - cursorRow - 1));
 
     if (Math.round(time / 500) % 2 === 0) {
         noStroke();
