@@ -3,6 +3,7 @@ const input = document.getElementById('input');
 let font;
 let fontSize = 1000;
 let x = 0;
+let y = 0;
 
 input.focus();
 
@@ -30,19 +31,52 @@ function findIndexRange(arr, target) {
     return -1;
 }
 
+function advancedRemainder(arr, target, mode) {
+    let result = target;
+    for (let i = 0; i < arr.length; i++) {
+        const subtracted = result - arr[i];
+        if (subtracted < 0) {
+            if (mode === 0) {
+                return i;
+            } else {
+                return result;
+            }
+        } else if (subtracted === 0) {
+            if (i === arr.length - 1) {
+                if (mode === 0) {
+                    return i;
+                } else {
+                    return result;
+                }
+            } else {
+                if (mode === 0) {
+                    return i + 1;
+                } else {
+                    return 0;
+                }
+            }
+        } else {
+            result = subtracted;
+        }
+    }
+}
+
 function draw() {
     background(0);
     const time = millis();
     const inputValue = input.value;
     const splittedInput = inputValue.split("\n");
-    // const cursorStart = input.selectionStart;
     const cursor = input.selectionStart;
-    
-    const inputCursorPerRow = splittedInput.map((str, index, arr) => str.length + (index === 0 ? 0 : 1));
+
+    const inputCursorPerRow = splittedInput.map((str, index, arr) => str.length + (index === arr.length - 1 ? 0 : 1));
     // const inputLengthPerRow = splittedInput.map(str => str.length);
-    
-    const cursorRow = findIndexRange(inputCursorPerRow, cursor);
-    const cursorInRow = cursor - inputCursorPerRow.slice(0, cursorRow).reduce((acc, val) => acc + val + 1, 0);
+
+    // const cursorRow = findIndexRange(inputCursorPerRow, cursor);
+    const cursorRow = advancedRemainder(inputCursorPerRow, cursor, 0);
+    // const cursorInRow = cursor - inputCursorPerRow.slice(0, cursorRow).reduce((acc, val) => acc + val, 0);
+    const cursorInRow = advancedRemainder(inputCursorPerRow, cursor, 1);
+    console.log(cursorRow)
+    console.log(cursorInRow);
 
     let originalSize = textSize();
 
@@ -59,11 +93,13 @@ function draw() {
     fontSize += (Math.max(dynamicSize, 200) - textSize()) / 20;
 
     x += ((relativeSize * fontSize) * -1 - x) / 20;
+    y += ((fontSize + textLeading() * (splittedInput.length - cursorRow - 1)) - y) / 10;
+
 
     textSize(fontSize);
     const cursorX = textWidth(beforeCursor);
 
-    text(inputValue, x, fontSize + textLeading() * (splittedInput.length - cursorRow - 1));
+    text(inputValue, x, y);
 
     if (Math.round(time / 500) % 2 === 0) {
         noStroke();
