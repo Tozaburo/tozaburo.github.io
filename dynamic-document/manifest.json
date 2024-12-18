@@ -1,0 +1,15 @@
+{
+    "name": "Dynamic Document",
+    "short_name": "Dynamic Document",
+    "start_url": "https://tozaburo.github.io/dynamic-document",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "description": "A document with dynamic interaction.",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Supreme';
+    src: url('../Supreme.ttf') format('truetype');
+    font-weight: 100 800;
+    font-display: swap;
+    font-style: normal;
+}
+
+#input {
+    /* display: none; */
+    opacity: 0;
+    position: absolute;   
+}
+
+body {
+    background-color: black;
+}
