@@ -98,5 +98,10 @@
         "url": "https://tozaburo.github.io/text2sub-pixel-art/",
         "ja": "サブクセルアート変換",
         "en": "Text to Sub-pixel Art"
+    },
+    {
+        "url": "https://tozaburo.github.io/dynamic-document/",
+        "ja": "ダイナミックドキュメント",
+        "en": "Dynamic Document"
     }
 ]
