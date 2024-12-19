@@ -66,7 +66,8 @@ function draw() {
     const time = millis();
     const inputValue = input.value;
     const splittedInput = inputValue.split("\n");
-    const cursor = input.selectionStart;
+    // const cursor = input.selectionStart;
+    const cursor = input.selectionEnd;
 
     const inputCursorPerRow = splittedInput.map((str, index, arr) => str.length + (index === arr.length - 1 ? 0 : 1));
     // const inputLengthPerRow = splittedInput.map(str => str.length);
@@ -75,8 +76,6 @@ function draw() {
     const cursorRow = advancedRemainder(inputCursorPerRow, cursor, 0);
     // const cursorInRow = cursor - inputCursorPerRow.slice(0, cursorRow).reduce((acc, val) => acc + val, 0);
     const cursorInRow = advancedRemainder(inputCursorPerRow, cursor, 1);
-    console.log(cursorRow)
-    console.log(cursorInRow);
 
     let originalSize = textSize();
 
@@ -90,16 +89,18 @@ function draw() {
     textSize(originalSize);
     let fontSize = textSize();
     const dynamicSize = 1920 / (relativeSize + 5);
-    fontSize += (Math.max(dynamicSize, 200) - textSize()) / 20;
+    const smoothValue = frameRate() / 3;
+    fontSize += (Math.max(dynamicSize, 200) - textSize()) / smoothValue;
 
-    x += ((relativeSize * fontSize) * -1 - x) / 20;
-    y += ((fontSize + textLeading() * (splittedInput.length - cursorRow - 1)) - y) / 10;
+    x += ((relativeSize * fontSize) * -1 - x) / smoothValue;
+    y = fontSize + fontSize * (splittedInput.length - cursorRow - 1) * 1.25;
 
 
     textSize(fontSize);
     const cursorX = textWidth(beforeCursor);
 
     text(inputValue, x, y);
+    // text(inputValue, x, fontSize + (textLeading() * (splittedInput.length - cursorRow - 1)));
 
     if (Math.round(time / 500) % 2 === 0) {
         noStroke();
