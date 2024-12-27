@@ -101,16 +101,64 @@ div.d-wrapper h2 {
     margin: 7.5vmin 0 2vmin 0;
 }
 
-select#key {
+div.key {
+    gap: 1vmin;
+}
+
+div.key select {
     background-color: var(--main);
     color: white;
     border: none;
     border-radius: 100vmin;
     font-size: 2vmin;
     height: 4vmin;
-    width: 50vmin;
     padding-left: 2vmin;
     transition: all 0.2s ease-in-out;
+}
+
+div.key a#add-key-button {
+    background-color: var(--main);
+    color: white;
+    border: none;
+    border-radius: 100vmin;
+    font-size: 2vmin;
+    height: 4vmin;
+}
+
+select#key-root {
+    width: 10vmin;
+}
+
+select#key-mode {
+    width: 20vmin;
+}
+
+a#keys {
+    font-size: 2vmin;
+}
+
+a#relative,
+a#omit-root {
+    position: relative;
+    margin-top: 2vmin;
+    font-size: 2vmin;
+}
+
+a#relative::before,
+a#omit-root::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0;
+    height: 0.1em;
+    background-color: black;
+    transition: width 0.3s ease;
+    transform: translateY(-50%);
+}
+
+a#relative.strike::before {
+    width: 100%;
 }
 
 select#duration {
@@ -132,13 +180,23 @@ select.chord-select {
     border-radius: 100vmin;
     font-size: 2vmin;
     height: 4vmin;
-    width: 100%;
     transition: all 0.2s ease-in-out;
     text-align: center;
+    width: 100%;
+}
+
+select.chord-select:nth-child(-n + 3) {
+    grid-column: span 4;
+    grid-row: 1;
+}
+
+select.chord-select:nth-child(n + 4) {
+    grid-column: span 3;
+    grid-row: 2;
 }
 
 div#chords-container {
-    height: 70vmin;
+    height: 75vmin;
     width: 110vmin;
     gap: 10vmin;
     margin-top: 10vmin;
@@ -165,6 +223,8 @@ a.chord {
     border-radius: 2vmin;
     height: 7vmin;
     position: relative;
+
+    background-color: var(--main-color) !important;
 }
 
 a.roman {
@@ -182,30 +242,41 @@ h2#chord-name {
     color: white;
     border-radius: 1vmin;
     height: 5vmin;
-    width: 40vmin;
+    width: 30vmin;
+
+    background-color: var(--main-color);
 }
 
 div#chord-control-wrapper {
     width: 100%;
 }
 
+.none {
+    --main-color: var(--sub);
+}
+
 .t {
-    background-color: var(--tonic) !important;
+    --main-color: var(--tonic);
 }
 
 .s {
-    background-color: var(--sub-dominant) !important;
+    --main-color: var(--sub-dominant);
 }
 
 .d {
-    background-color: var(--dominant) !important;
+    --main-color: var(--dominant);
+}
+
+a.chord.active {
+    /* box-shadow: 0 0 1vmin 0 var(--main-color); */
+    border: solid color-mix(in srgb, var(--main-color) 25%, white) 1vmin;
 }
 
 div#chord-wrapper {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 4fr;
-    gap: 2.5vmin;
+    grid-template-rows: 1fr 61vmin;
+    gap: 1vmin;
 }
 
 div#chord-wrapper>div {
@@ -213,15 +284,22 @@ div#chord-wrapper>div {
     border-radius: 1vmin;
 }
 
-label {
+label.desc {
     font-size: 2vmin;
     margin-right: 1vmin;
+    text-align: right;
+}
+
+div.checkbox-wrapper label:not(div.checkbox label) {
+    font-size: 2vmin;
+    margin-left: 1vmin;
+    text-align: right;
 }
 
 div#functions {
     margin: 0;
     height: 1vmin;
-    width: 40vmin;
+    width: 30vmin;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
@@ -232,13 +310,15 @@ a.function {
     height: 100%;
     width: 100%;
     border-radius: 100vmin;
+    background-color: var(--main-color);
 }
 
 a.button {
     background-color: var(--main);
     color: white;
     height: 6vmin;
-    width: 6vmin;
+    aspect-ratio: 1;
+    margin: calc(((75vmin - 61vmin - 1vmin) - 6vmin) / 2);
     font-size: 3vmin;
     border-radius: 100vmin;
     transition: all 0.2s ease-in-out;
@@ -253,11 +333,7 @@ a.button:hover {
     padding-left: 0.3vmin;
 }
 
-label#bpm-label {
-    margin-left: 10vmin;
-}
-
-input#bpm {
+input[type="number"] {
     background-color: white;
     border: var(--main) solid 0.1vmin;
     border-radius: 100vmin;
@@ -266,6 +342,16 @@ input#bpm {
     width: 10vmin;
     padding-left: 1.5vmin;
     transition: all 0.2s ease-in-out;
+}
+
+div#parameter-wrapper {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1vmin;
+    align-items: center;
 }
 
 a#delete {
@@ -296,10 +382,47 @@ a.chord span.handle {
     cursor: ew-resize;
 }
 
+a.chord span.piano {
+    position: absolute !important;
+    right: 4vmin;
+    top: 0;
+    height: 5vmin;
+    color: white;
+    opacity: 0.5;
+    border-radius: 0 1vmin 1vmin 0;
+    font-size: 4vmin;
+    cursor: pointer;
+    /* text-align: center; */
+    line-height: 5vmin;
+}
+
+a.arrow {
+    background-color: var(--sub);
+    color: white;
+    border-radius: 1vmin;
+    transition: all 0.2s;
+    font-size: 1.5vmin;
+}
+
+a.arrow:hover {
+    background-color: var(--main);
+    color: white;
+    border-radius: 1vmin;
+}
+
 div#chord-data {
+    height: 7vmin;
+    width: 30vmin;
+    gap: 1vmin;
+}
+
+div#chord-panel {
     height: 17vmin;
     width: 50vmin;
     padding: 5vmin;
+
+    display: grid;
+    grid-template-columns: 1fr 30vmin 1fr;
     gap: 1vmin;
 }
 
@@ -313,9 +436,10 @@ section {
 
 div#chord-notes {
     display: grid;
+    /* display: flex; */
     height: 10vmin;
     width: 40vmin;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 1vmin;
 }
@@ -327,10 +451,14 @@ div#tension-container {
     flex-direction: column;
 }
 
+div#tension-container>label {
+    text-align: left;
+}
+
 div#tensions-wrapper {
     margin-top: 1vmin;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
     width: 100%;
     height: 100%;
@@ -364,10 +492,6 @@ a.tension.selected {
 a.tension.spacer {
     background-color: transparent;
     pointer-events: none;
-}
-
-.none {
-    background-color: var(--sub);
 }
 
 div#buttons {
@@ -458,12 +582,13 @@ a.indicator:not(.active) {
 
 div#piano-roll {
     display: grid;
-    height: 70vmin;
+    height: 25vmin;
     width: 40vmin;
     margin-top: 5vmin;
 
     grid-template-columns: 1fr 10fr 10fr 10fr;
-    grid-template-rows: repeat(36, 1fr);
+    /* grid-template-rows: repeat(36, 1fr); */
+    grid-template-rows: repeat(48, 1fr);
     grid-auto-flow: column;
     align-content: end;
 
@@ -471,41 +596,235 @@ div#piano-roll {
     border: solid var(--sub) 0.5vmin;
 }
 
-div#piano-roll>div {
-    --thickness: 0.2vmin;
-    height: 100%;
-    width: 100%;
-    outline: solid 0.05vmin var(--sub);
-    outline-offset: -0.05vmin;
+div#chord-info {
+    position: fixed;
+
+    display: grid;
+    height: 25vmin;
+    width: 20vmin;
+
+    grid-template-columns: 10fr;
+    /* grid-template-rows: repeat(36, 1fr); */
+    grid-template-rows: repeat(48, 1fr);
+    grid-auto-flow: column;
+    align-content: end;
+
+    border-radius: 0.2vmin;
+    border: solid var(--sub) 0.5vmin;
+
+    transition: opacity 0.2s;
+
+    opacity: 0;
+
+    pointer-events: none;
 }
 
-div#piano-roll>div.diatonic {
+div#full-piano-roll {
+    display: grid;
+    height: 25vmin;
+    width: 20vmin;
+
+    grid-template-columns: 10fr;
+    grid-template-rows: repeat(36, 1fr);
+    grid-auto-flow: column;
+    align-content: end;
+
+    border-radius: 0.2vmin;
+    border: solid var(--sub) 0.5vmin;
+
+    transition: opacity 0.2s;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+div.piano-roll>div {
+    /* --thickness: 0.2vmin; */
+    --border-thickness: 0.175vmin;
+    --outline-thickness: 0.05vmin;
+    /* height: calc(100% - (var(--outline-thickness) * 2)); */
+    /* width: calc(100% - (var(--outline-thickness) * 2)); */
+    height: 100%;
+    width: 100%;
+    outline: solid var(--outline-thickness) var(--sub);
+    outline-offset: calc(-1 * var(--outline-thickness));
+}
+
+div.piano-roll>div.diatonic {
     background-color: var(--main);
 }
 
-div#piano-roll>div.chromatic {
+div.piano-roll>div.chromatic {
     background-color: var(--accent);
 }
 
-div#piano-roll>div.natural {
+div.piano-roll>div.natural {
     background-color: #eee;
 }
 
-div#piano-roll>div.accidental {
+div.piano-roll>div.accidental {
     background-color: #bbb;
 }
 
-div#piano-roll>div.tritone {
-    border: solid var(--thickness) #5b93cc;
+div.piano-roll>div.tritone {
+    border: solid var(--border-thickness) #5b93cc;
 }
 
-div#piano-roll>div.augment {
-    border: solid var(--thickness) #cc7f5b;
+div.piano-roll>div.augment {
+    border: solid var(--border-thickness) #cc7f5b;
 }
 
-div#piano-roll>div.tritone.augment {
-    border-left: solid var(--thickness) #5b93cc;
-    border-top: solid var(--thickness) #5b93cc;
-    border-right: solid var(--thickness) #cc7f5b;
-    border-bottom: solid var(--thickness) #cc7f5b;
+div.piano-roll>div.tritone.augment {
+    border-left: solid var(--border-thickness) #5b93cc;
+    border-top: solid var(--border-thickness) #5b93cc;
+    border-right: solid var(--border-thickness) #cc7f5b;
+    border-bottom: solid var(--border-thickness) #cc7f5b;
+}
+
+span.superscript {
+    font-size: 0.625em;
+    transform: translateY(-25%) translateX(20%);
+    ;
+}
+
+div.input-wrapper {
+    margin: 0 2.5vmin;
+}
+
+div.checkbox-wrapper {
+    margin-top: 2.5vmin;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    position: absolute;
+}
+
+input[type="checkbox"]:checked+label {
+    background-color: var(--main);
+}
+
+div.checkbox {
+    height: 2vmin;
+    width: 2vmin;
+}
+
+div.checkbox>label {
+    display: block;
+    height: 2vmin;
+    width: 2vmin;
+    border: solid 0.1vmin var(--sub);
+    border-radius: 0.5vmin;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    img {
+        margin: calc((2vmin - (0.1vmin * 2) - 1.3vmin) / 2);
+        height: 1.3vmin;
+        width: 1.3vmin;
+    }
+}
+
+div.checkbox>label:hover {
+    border-color: var(--main);
+}
+
+.hide {
+    display: none !important;
+}
+
+div#popup-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(10px) brightness(0.5);
+    z-index: 999;
+}
+
+div#popup-background>div {
+    background-color: white;
+    border-radius: 1vmin;
+    width: 70vmin;
+    height: 70vmin;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+div#popup-keys h1 {
+    color: var(--main);
+    font-size: 5vmin;
+    top: 5vmin;
+    width: 100%;
+    margin: 5vmin 0;
+}
+
+div#add-key-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    gap: 1vmin;
+    height: 10vmin;
+    width: 50vmin;
+}
+
+div#add-key-buttons>a {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border: solid 0.1vmin var(--main);
+    border-radius: 1vmin;
+    color: var(--main);
+    font-size: 1.5vmin;
+    transition: all 0.2s;
+}
+
+div#add-key {
+    display: grid;
+    grid-template-columns: 1fr 4fr 2fr;
+    grid-template-rows: 1fr;
+    height: 4vmin;
+    width: 50vmin;
+    margin-top: 2vmin;
+}
+
+div#add-key>* {
+    height: 100%;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+div#keys-list {
+    display: flex;
+    align-items: center;
+    margin-top: 3vmin;
+    background-color: white;
+    box-shadow: 0 0 1vmin 0 var(--main);
+    border-radius: 1vmin;
+    width: 50vmin;
+    height: 30vmin;
+    overflow: scroll;
+    gap: 1.25vmin;
+    padding: 1.25vmin 0;
+}
+
+div#keys-list>span {
+    height: 3vmin;
+    width: calc(50vmin - 1.25vmin * 2);
+    font-size: 2vmin;
+    background-color: white;
+    border-radius: 1vmin;
+    border: solid 0.1vmin var(--sub);
+}
+
+.error {
+    background-color: var(--dominant) !important;
 }

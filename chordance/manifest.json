@@ -7,7 +7,7 @@
     "description": "A tool to help you to create a chord progression.",
     "icons": [
         {
-            "src": "icon.png",
+            "src": "icon-white.png",
             "sizes": "1024x1024",
             "type": "image/png"
         }
