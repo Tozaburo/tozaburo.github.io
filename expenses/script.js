@@ -59,7 +59,7 @@ function convertCurrency(amount, fromCurrency, toCurrency) {
 
     var data = {
         JPY: 1,
-        KRW: 0.11,
+        AED: 43,
         USD: 147.66,
         EUR: 162.95,
         DKK: 21.82,
@@ -87,7 +87,7 @@ currencyElements.forEach(function (element) {
     element.addEventListener('click', function () {
         var value = this.innerText;
         switch (value) {
-            case "KRW":
+            case AED":
                 this.innerText = "EUR"
                 break;
             case "EUR":
