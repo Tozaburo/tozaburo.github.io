@@ -59,7 +59,7 @@ function convertCurrency(amount, fromCurrency, toCurrency) {
 
     var data = {
         JPY: 1,
-        AED: 43,
+        AED: 42.94,
         USD: 147.66,
         EUR: 162.95,
         DKK: 21.82,
