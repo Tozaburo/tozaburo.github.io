@@ -87,7 +87,7 @@ currencyElements.forEach(function (element) {
     element.addEventListener('click', function () {
         var value = this.innerText;
         switch (value) {
-            case AED":
+            case "AED":
                 this.innerText = "EUR"
                 break;
             case "EUR":
