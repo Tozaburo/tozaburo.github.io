@@ -1,0 +1,99 @@
+@font-face {
+    font-family: 'Supreme';
+    src: url('../Supreme-Variable.ttf') format('truetype');
+    font-weight: 100 800;
+    font-display: swap;
+    font-style: normal;
+}
+
+:root {
+    --red: #c92222;
+    --blue: #2281c9;
+    --gray: #494949;
+    --green: #b9c9b7;
+}
+
+* {
+    font-family: "Supreme", "Be Vietnam Pro", "Noto Sans JP", sans-serif;
+}
+
+body {
+    display: block !important;
+}
+
+section {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    width: 100vw;
+}
+
+section#title {
+    height: 40vmin;
+}
+
+section#input {
+    height: 20vmin;
+}
+
+section#result {
+    /* min-height: 30vmin; */
+    padding: 10vmin 20vmin;
+
+    flex-wrap: wrap;
+    overflow: scroll;
+    margin-bottom: 10vmin;
+    row-gap: 3vmin;
+}
+
+h1 {
+    font-size: 3vw;
+}
+
+.red {
+    color: var(--red);
+}
+
+.blue {
+    color: var(--blue);
+}
+
+input {
+    width: 40vmin;
+    height: 4vmin;
+    font-size: 2vmin;
+    padding-left: 1vmin;
+
+    border-radius: 1vmin;
+    border: solid 0.2vmin var(--green);
+}
+
+span.chord {
+    padding: 1vmin;
+    height: 5vmin;
+    min-width: 10vmin;
+    font-size: 2.5vmin;
+    box-shadow: 0 1vmin 2vmin -1vmin var(--green);
+    background-color: white;
+    border: solid 0.1vmin var(--green);
+    color: black;
+    border-radius: 1vmin;
+}
+
+span.arrow {
+    font-size: 1.5vmin;
+    margin: 1.25vmin;
+}
+
+span.arrow.red,
+span.arrow.blue {
+    font-size: 2vmin;
+    margin: 1vmin;
+}
