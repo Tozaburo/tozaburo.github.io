@@ -1,5 +1,9 @@
 document.getElementById("input").oninput = e => {
-    const input = e.target.value.trim();
+    let input = e.target.value.trim();
+    if (!input) {
+        input = "Dm7 Db7 CM7 F7";
+    }
+
     const chordArr = input.split(" ");
 
     let html = "";
