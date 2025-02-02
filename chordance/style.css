@@ -23,6 +23,9 @@
     --tonic-sub: #39cc5e;
     --sub-dominant-sub: #ccb839;
     --dominant-sub: #cc3939;
+
+    --chord-saturation: 50%;
+    --chord-lightness: 70%;
 }
 
 .italic {
@@ -64,7 +67,7 @@ div#d-conainter {
 }
 
 div.d-wrapper {
-    height: 50vmin;
+    height: 50vmin !important;
     width: 30vmin;
     color: white;
     border-radius: 1vmin;
@@ -113,7 +116,7 @@ div.key select {
     font-size: 2vmin;
     height: 4vmin;
     padding-left: 2vmin;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease;
 }
 
 div.key a#add-key-button {
@@ -170,7 +173,7 @@ select#duration {
     height: 4vmin;
     width: 10vmin;
     padding-left: 2vmin;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease;
 }
 
 select.chord-select {
@@ -180,7 +183,7 @@ select.chord-select {
     border-radius: 100vmin;
     font-size: 2vmin;
     height: 4vmin;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease;
     text-align: center;
     width: 100%;
 }
@@ -213,22 +216,33 @@ div#chords {
     border-radius: 1vmin;
     padding: 5vmin;
     overflow: scroll;
+
+    /*  */
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-auto-rows: 5vmin;
+
+    gap: 2vmin;
 }
 
 a.chord {
     font-size: 3vmin;
-    border: solid white 1vmin;
+    /* border: solid white 1vmin; */
 
     color: white;
-    border-radius: 2vmin;
-    height: 7vmin;
+    border-radius: 1vmin;
+    height: 5vmin;
     position: relative;
 
     background-color: var(--main-color) !important;
 }
 
+a.chord.i {
+    -webkit-text-stroke: 0.2vmin hsl(calc(360 / 12 * 0), var(--chord-saturation), var(--chord-lightness));
+}
+
 a.roman {
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease;
 }
 
 a.roman:hover {
@@ -269,7 +283,7 @@ div#chord-control-wrapper {
 
 a.chord.active {
     /* box-shadow: 0 0 1vmin 0 var(--main-color); */
-    border: solid color-mix(in srgb, var(--main-color) 25%, white) 1vmin;
+    box-shadow: 0 0 1vmin 0.5vmin color-mix(in srgb, var(--main-color) 50%, transparent);
 }
 
 div#chord-wrapper {
@@ -321,7 +335,7 @@ a.button {
     margin: calc(((75vmin - 61vmin - 1vmin) - 6vmin) / 2);
     font-size: 3vmin;
     border-radius: 100vmin;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease;
 }
 
 a.button:hover {
@@ -341,7 +355,7 @@ input[type="number"] {
     height: 4vmin;
     width: 10vmin;
     padding-left: 1.5vmin;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease;
 }
 
 div#parameter-wrapper {
@@ -432,6 +446,9 @@ section {
     padding: 0 5vmin 5vmin 5vmin;
     gap: 3vmin;
     scroll-snap-align: start;
+
+    flex-shrink: 0;
+    box-sizing: border-box;
 }
 
 div#chord-notes {
@@ -476,7 +493,7 @@ a.tension {
     font-size: 2.5vmin;
     border-radius: 1vmin;
     box-sizing: border-box;
-    transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease;
 }
 
 a.tension:not(.selected) {
@@ -504,7 +521,7 @@ div#buttons {
     font-size: 2.5vmin;
     border-radius: 100vmin;
     box-sizing: border-box;
-    transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease;
     background-color: var(--main);
     color: white;
     margin: 0 2.5vmin;
@@ -560,7 +577,7 @@ div#section-indicator {
     height: 4vmin;
     width: 50vmin;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
     padding: 0 5vmin;
     margin-top: 1vmin;
@@ -570,6 +587,23 @@ a.indicator {
     height: 100%;
     width: 100%;
     font-size: 2vmin;
+    transition: transform 0.2s ease;
+}
+
+a.indicator img {
+    height: 2.5vmin;
+    filter: saturate(0);
+    user-drag: none;
+    -webkit-user-drag: none;
+}
+
+a.indicator.active img {
+    filter: saturate(1);
+}
+
+
+a.indicator:hover {
+    transform: scale(1.1);
 }
 
 a.indicator.active {
@@ -617,6 +651,31 @@ div#chord-info {
     opacity: 0;
 
     pointer-events: none;
+}
+
+div#alternative-info {
+    position: fixed;
+    z-index: 10000;
+    background-color: #ffffffa0;
+    backdrop-filter: blur(1vmin);
+    box-shadow: 0 0.5vmin 1vmin #00000030;
+    padding: 1vmin;
+
+    display: grid;
+    height: 10vmin;
+    width: 30vmin;
+
+    border-radius: 1vmin;
+
+    transition: opacity 0.2s;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+div#alternative-info h5 {
+    font-size: 1.5vmin;
 }
 
 div#full-piano-roll {
@@ -744,7 +803,7 @@ div#popup-background {
     z-index: 999;
 }
 
-div#popup-background>div {
+div.popup {
     background-color: white;
     border-radius: 1vmin;
     width: 70vmin;
@@ -756,6 +815,7 @@ div#popup-background>div {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+    z-index: 999;
 }
 
 div#popup-keys h1 {
@@ -816,7 +876,7 @@ div#keys-list {
     padding: 1.25vmin 0;
 }
 
-div#keys-list>span {
+a.other-keys {
     height: 3vmin;
     width: calc(50vmin - 1.25vmin * 2);
     font-size: 2vmin;
@@ -825,6 +885,48 @@ div#keys-list>span {
     border: solid 0.1vmin var(--sub);
 }
 
+a.other-keys::after {
+    content: "Delete?";
+    position: absolute;
+    opacity: 0;
+    width: 30vmin;
+    text-align: center;
+    background-color: white;
+    color: var(--dominant);
+
+    transition: all 0.2s ease;
+}
+
+a.other-keys:hover::after {
+    opacity: 1;
+}
+
 .error {
     background-color: var(--dominant) !important;
+}
+
+section#alternative {
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+    padding-top: 5vmin;
+
+    overflow-y: scroll;
+}
+
+a.chord-alternative {
+    font-size: 3vmin;
+    /* margin: 1vmin; */
+
+    color: white;
+    border-radius: 1vmin;
+    height: 5vmin;
+    width: 40vmin;
+
+    background-color: var(--main-color);
 }

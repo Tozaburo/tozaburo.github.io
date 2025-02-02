@@ -1,5 +1,6 @@
-const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+"use strict";
 
+const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 const degreeNames = {
     major: {
         tonic: [
@@ -13,6 +14,7 @@ const degreeNames = {
         ],
         dominant: [
             ["V", "V7"],
+
             ["VIIm(b5)", "VIIm7(b5)"]
         ]
     },
@@ -58,7 +60,7 @@ const degreeNames = {
         ],
         dominant: [
             ["V", "V7"],
-            ["VIIdim", "bVIIdim7"],
+            ["VIIdim", "VIIdim7"],
         ]
     },
     "melodic minor": {
@@ -95,13 +97,13 @@ const degreeNames = {
     },
     lydian: {
         tonic: [
-            ["I", "IM7"], ["III", "IIIm7"], ["VI", "VIm7"]
+            ["I", "IM7"], ["IIIm", "IIIm7"], ["VIm", "VIm7"]
         ],
         subDominant: [
-            ["#IVm(b5)", "#IVm7(b5)"]
+            ["#IVm(b5)", "#IVm7(b5)"], ["II", "II7"]
         ],
         dominant: [
-            ["II", "II7"], ["V", "VM7"], ["VII", "VIIm7"]
+            ["V", "VM7"], ["VIIm", "VIIm7"]
         ]
     },
     mixolydian: {
@@ -117,48 +119,61 @@ const degreeNames = {
     },
     dorian: {
         tonic: [
-            ["I", "Im7"], ["bIII", "bIIIM7"]
+            ["Im", "Im7"], ["bIII", "bIIIM7"], ["Vm", "Vm7"], ["bVII", "bVIIM7"]
         ],
         subDominant: [
             ["II", "IIm7"], ["IV", "IV7"]
         ],
         dominant: [
-            ["V", "Vm7"], ["VIm(b5)", "VIm7(b5)"], ["bVII", "bVIIM7"]
+            ['VIm(b5)', 'VIm7(b5)']
         ]
     },
     phrygian: {
         tonic: [
-            ["I", "Im7"], ["bIII", "bIII7"]
+            ['Im', 'Im7'], ['bIII', 'bIII7']
         ],
         subDominant: [
-            ["bII", "bIIM7"], ["IV", "IVm7"], ["bVI", "bVIM7"]
+            ['IVm', 'IVm7'], ['bVI', 'bVIM7']
         ],
         dominant: [
-            ["Vm(b5)", "Vm7(b5)"], ["bVII", "bVIIm7"]
+            ['bII', 'bIIM7'], ['Vm(b5)', 'Vm7(b5)'], ['bVIIm', 'bVIIm7']
         ]
     },
     locrian: {
         tonic: [
-            ["Im(b5)", "Im7(b5)"], ["bIII", "bIIIm7"]
+            ["Im(b5)", "Im7(b5)"], ["IVm", "IVm7"], ["bVIIm", "bVIIm7"], ["bIIIm", "bIIIm7"]
         ],
         subDominant: [
-            ["bII", "bIIM7"], ["IV", "IVm7"]
+            ["bII", "bIIM7"], ["bV", "bVM7"]
         ],
         dominant: [
-            ["bV", "bVM7"], ["bVI", "bVIM7"], ["bVII", "bVIIm7"]
+            ["bVI", "bVI7"]
         ]
     }
 }
 
-const noteLengths = [1, 0.75, 0.5, 0.375, 0.25, 0.1875, 0.125, 0.0625];
+// const noteLengths = [1, 0.75, 0.5, 0.375, 0.25, 0.1875, 0.125, 0.0625];
+const noteLengths = [1, 0.75, 0.5, 0.375, 0.25, 0.1875, 0.125];
 const noteNames = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+const basicNoteNames = ["C", "C#", "Db", "D", "D#", "Eb", "E", "F", "F#", "Gb", "G", "G#", "Ab", "A", "A#", "Bb", "B"];
 let pianoNoteNames = [
     "C2", "Db2", "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2",
     "C3", "Db3", "D3", "Eb3", "E3", "F3", "Gb3", "G3", "Ab3", "A3", "Bb3", "B3",
     "C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4",
     "C5", "Db5", "D5", "Eb5", "E5", "F5", "Gb5", "G5", "Ab5", "A5", "Bb5", "B5"
 ];
-const modes = ["lydian", "major", "mixolydian", "dorian", "minor", "phrygian", "locrian"]
+const modeAndTonalCenter = {
+    "lydian": "F",
+    "major": "C",
+    "mixolydian": "G",
+    "dorian": "D",
+    "minor": "A",
+    "harmonic minor": "A",
+    "melodic minor": "A",
+    "phrygian": "E",
+    "locrian": "B"
+}
+const modes = ["lydian", "major", "mixolydian", "dorian", "minor", "harmonic minor", "melodic minor", "phrygian", "locrian"]
 const cMajor = ["C", "D", "E", "F", "G", "A", "B"];
 const ids = ["root", "modifier", "seventh", "omit", "tension", "omitRoot", "inversion", "bass"]
 const functions = ["t", "s", "d"];
@@ -189,29 +204,34 @@ const importBtn = document.getElementById('import');
 const fileInput = document.getElementById('fileInput');
 const exportMidi = document.getElementById('export');
 const sectionContainer = document.getElementById('section-container');
+const alternative = document.getElementById('alternative');
 const pianoRoll = document.getElementById('piano-roll');
 const previous = document.getElementById('previous');
 const next = document.getElementById('next');
 const relative = document.getElementById('relative');
 const popupBackground = document.getElementById('popup-background');
+const addKeyButton = document.getElementById('add-key-button');
+const alternativeInfo = document.getElementById('alternative-info');
+const chordInfo = document.getElementById('chord-info');
 
 const functionColor = document.querySelectorAll(".function");
 const tensions = document.querySelectorAll(".tension");
 const indicators = document.querySelectorAll(".indicator");
-const chordInfo = document.getElementById('chord-info');
 const popup = document.querySelectorAll(".popup");
-const addKeyButton = document.getElementById('add-key-button');
 
 const selects = [root, modifier, seventh, omit, tensions, omitRoot, inversion, bass];
 
 let chord = document.querySelectorAll("a.chord");
 let handle = document.querySelectorAll("span.handle");
 let piano = document.querySelectorAll("span.piano");
+let otherKeys = document.querySelectorAll(".other-keys");
+let chordAlternative = document.querySelectorAll(".chord-alternative");
 
 let chordProgression = [];
 let key = "C major";
 let keys = [];
 let scale;
+let enharmonicScale;
 let relativeMajor;
 let bpm = 120;
 let isPaused = 1;
@@ -270,6 +290,7 @@ octaveInput.onchange = e => {
 }
 
 updateKey();
+limitKeyRoot(keyRoot.value, keyMode.value);
 
 keyRoot.onchange = () => {
     key = `${keyRoot.value} ${keyMode.value}`;
@@ -277,8 +298,47 @@ keyRoot.onchange = () => {
 }
 
 keyMode.onchange = () => {
+    limitKeyRoot(keyRoot.value, keyMode.value);
+
     key = `${keyRoot.value} ${keyMode.value}`;
     updateKey();
+}
+
+function getFifths(tonalCenter) {
+    const roots = [tonalCenter];
+    for (let i = 0; i < 6; i++) {
+        roots.push(Tonal.Note.transposeFifths(tonalCenter, (i + 1)))
+    }
+
+    for (let i = -5; i <= -1; i++) {
+        roots.push(Tonal.Note.transposeFifths(tonalCenter, (i)))
+    }
+
+    return roots;
+}
+
+function limitKeyRoot(keyRootValue, keyMode) {
+    const tonalCenter = modeAndTonalCenter[keyMode];
+
+    const roots = getFifths(tonalCenter);
+
+    let html = "";
+
+    basicNoteNames.forEach(note => {
+        if (roots.includes(note)) {
+            if (note == keyRootValue) {
+                html += `<option value="${note}" selected>${note}</option>`;
+            } else if (Tonal.Note.enharmonic(note) == keyRootValue) {
+                html += `<option value="${note}" selected>${note}</option>`;
+            } else {
+                html += `<option value="${note}">${note}</option>`;
+            }
+        } else {
+            html += `<option value="${note}" disabled>${note}</option>`;
+        }
+    })
+
+    keyRoot.innerHTML = html;
 }
 
 relative.onchange = e => {
@@ -289,7 +349,9 @@ relative.onchange = e => {
 function updateKey() {
     const chordFunctions = ["tonic", "sub-dominant", "dominant"];
 
-    scale = Tonal.Scale.get(key).notes.map(note => noteNames.includes(note) ? note : Tonal.Note.enharmonic(note));
+    // scale = Tonal.Scale.get(key).notes.map(note => noteNames.includes(note) ? note : Tonal.Note.enharmonic(note));
+    scale = Tonal.Scale.get(key).notes;
+    enharmonicScale = Tonal.Scale.get(key).notes.map(note => noteNames.includes(note) ? note : Tonal.Note.enharmonic(note));
     diatonic = getDiatonicChords(key);
     let mainChords = { ...diatonic };
 
@@ -332,7 +394,6 @@ function getDiatonicChords(key) {
     const mode = splittedKey[2] ? `${splittedKey[1]} ${splittedKey[2]}` : splittedKey[1];
     const modeIndex = modes.includes(mode) ? modes.indexOf(mode) : 4;
     relativeMajor = `${Tonal.Note.transposeFifths(root, (-1 * (modeIndex - 1)))} major`;
-    console.log(relativeMajor)
     const basicMode = ["major", "minor", "harmonic minor", "melodic minor"];
     const keyTonic = classifyRelative ? (basicMode.includes(mode) ? root : Tonal.Scale.get(relativeMajor).tonic) : root;
     return degreeNames2chords({
@@ -360,8 +421,6 @@ function degreeNames2chords(degreeNames, keyTonic) {
                 ])[0];
             }
 
-            triad = enharmonicChord(triad);
-            seventh = enharmonicChord(seventh);
             return [triad, seventh];
         })
     });
@@ -392,8 +451,8 @@ function enharmonicChord(chord) {
     const splitted = splitChord(chord);
     let root = splitted.root;
     let bass = splitted.bass;
-    root = noteNames.includes(root) ? root : Tonal.Note.enharmonic(root);
-    bass = noteNames.includes(bass) ? bass : Tonal.Note.enharmonic(bass);
+    root = basicNoteNames.includes(root) ? root : Tonal.Note.enharmonic(root);
+    bass = basicNoteNames.includes(bass) ? bass : Tonal.Note.enharmonic(bass);
     return splitted2chord({ ...splitted, root: root, bass: bass });
 }
 
@@ -435,6 +494,7 @@ function loadChord(e) {
     setSelectAction(index);
 
     setToolAction(index, chord);
+    setAlternativeAction(index, chord, functionClass);
 
     loadPianoRoll(index);
 
@@ -497,6 +557,370 @@ function setToolAction(index, chord) {
     }
 }
 
+function setAlternativeAction(index, _chord, functionClass) {
+    let html = "";
+    const chord = splitted2chord({ ...splitChord(_chord), inversion: "", omitRoot: "" });
+    const splitted = splitChord(chord);
+    let alternativeChords = [];
+    const root = splitChord(chord).root;
+    const type = chordType(chord, true);
+    const notSpecificType = chordType(splitted2chord({ ...splitChord(chord), omit: "", tension: splitted.tension.filter(tension => tension == "b5" || tension == "#5"), omitRoot: "", inversion: "", bass: "" }), true);
+    // const chordPosition = findElementPosition(diatonic, chord);
+
+    // modes.forEach(mode => {
+    //     const degreeName = degreeNames[mode][chordPosition.key][chordPosition.index1][chordPosition.index2];
+    //     const keyTonic = key.split(" ")[0];
+    //     let newChord;
+
+    //     if (degreeName.includes("dim")) {
+    //         newChord = Tonal.Progression.fromRomanNumerals(keyTonic, [degreeName.replace("dim", "")]) + "dim";
+    //     } else if (degreeName.includes("dim7")) {
+    //         newChord = Tonal.Progression.fromRomanNumerals(keyTonic, [degreeName.replace("dim7", "")]) + "dim7";
+    //     } else {
+    //         newChord = Tonal.Progression.fromRomanNumerals(keyTonic, [degreeName])[0];
+    //     }
+
+    //     if (!alternativeChords.includes(newChord) && newChord !== chord) {
+    //         alternativeChords.push(newChord);
+    //     }
+    // })
+
+    // const splitted = splitChord(chord);
+    // const modifiers = {
+    //     t: ["", "m", "aug", "sus2", "sus4"],
+    //     s: ["", "m", "aug", "sus2", "sus4"],
+    //     d: ["", "m", "dim", "aug", "sus2", "sus4"]
+    // };
+    // modifiers[functionClass].forEach(modifier => {
+    //     if (splitted.modifier !== modifier) {
+    //         html += `<a class="medium flexB none chord-alternative ${functionClass}">${splitted2chord({ ...splitted, modifier: modifier })}</a>`;
+    //         if (modifier == "m" && !splitted.tension.includes("b5")) {
+    //             html += `<a class="medium flexB none chord-alternative ${functionClass}">${splitted2chord({ ...splitted, modifier: modifier, tension: [...splitted.tension, "b5"] })}</a>`;
+    //         }
+
+    //         if (modifier == "" && !splitted.tension.includes("b5")) {
+    //             html += `<a class="medium flexB none chord-alternative ${functionClass}">${splitted2chord({ ...splitted, tension: [...splitted.tension, "b5"] })}</a>`;
+    //         }
+    //     }
+    // })
+
+    modes.forEach(mode => {
+        const newChord = convertChordToNewScale(chord, key, `${key.split(" ")[0]} ${mode}`);
+        if (newChord) {
+            if (newChord !== chord) {
+                if (alternativeChords.some(item => item.chord === newChord)) {
+                    const i = alternativeChords.findIndex(item => item.chord === newChord);
+                    alternativeChords[i].desc.push(mode);
+                } else {
+                    alternativeChords.push({ chord: newChord, desc: [mode] });
+                }
+            }
+        }
+    })
+
+    alternativeChords = alternativeChords.map(item => ({
+        chord: item.chord,
+        desc: `Modal interchange from ${formatList(item.desc.map(mode => (mode === "minor" ? "aeolian" : mode)).map(mode => mode.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')), "or")}.`
+    }));
+
+    const fifths = getFifths("C");
+
+    let enharmonicRoot = root;
+
+    if (!fifths.includes(root)) {
+        enharmonicRoot = Tonal.Note.enharmonic(root);
+        if (!fifths.includes(root)) {
+            enharmonicRoot = Tonal.Note.enharmonic(root);
+        }
+    }
+
+    alternativeChords.push({ chord: `${fifths[(fifths.indexOf(enharmonicRoot) + 6) % 12]}${type}`, desc: "Tritone Substitution." })
+
+    switch (notSpecificType) {
+        case ("m7"):
+            // 6
+            // alternativeChords.push({ chord: `${Tonal.Note.transpose(root, "3m")}6`, desc: "Same notes." })
+            alternativeChords.push({ chord: returnNewChord(splitted, { root: Tonal.Note.transpose(root, "3m"), modifier: "", seventh: "6", tension: "" }), desc: "Same notes." })
+            break;
+        case ("m9"):
+            alternativeChords.push({ chord: returnNewChord(splitted, { root: Tonal.Note.transpose(root, "3m"), modifier: "", seventh: "6", tension: ["9"] }), desc: "Same notes." })
+            break;
+        case ("m11"):
+            alternativeChords.push({ chord: returnNewChord(splitted, { root: Tonal.Note.transpose(root, "3m"), modifier: "", seventh: "6", tension: ["9", "11"] }), desc: "Same notes." })
+            break;
+        case ("m13"):
+            alternativeChords.push({ chord: returnNewChord(splitted, { root: Tonal.Note.transpose(root, "3m"), modifier: "", seventh: "6", tension: ["9", "11", "13"] }), desc: "Same notes." })
+            break;
+        case ("6"):
+            // m7
+            alternativeChords.push({ chord: returnNewChord(splitted, { root: Tonal.Note.transpose(root, "-3m"), modifier: "m", seventh: "7", tension: "" }), desc: "Same notes." })
+            break;
+        case ("m7(b5)"):
+            // m6
+            alternativeChords.push({ chord: returnNewChord(splitted, { root: Tonal.Note.transpose(root, "3m"), modifier: "m", seventh: "6", tension: "" }), desc: "Same notes." })
+            break;
+        case ("m6"):
+            // m7(b5)
+            alternativeChords.push({ chord: returnNewChord(splitted, { root: Tonal.Note.transpose(root, "-3m"), modifier: "m", seventh: "7", tension: "b5" }), desc: "Same notes." })
+            break;
+    }
+
+
+
+
+    alternative.innerHTML = alternativeChords.length ? alternativeChords.map(alternativeChord => `<a class="medium flexB none chord-alternative ${functionClass}" data-desc="${alternativeChord.desc}">${alternativeChord.chord}</a>`).join("") : `<a class="medium flexB none chord-alternative">---</a>`;
+
+    chordAlternative = document.querySelectorAll(".chord-alternative");
+
+    chordAlternative.forEach(elm => {
+        elm.onclick = e => {
+            chordProgression[index].symbol = e.target.innerHTML;
+            updateHTML();
+            loadChord(document.querySelector(`[data-index="${index}"]`));
+        }
+
+        elm.onmousemove = e => {
+            alternativeInfo.style.left = `${e.clientX}px`;
+            alternativeInfo.style.top = `${e.clientY}px`;
+        }
+
+        elm.onmouseenter = e => {
+            alternativeInfo.innerHTML = `<h5 class="normal">${e.target.dataset.desc}</h5`;
+            alternativeInfo.style.opacity = "1";
+        }
+
+        elm.onmouseleave = () => {
+            alternativeInfo.style.opacity = "0";
+        }
+    })
+}
+
+function returnNewChord(splitted, newData) {
+    return splitted2chord({ ...splitted, root: newData.root, modifier: newData.modifier, seventh: newData.seventh, tension: [...splitted.tension.filter(tension => tension !== "b5" && tension !== "#5"), newData.tension] });
+}
+
+function formatList(items, conjunction = "and") {
+    if (items.length === 0) return "";
+    if (items.length === 1) return items[0];
+    const lastItem = items.pop();
+    return `${items.join(", ")} ${conjunction} ${lastItem}`;
+}
+
+function chordType(chord, specific = false) {
+    const splitted = splitChord(chord);
+    if (specific) {
+        return splitted2chord({ ...splitted, root: "" })
+    } else {
+        return splitted2chord({ ...splitted, root: "", omit: "", tension: [], omitRoot: "", inversion: "", bass: "" })
+    }
+}
+
+function convertChordToNewScale(chord, originalScale, newScale) {
+    const chordNotes = chord2notes(chord, false);
+    const originalScaleNotes = Tonal.Scale.get(originalScale).notes;
+    const newScaleNotes = Tonal.Scale.get(newScale).notes;
+
+    const newChordNotes = chordNotes.map(note => {
+        const originalIndex = originalScaleNotes.indexOf(Tonal.Note.pitchClass(note));
+        if (originalIndex === -1) {
+            return null;
+        }
+        return newScaleNotes[originalIndex];
+    });
+
+    if (newChordNotes.includes(null)) {
+        return null;
+    }
+
+    return notes2chord(newChordNotes);
+}
+
+
+function notes2chord(notes) {
+    const tonic = notes[0];
+    let intervals = notes.map(note => Tonal.Interval.distance(tonic, note));
+    intervals = [...new Set(intervals)];
+
+    // { root: any; modifier: any; seventh: any; omit: any; tension: any; omitRoot: any; inversion: any; bass: any; }
+
+    if (JSON.stringify(intervals) == JSON.stringify(['1P', '3m', '5d', '7d'])) {
+        return `${tonic}dim7`;
+    } else {
+
+        const splitted = { root: tonic };
+
+        const maps = {
+            third: {
+                "3M": {
+                    value: "",
+                    key: "modifier"
+                },
+                "3m": {
+                    value: "m",
+                    key: "modifier"
+                },
+                "4P": {
+                    value: "sus4",
+                    key: "modifier"
+                },
+                "2M": {
+                    value: "sus2",
+                    key: "modifier"
+                },
+                "": {
+                    value: "omit3",
+                    key: "omit"
+                }
+            },
+            fifth: {
+                "5P": {
+                    value: "",
+                    key: "tension"
+                },
+                "5A": {
+                    value: "aug",
+                    key: "modifier"
+                },
+                "5d": {
+                    value: "b5",
+                    key: "tension"
+                },
+                "": {
+                    value: "omit5",
+                    key: "omit"
+                }
+            },
+            seventh: {
+                "7M": {
+                    value: "M7",
+                    key: "seventh"
+                },
+                "7m": {
+                    value: "7",
+                    key: "seventh"
+                },
+                "6M": {
+                    value: "6",
+                    key: "seventh"
+                },
+            }
+        };
+
+        for (const mapKey of Object.keys(maps)) {
+            const map = maps[mapKey];
+            for (const intervalKey of Object.keys(map)) {
+                const interval = map[intervalKey];
+                if (!intervalKey || intervals.includes(intervalKey)) {
+                    if (interval.key === "tension") {
+                        if (interval.value) {
+                            if (splitted.tension) {
+                                splitted.tension.push(interval.value);
+                            } else {
+                                splitted.tension = [interval.value];
+                            }
+                        }
+                    } else {
+                        splitted[interval.key] = interval.value;
+                    }
+                    intervals = intervals.filter(n => n !== intervalKey);
+                    break;
+                }
+            }
+        }
+
+        const interval2tension = {
+            "2m": "b9",
+            "2M": "9",
+            "2A": "#9",
+            "3m": "#9",
+            "4P": "11",
+            "4A": "#11",
+            "5d": "#11",
+            "5A": "b13",
+            "6m": "b13",
+            "6M": "13"
+        };
+
+        intervals = intervals.filter(item => item !== "1P");
+
+        intervals.forEach(interval => {
+            if (splitted.tension) {
+                splitted.tension.push(interval2tension[interval]);
+            } else {
+                splitted.tension = [interval2tension[interval]];
+            }
+        })
+
+        return splitted2chord(splitted);
+    }
+
+
+    // const chordPatterns = {
+    //     "": ["1P", "3M", "5P"],
+    //     "7": ["1P", "3M", "5P", "7m"],
+    //     "M7": ["1P", "3M", "5P", "7M"],
+    //     "m": ["1P", "3m", "5P"],
+    //     "m7": ["1P", "3m", "5P", "7m"],
+    //     "mM7": ["1P", "3m", "5P", "7M"],
+    //     "m(b5)": ["1P", "3m", "5d"],
+    //     "m7(b5)": ["1P", "3m", "5d", "7m"],
+    //     "dim7": ["1P", "3m", "5d", "7d"],
+    //     "aug": ["1P", "3M", "5A"],
+    //     "augM7": ["1P", "3M", "5A", "7M"],
+    // };
+
+    // for (const [chordName, pattern] of Object.entries(chordPatterns)) {
+    //     if (JSON.stringify(intervals) === JSON.stringify(pattern)) {
+    //         return `${tonic}${chordName}`;
+    //     }
+    // }
+
+    // let detected = Tonal.Chord.detect(notes)[0];
+
+    // const converter = [
+    //     {
+    //         condition: "dim7",
+    //         flip: true,
+    //         from: "dim",
+    //         to: "m(b5)"
+    //     },
+    //     {
+    //         condition: "(b5)",
+    //         flip: true,
+    //         from: "b5",
+    //         to: "(b5)"
+    //     },
+    //     {
+    //         condition: "Mb5",
+    //         flip: false,
+    //         from: "Mb5",
+    //         to: "(b5)"
+    //     },
+    //     {
+    //         condition: "maj7",
+    //         flip: false,
+    //         from: "maj7",
+    //         to: "M7"
+    //     },
+    //     {
+    //         condition: "m/ma7",
+    //         flip: false,
+    //         from: "m/ma7",
+    //         to: "mM7"
+    //     },
+    // ]
+
+    // converter.forEach(replacement => {
+    //     if (replacement.flip) {
+    //         detected = detected.includes(replacement.condition) ? detected : detected.replace(replacement.from, replacement.to);
+    //     } else {
+    //         detected = detected.includes(replacement.condition) ? detected.replace(replacement.from, replacement.to) : detected;
+    //     }
+    // })
+
+    // return detected;
+}
+
 function setSelectAction(index) {
     selects.filter(item => item !== tensions).forEach(select => {
         select.onchange = event => {
@@ -529,6 +953,7 @@ function setDeleteAction(index) {
             })
             updateTensions([]);
             duration.value = "---";
+            alternative.innerHTML = `<a class="medium flexB none chord-alternative">---</a>`;
         }
     }
 }
@@ -554,7 +979,7 @@ function durationChanged(chordData) {
 
 function setSelectOption(chord) {
     const root = splitChord(chord).root;
-    const notes = chord2chordTranslator(chord);
+    const notes = chord2noteNames(chord);
     let html = `<option disabled selected>---</option>
 <option value=""></option>`;
     notes.forEach(note => {
@@ -563,6 +988,127 @@ function setSelectOption(chord) {
         }
     })
     inversion.innerHTML = html;
+}
+
+function chord2noteNames(chord) {
+    const splitted = splitChord(chord);
+    let intervals = ["1P", "3M", "5P"];
+
+    switch (splitted.modifier) {
+        case ("sus4"):
+            intervals[1] = "4P";
+            break;
+        case ("aug"):
+            intervals[2] = "5A";
+            break;
+        case ("m"):
+            intervals[1] = "3m";
+            break;
+        case ("dim"):
+            intervals[1] = "3m";
+            intervals[2] = "5d";
+            break;
+        case ("sus2"):
+            intervals[1] = "2M";
+            break;
+    }
+
+    switch (splitted.seventh) {
+        case ("M7"):
+            intervals[3] = "7M";
+            break;
+        case ("M9"):
+            intervals[3] = "7M";
+            intervals[4] = "9M";
+            break;
+        case ("M11"):
+            intervals[3] = "7M";
+            intervals[4] = "9M";
+            intervals[5] = "11P";
+            break;
+        case ("M13"):
+            intervals[3] = "7M";
+            intervals[4] = "9M";
+            intervals[5] = "11P";
+            intervals[6] = "13M";
+            break;
+        case ("7"):
+            if (splitted.modifier === "dim") {
+                intervals[3] = "7d";
+            } else {
+                intervals[3] = "7m";
+            }
+            break;
+        case ("9"):
+            if (splitted.modifier === "dim") {
+                intervals[3] = "7d";
+                intervals[4] = "9M";
+            } else {
+                intervals[3] = "7m";
+                intervals[4] = "9M";
+            }
+            break;
+        case ("11"):
+            if (splitted.modifier === "dim") {
+                intervals[3] = "7d";
+                intervals[4] = "9M";
+                intervals[5] = "11P";
+            } else {
+                intervals[3] = "7m";
+                intervals[4] = "9M";
+                intervals[5] = "11P";
+            }
+            break;
+        case ("13"):
+            if (splitted.modifier === "dim") {
+                intervals[3] = "7d";
+                intervals[4] = "9M";
+                intervals[5] = "11P";
+                intervals[6] = "13M";
+            } else {
+                intervals[3] = "7m";
+                intervals[4] = "9M";
+                intervals[5] = "11P";
+                intervals[6] = "13M";
+            }
+            break;
+        case ("6"):
+            intervals[3] = "6M";
+            break;
+    }
+
+    const tensionMap = {
+        "b9": "9m",
+        "9": "9M",
+        "#9": "9A",
+        "11": "11P",
+        "#11": "11A",
+        "b13": "13m",
+        "13": "13M",
+    };
+
+    splitted.tension.forEach(tension => {
+        intervals.push(tensionMap[tension]);
+        if (tension === "b5") {
+            intervals[2] = "5d";
+        } else if (tension === "#5") {
+            intervals[2] = "5A";
+        }
+    })
+
+    switch (splitted.omit) {
+        case ("omit3"):
+            intervals[1] = undefined;
+            break;
+        case ("omit5"):
+            intervals[2] = undefined;
+            break;
+    }
+
+
+    intervals = intervals.filter(interval => interval != undefined);
+
+    return intervals.map(interval => Tonal.Note.transpose(splitted.root, interval));
 }
 
 function chord2chordTranslator(chord) {
@@ -605,9 +1151,11 @@ function loadPianoRoll(index) {
     // currNotes.shift();
     // nextNotes.shift();
 
+    console.log(currNotes)
+
     // for (let i = 35; i >= 0; i--) {
     for (let i = 47; i >= 0; i--) {
-        html += div([scale.includes(noteNames[i % 12]) ? "diatonic" : "chromatic"]);
+        html += div([enharmonicScale.includes(noteNames[i % 12]) ? "diatonic" : "chromatic"]);
     }
 
     html += chordHTML(prevNotes);
@@ -661,7 +1209,7 @@ function chordHTML(notes) {
     for (let i = 47; i >= 0; i--) {
         if (notes.includes(pianoNoteNames[i])) {
             let classes = [];
-            if (scale.includes(Tonal.Note.pitchClass(pianoNoteNames[i]))) {
+            if (enharmonicScale.includes(Tonal.Note.pitchClass(pianoNoteNames[i]))) {
                 classes.push("diatonic");
             } else {
                 classes.push("chromatic");
@@ -738,12 +1286,28 @@ function updateChord(index) {
 }
 
 function splitted2chord(splitted) {
-    if (splitted.modifier.includes("sus")) {
-        return `${splitted.root}${splitted.seventh}${splitted.omit ? (splitted.omit.includes("omit") ? splitted.omit : `omit${splitted.omit}`) : ""}${splitted.modifier}${splitted.tension[0] ? "(" + splitted.tension.join(",") + ")" : ""}${splitted.omitRoot}${splitted.inversion ? "^" + splitted.inversion : ""}${splitted.bass ? "/" + splitted.bass : ""}`;
-    } else {
-        return `${splitted.root}${splitted.modifier}${splitted.seventh}${splitted.omit ? (splitted.omit.includes("omit") ? splitted.omit : `omit${splitted.omit}`) : ""}${splitted.tension[0] ? "(" + splitted.tension.join(",") + ")" : ""}${splitted.omitRoot}${splitted.inversion ? "^" + splitted.inversion : ""}${splitted.bass ? "/" + splitted.bass : ""}`;
-    }
+    const {
+        root = "",
+        modifier = "",
+        seventh = "",
+        omit = "",
+        tension = [],
+        omitRoot = "",
+        inversion = "",
+        bass = ""
+    } = splitted;
+
+    const validTension = tension.filter(t => t !== "");
+
+    const omitPart = omit ? (omit.includes("omit") ? omit : `omit${omit}`) : "";
+    const tensionPart = validTension.length ? `(${validTension.join(",")})` : "";
+    const inversionPart = inversion ? `^${inversion}` : "";
+    const bassPart = bass ? `/${bass}` : "";
+
+    return `${root}${modifier.includes("sus") ? seventh : modifier}${modifier.includes("sus") ? modifier : seventh}${omitPart}${tensionPart}${omitRoot}${inversionPart}${bassPart}`;
 }
+
+
 
 function chord2class(chord) {
     // const isChordIncluded = diatonic.some(section =>
@@ -800,7 +1364,8 @@ function chord2class(chord) {
 function updateHTML() {
     let html = "";
     chordProgression.forEach((chord, index) => {
-        html += `<a class="chord ${chord.function} flexB ${chord.style.join(" ")}" style="width: ${chord.duration * 100}%;" data-index="${index}">${chord2html(chord.symbol)}<span class="material-symbols-outlined piano">piano</span><span class="handle"></span></a>`;
+        // html += `<a class="chord ${chord.function} flexB ${chord.style.join(" ")}" style="width: ${chord.duration * 100}%;" data-index="${index}">${chord2html(chord.symbol)}<span class="material-symbols-outlined piano">piano</span><span class="handle"></span></a>`;
+        html += `<a class="chord ${chord.function} flexB ${chord.style.join(" ")}" style="grid-column: span ${chord.duration * 100 / 6.25};" data-index="${index}">${chord2html(chord.symbol)}<span class="material-symbols-outlined piano">piano</span><span class="handle"></span></a>`;
     })
     chords.innerHTML = html;
 
@@ -969,60 +1534,79 @@ function chord2base(chord) {
     return match ? match[0] : null;
 }
 
-function chord2notes(chord) {
+function chord2notes(chord, octave = true) {
     const parsed = splitChord(chord);
     const root = parsed.root;
     const inversion = parsed.inversion;
     const omitRoot = parsed.omitRoot;
     const slash = parsed.bass;
 
-    let notes = chord2chordTranslator(chord);
+    // let notes = chord2chordTranslator(chord);
+    let notes = chord2noteNames(chord);
 
     if (omitRoot) {
         notes.splice(0, 1);
     }
 
-    let enharmonicResult = notes.map(note => Tonal.Note.enharmonic(note));
+    // let enharmonicResult = notes.map(note => Tonal.Note.enharmonic(note));
 
-    if (notes.includes(inversion) || enharmonicResult.includes(inversion)) {
+    // if (notes.includes(inversion) || enharmonicResult.includes(inversion)) {
+    if (notes.includes(inversion)) {
         const regex = new RegExp(`^${slash}\\d+$`); // 動的に正規表現を作成
 
         let updatedArr;
         let index = notes.indexOf(inversion);
-        if (index === -1) {
-            index = enharmonicResult.indexOf(inversion);
-            updatedArr = enharmonicResult.slice(0, index);
-        } else {
-            updatedArr = notes.slice(0, index);
-        }
+        updatedArr = notes.slice(0, index);
         notes = [...notes.slice(index), ...updatedArr];
     }
 
-    if (slash) {
-        return addBass(addOctave(notes), slash);
+    if (octave) {
+        if (slash) {
+            return addBass(addOctave(notes), slash);
+        } else {
+            return addBass(addOctave(notes), root);
+        }
     } else {
-        return addBass(addOctave(notes), root);
+        return notes;
     }
+
 }
 
 const addBass = (notes, bass) => [`${bass}${baseOctave - 1}`, ...notes];
 
 function addOctave(notes) {
     const scale = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-    const flatToSharp = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#' };
     let result = [];
     let currentOctave = baseOctave;
 
     for (let i = 0; i < notes.length; i++) {
         let note = notes[i];
 
-        if (flatToSharp[note]) {
-            note = flatToSharp[note];
+        let enharmonicNote;
+        let currentIndex;
+        if (!scale.includes(note)) {
+            enharmonicNote = Tonal.Note.enharmonic(note);
+            if (!scale.includes(enharmonicNote)) {
+                enharmonicNote = Tonal.Note.enharmonic(enharmonicNote);
+            }
+            currentIndex = scale.indexOf(enharmonicNote);
+        } else {
+            currentIndex = scale.indexOf(note);
         }
-        let currentIndex = scale.indexOf(note);
 
         if (i > 0) {
-            let prevIndex = scale.indexOf(result[i - 1].slice(0, -1));
+            let prevNote = result[i - 1].slice(0, -1);
+
+            let prevIndex;
+            if (!scale.includes(prevNote)) {
+                enharmonicNote = Tonal.Note.enharmonic(prevNote);
+                if (!scale.includes(enharmonicNote)) {
+                    enharmonicNote = Tonal.Note.enharmonic(enharmonicNote);
+                }
+                prevIndex = scale.indexOf(enharmonicNote);
+            } else {
+                prevIndex = scale.indexOf(prevNote);
+            }
 
 
             if (currentIndex <= prevIndex) {
@@ -1126,7 +1710,6 @@ fileInput.onchange = () => {
         bpm = Number(result.bpm);
         keyRoot.value = splitted[0];
         keyMode.value = splitted[1];
-        console.log(splitted)
         bpmInput.value = bpm;
         chordProgression = result.chordProgression;
         updateHTML();
@@ -1222,7 +1805,18 @@ function addKey(newKey, target) {
 }
 
 function updateOtherKeys() {
-    document.getElementById('keys-list').innerHTML = keys.map(key => `<span class="flexB">${key}</span>`).join("");
+    document.getElementById('keys-list').innerHTML = keys.map(key => `<a class="flexB other-keys">${key}</a>`).join("");
+    otherKeys = document.querySelectorAll(".other-keys");
+    otherKeys.forEach(elm => {
+        elm.onclick = e => {
+            const parent = e.target.parentNode;
+            const children = Array.from(parent.children);
+            const index = children.indexOf(e.target);
+
+            keys.splice(index, 1);
+            updateOtherKeys();
+        }
+    })
 }
 
 popupBackground.onclick = e => {
@@ -1265,3 +1859,26 @@ document.querySelectorAll(".add-relative").forEach(elm => {
         }
     }
 })
+
+function convert(mode, degree, key) {
+    const quest = Tonal.Progression.toRomanNumerals("C", Tonal.Mode.triads(mode, key));
+    const c3 = Tonal.Progression.toRomanNumerals("C", Tonal.Mode.triads(mode, "C"));
+    const c4 = Tonal.Progression.toRomanNumerals("C", Tonal.Mode.seventhChords(mode, "C"));
+    return [c3[quest.indexOf(degree)], c4[quest.indexOf(degree)]];
+}
+
+const findElementPosition = (obj, value) => {
+    for (const key in obj) {
+        if (Array.isArray(obj[key])) {
+            for (let i = 0; i < obj[key].length; i++) {
+                if (Array.isArray(obj[key][i])) {
+                    const index = obj[key][i].indexOf(value);
+                    if (index !== -1) {
+                        return { key, index1: i, index2: index };
+                    }
+                }
+            }
+        }
+    }
+    return null;
+};
