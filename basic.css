@@ -11,7 +11,7 @@
     box-sizing: border-box;
 }
 
-body {
+body:not(.original) {
     min-height: 100vh;
     width: 100vw;
     display: -webkit-box;
@@ -53,6 +53,16 @@ body {
 .flexA {
     -ms-flex-pack: distribute;
     justify-content: space-around;
+}
+
+.flexF {
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }
 
 a {
@@ -205,4 +215,3 @@ textarea {
 #lang-select:hover {
     box-shadow: 0 1vmin 1vmin -1vmin var(--pre-secondary);
 }
-
