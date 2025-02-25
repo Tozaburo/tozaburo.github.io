@@ -17,13 +17,13 @@ body {
 h1#title {
     position: fixed;
     width: 100vw;
-    height: 20vh;
+    height: 15vh;
     top: 0;
     font-size: 5vh;
     line-height: 5vh;
     background-color: var(--main);
     color: white;
-    padding-top: 10vh;
+    padding-top: 5vh;
 }
 
 section {
@@ -148,7 +148,7 @@ a#resultBtn {
 section#result h2 {
     font-size: 5vh;
     color: var(--text);
-    margin: 10vh 0 20vh 0;
+    margin: 10vh 0 10vh 0;
 }
 
 section#result p {

@@ -130,18 +130,22 @@ function newQuestion(n, c, startTime) {
 
 
     result.onclick = () => {
-        if (n < 15) {
-            newQuestion(n + 1, c, startTime);
-        } else {
-            const endTime = performance.now();
-            show("result");
-            rate.innerText = `${Math.round(c / n * 100)}%`;
-            rate.style.backgroundPosition = `100% 0`;
-            requestAnimationFrame(() => {
-                rate.style.backgroundPosition = `${100 - c / n * 100}% 0`;
-            });
+        if (isClicked) {
+            if (n < 15) {
+                newQuestion(n + 1, c, startTime);
+            } else {
+                const endTime = performance.now();
+                show("result");
+                rate.innerText = `${Math.round(c / n * 100)}%`;
+                rate.style.backgroundPosition = `100% 0`;
+                requestAnimationFrame(() => {
+                    rate.style.backgroundPosition = `${100 - c / n * 100}% 0`;
+                });
 
-            time.innerText = `${Math.round((endTime - startTime) / 1000)}s`
+                time.innerText = `${Math.round((endTime - startTime) / 1000)}s`
+            }
+        } else {
+            piano.triggerAttackRelease(pitch.SPN, "4n");
         }
     }
 }
