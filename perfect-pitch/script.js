@@ -82,8 +82,15 @@ function newQuestion(n, c, startTime) {
     result.classList.remove("wrong");
 
     let pitch;
-    if (n <= 10) {
+    if (n <= 5) {
         pitch = randomPitch();
+    } else if (n <= 10) {
+        const solvedValues = Object.values(perfectPitchData).map(({ solved }) => solved);
+        const averageSolved = solvedValues.reduce((sum, s) => sum + s, 0) / solvedValues.length;
+        const belowAverageKeys = Object.keys(perfectPitchData).filter(key => perfectPitchData[key].solved < averageSolved);
+
+        const pitchName = belowAverageKeys[getRandomIntInclusive(0, belowAverageKeys.length - 1)]
+        pitch = { SPN: `${pitchName}${getRandomIntInclusive(3, 5)}`, pitchName: pitchName }
     } else {
         const ratios = Object.values(perfectPitchData).map(({ correct, solved }) => solved ? correct / solved : 0);
         const average = ratios.reduce((sum, r) => sum + r, 0) / ratios.length;
@@ -93,7 +100,7 @@ function newQuestion(n, c, startTime) {
         });
 
         const pitchName = belowAverageKeys[getRandomIntInclusive(0, belowAverageKeys.length - 1)]
-        pitch = { SPN: `${pitchName}${getRandomIntInclusive(3, 6)}`, pitchName: pitchName }
+        pitch = { SPN: `${pitchName}${getRandomIntInclusive(3, 5)}`, pitchName: pitchName }
     }
     const answer = pitch.pitchName;
     piano.triggerAttackRelease(pitch.SPN, "4n");
@@ -152,7 +159,7 @@ function newQuestion(n, c, startTime) {
 
 function randomPitch() {
     const pitchName = noteNames[getRandomIntInclusive(0, noteNames.length - 1)];
-    return { SPN: `${pitchName}${getRandomIntInclusive(3, 6)}`, pitchName: pitchName };
+    return { SPN: `${pitchName}${getRandomIntInclusive(3, 5)}`, pitchName: pitchName };
 }
 
 function show(id) {
