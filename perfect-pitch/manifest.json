@@ -1,0 +1,16 @@
+{
+    "name": "Perfect Pitch",
+    "short_name": "Perfect Pitch",
+    "start_url": "https://tozaburo.github.io/perfect-pitch",
+    "display": "standalone",
+    "background_color": "#1a58d0",
+    "theme_color": "#1a58d0",
+    "description": "It's a tool to help you master Perfect Pitch.",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        }
+    ]
+}

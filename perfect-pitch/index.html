@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Do not change -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:type" content="website" />
+    <meta name="author" content="Tozaburo">
+    <meta name="owner" content="Tozaburo">
+    <meta name="designer" content="Tozaburo">
+    <meta name="publisher" content="Tozaburo">
+    <meta name="distribution" content="Global">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="manifest.json">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ3HGBH4GQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XZ3HGBH4GQ');
+    </script>
+
+    <!-- CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/tone@15.0.4/build/Tone.min.js"></script>
+
+    <!-- Icon -->
+    <link rel="icon" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="apple-touch-startup-image" href="icon.png">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,700,1,200&icon_names=play_arrow" />
+
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="/basic.css" />
+
+    <!-- Description -->
+    <meta name="description" content="">
+    <meta property="og:description" content="">
+    <meta name="subject" content="">
+    <meta name="abstract" content="">
+
+    <!-- Keywords -->
+    <meta name="keywords" content=",">
+
+    <!-- Image -->
+    <meta property="og:image" content="image.png">
+    <meta name="thumbnail" content="image.png">
+    <meta name="twitter:card" content="image.png">
+
+    <!-- Title -->
+    <meta name="apple-mobile-web-app-title" content="Perfect Pitch">
+    <meta property="og:title" content="Perfect Pitch">
+    <meta property="og:site_name" content="Perfect Pitch" />
+    <title>Perfect Pitch</title>
+
+    <!-- <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script>
+        let lenis = new Lenis();
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    </script> -->
+</head>
+
+<body>
+    <h1 id="title" class="flexB">絶対音感</h1>
+    <section id="top" class="flexB flexC">
+        <a id="start" class="button flexB">始める</a>
+        <a id="statusBtn" class="button flexB">ステータス</a>
+    </section>
+    <section id="question" class="flexF hide">
+        <div class="flexB">
+            <h2>聞こえた音をタップ</h2>
+            <a id="replay"><span class="material-symbols-rounded">play_arrow</span></a>
+        </div>
+        <div class="piano flexB">
+            <a id="C" class="key white"></a>
+            <a id="Db" class="key black"></a>
+            <a id="D" class="key white"></a>
+            <a id="Eb" class="key black"></a>
+            <a id="E" class="key white"></a>
+        </div>
+        <div class="piano flexB">
+            <a id="F" class="key white"></a>
+            <a id="Gb" class="key black"></a>
+            <a id="G" class="key white"></a>
+            <a id="Ab" class="key black"></a>
+            <a id="A" class="key white"></a>
+            <a id="Bb" class="key black"></a>
+            <a id="B" class="key white"></a>
+        </div>
+        <a id="resultBtn" class="flexB"></a>
+    </section>
+    <section id="result" class="flexF hide">
+        <h2>結果</h2>
+        <p id="rate" class="flexB">80%</p>
+        <p id="time">10s</p>
+        <a class="button flexB gentle" id="retry">もう一度</a>
+        <a class="button flexB gentle home">ホーム</a>
+    </section>
+    <section id="status" class="flexF hide">
+        <h2>ステータス</h2>
+        <div class="flexB flexC" id="bars"></div>
+        <a class="button flexB gentle home">ホーム</a>
+    </section>
+</body>
+
+</html>

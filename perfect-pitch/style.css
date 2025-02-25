@@ -1,0 +1,191 @@
+* {
+    font-family: "Be Vietnam Pro", "Zen Maru Gothic", sans-serif;
+}
+
+:root {
+    --main: #1a58d0;
+    --correct: #1ad06c;
+    --wrong: #ff571f;
+    --text: #0a2251;
+    --bg: #ebf2ff;
+}
+
+body {
+    background-color: var(--bg);
+}
+
+h1#title {
+    position: fixed;
+    width: 100vw;
+    height: 10vh;
+    top: 0;
+    font-size: 5vh;
+    line-height: 5vh;
+    background-color: var(--main);
+    color: white;
+    padding-top: 2vh;
+}
+
+section {
+    height: 100vh;
+    width: 100vw;
+    padding-top: 10vh;
+}
+
+.hide {
+    display: none !important;
+}
+
+a {
+    display: block;
+}
+
+a.button {
+    background-color: var(--main);
+    color: white;
+    height: 6vh;
+    width: 50vw;
+    font-size: 2vh;
+    border-radius: 3vw;
+    margin: 1vh 0;
+}
+
+a.button.gentle {
+    background-color: var(--bg);
+    color: var(--main);
+    border: solid 0.2vh var(--main);
+    height: 6vh;
+    width: 50vw;
+    font-size: 2vh;
+    border-radius: 3vw;
+    margin: 1vh 0;
+}
+
+div.piano {
+    margin: 1vh 0;
+}
+
+div.piano a {
+    --main-width: 20vw;
+    --main-height: 20vh;
+}
+
+a.white {
+    height: var(--main-height);
+    width: var(--main-width);
+    background-color: white;
+    border: solid var(--bg) 1vw;
+    border-top: none;
+    border-radius: 2vw;
+}
+
+a.black {
+    position: relative;
+    height: calc(var(--main-height) / 2);
+    width: calc(var(--main-width) / 2);
+    margin: 0 calc(var(--main-width) / -4) calc(var(--main-height) / 2) calc(var(--main-width) / -4);
+    background-color: black;
+    border-radius: 0 0 2vw 2vw;
+}
+
+section#question h2 {
+    font-size: 3vh;
+    color: var(--text);
+    margin: 10vmin 0;
+}
+
+section#status h2 {
+    font-size: 3vh;
+    color: var(--text);
+    margin: 10vmin 0;
+}
+
+div.noteName {
+    margin: 1vh 0;
+}
+
+div.noteName span {
+    background-image: linear-gradient(to right, var(--correct) 50%, var(--wrong) 50%);
+    background-size: 200% 200%;
+    background-position: left center;
+    color: white;
+    height: 5vh;
+    width: 40vw;
+    border-radius: 4vw;
+    font-size: 2.5vh;
+    line-height: 2.5vh;
+    font-weight: 700;
+}
+
+div.noteName p {
+    color: var(--text);
+    font-size: 2.5vh;
+    line-height: 2.5vh;
+    font-weight: 700;
+    width: 5vh;
+}
+
+a#resultBtn {
+    color: white;
+    background-color: gray;
+    height: 7vh;
+    width: 60vw;
+    border-radius: 4vw;
+    font-size: 4vh;
+    line-height: 4vh;
+    font-weight: 700;
+    margin-top: 10vh;
+}
+
+.correct {
+    background-color: var(--correct) !important;
+}
+
+.wrong {
+    background-color: var(--wrong) !important;
+}
+
+section#result h2 {
+    font-size: 5vh;
+    color: var(--text);
+    margin: 10vh 0 20vh 0;
+}
+
+section#result p {
+    margin: 2vh 0;
+}
+
+p#rate {
+    background-image: linear-gradient(to right, var(--correct) 50%, var(--wrong) 50%);
+    background-size: 200% 200%;
+    background-position: left center;
+    color: white;
+    height: 7vh;
+    width: 60vw;
+    border-radius: 4vw;
+    font-size: 2.5vh;
+    line-height: 2.5vh;
+    font-weight: 700;
+
+    transition: background 0.5s ease;
+}
+
+p#time {
+    font-size: 3vh;
+    color: var(--text);
+    margin-bottom: 10vh !important;
+}
+
+a#replay {
+    margin: 1vh;
+}
+
+a#replay span {
+    color: var(--text);
+    font-size: 4vh;
+    line-height: 4vh;
+}
+
+section#status {
+    height: 120vh;
+}
