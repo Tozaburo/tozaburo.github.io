@@ -1,0 +1,16 @@
+{
+    "name": "",
+    "short_name": "",
+    "start_url": "https://tozaburo.github.io/factorization/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "description": "",
+    "icons": [
+        {
+            "src": "icon-mobile.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        }
+    ]
+}
