@@ -118,5 +118,10 @@
         "url": "https://tozaburo.github.io/speed-reading/",
         "ja": "速読",
         "en": "Speed reading"
+    },
+    {
+        "url": "https://tozaburo.github.io/ui-shades-generator/",
+        "ja": "UIカラージェネレーター",
+        "en": "UI Shades Generator"
     }
 ]
