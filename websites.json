@@ -123,5 +123,10 @@
         "url": "https://tozaburo.github.io/ui-shades-generator/",
         "ja": "UIカラージェネレーター",
         "en": "UI Shades Generator"
+    },
+    {
+        "url": "https://tozaburo.github.io/kanji-semantic-weight/",
+        "ja": "漢字の意味的貢献度",
+        "en": "Kanji Semantic Weight"
     }
 ]
