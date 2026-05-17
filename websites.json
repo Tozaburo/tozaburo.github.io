@@ -128,5 +128,11 @@
         "url": "https://tozaburo.github.io/kanji-semantic-weight/",
         "ja": "漢字の意味的貢献度",
         "en": "Kanji Semantic Weight"
+    },
+    ,
+    {
+        "url": "https://tozaburo.github.io/kanji-gradient/",
+        "ja": "漢字のグラーデション",
+        "en": "Kanji Gradient"
     }
 ]
